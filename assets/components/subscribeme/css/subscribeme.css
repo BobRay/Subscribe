@@ -1,23 +1,62 @@
-/* Request to Subscribe CSS */
+div#sm_subscribe {
+   width:50%;
+   margin:20px;
 
-div#subscribe  {
-    border: 3px solid #5E5E5E;
-    background-color: red;
+}
+
+div#sm_login {
+   display:inline;
+
+}
+
+a#sm_login_link {
+    color:#ddd;
+    margin-left:20px;
+}
+#subscribe  {
+    display:inline;
     margin: 0;
     padding: 20px;
-    text-align: left;
-    width: 50%
 }
 
-div#why-dialog {
-    background-color: red;
+#why-dialog {
+    background-color: #ddd;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid black;
+}
+
+#privacy-dialog {
+    background-color: #ddd;
+    padding: 10px;
+    border: 1px solid black
+}
+
+form.sm_register_form fieldset {
+  padding:20px;
+  background-color: #ddd;
+  width:750px;
+  margin: 30px;
+}
+
+form.sm_register_form span.error {
+  color: red;
+  width: 200px;
 
 }
 
-div#privacy-dialog {
-    background-color: #FFFFFF;
-    padding: 10px;
-    border: 1px solid #ccc
+form.sm_register_form label {
+    width: 170px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;
+    margin-right: 10px;
+
+}
+
+
+
+form.sm_register_form input {
+   width: 160px;
+   display: inline-block;
+   vertical-align: top;
 }
