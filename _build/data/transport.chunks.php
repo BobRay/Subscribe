@@ -40,24 +40,15 @@ $chunks[1]->fromArray(array(
 $chunks[2]= $modx->newObject('modChunk');
 $chunks[2]->fromArray(array(
     'id' => 2,
-    'name' => 'SmLoadFiles',
-    'description' => 'Chunk to load JS and CSS files for SubscribeMe',
-    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/SmLoadfiles.chunk.html'),
-    'properties' => '',
-),'',true,true);
-
-$chunks[3]= $modx->newObject('modChunk');
-$chunks[3]->fromArray(array(
-    'id' => 3,
     'name' => 'SmRegisterForm',
     'description' => 'Chunk containing SubscribeMe register form',
     'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/SmRegisterForm.chunk.html'),
     'properties' => '',
 ),'',true,true);
 
-$chunks[4]= $modx->newObject('modChunk');
-$chunks[4]->fromArray(array(
-    'id' => 4,
+$chunks[3]= $modx->newObject('modChunk');
+$chunks[3]->fromArray(array(
+    'id' => 3,
     'name' => 'SmSubscribe',
     'description' => 'Chunk containing request to subscribe',
     'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/SmSubscribe.chunk.html'),
@@ -65,9 +56,9 @@ $chunks[4]->fromArray(array(
 ),'',true,true);
 
 
-$chunks[5]= $modx->newObject('modChunk');
-$chunks[5]->fromArray(array(
-    'id' => 5,
+$chunks[4]= $modx->newObject('modChunk');
+$chunks[4]->fromArray(array(
+    'id' => 4,
     'name' => 'SmRegisterJS',
     'description' => 'Chunk containing JS code to validate the Register form',
     'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/SmRegisterJS.chunk.html'),

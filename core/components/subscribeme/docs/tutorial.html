@@ -1,41 +1,59 @@
-Create a Resource called Thank You for Registering. Make it published but hidden from menus. Put something like this in the Resource Content field:
+<p>SubscribeMe provides a double-opt-in User registration system. It uses some parts of the Login package, so be sure that package is installed before using SubscribeMe.</p>
+        
+<p>SubscribeMe provides a request-to-subscribe message that will appear on pages at your site. When Users choose to subscribe and submit the registration form, they receive an email message with a link to confirm their registration. The request-to-subscribe message will not be shown to Users who are logged in. You can also hide it on selected pages with the <fixedpre>&noShow</fixedpre> property in the SmSubscribe snippet tag.</p>
+        
+<p>As soon as they submit the form, a User record and a User Profile for the User are saved in the MODX database, but with the User marked as inactive. When they respond by clicking on the link in the email, they are taken to the site, marked as active, logged in, and sent to a &quot;Registration Confirmed&quot; page (or another page of your choice).</p>
+        
+<p>The default registration form also includes the option of checkboxes for the User to indicate interests. The User's interests will be saved as a comma-separated list in the <fixedpre>comment</fixedpre> field of the User's Profile. This allows you to send email messages to Users based on their interests (an upcoming version of EmailResource will do this automatically). You can also design systems that respond to User interests by customizing menus, forwarding Users to particular parts of the site on login, etc.</p>
 
-<p>Thanks for registering. You will receive an email message soon containing a link that will activate your subscription. Please click on the link in the message to become an active subscriber.</p>
+<p>Create a Resource called Thank You for Registering. Make it published but hidden from menus. Put something like this in the Resource Content field:</p>
 
-Make a note of the Thank You page's ID once you have saved it.
+<pre><fixedpre>
+    <p>Thanks for registering. You will receive an email message soon containing a link that will activate your subscription. Please click on the link in the message to become an active subscriber.</p>
+</fixedpre></pre>
 
-Create a resource called Registration Confirmed. Make it published but hidden from menus. Put something like the following in the Resource Content field:
+<p>Make a note of the Thank You page's ID once you have saved it.</p>
 
-<p>Congratulations, you are now a subscriber!</p>
+<p>Create a resource called Registration Confirmed. Make it published but hidden from menus. Put something like the following in the Resource Content field:
+</p>
 
-The user should be logged in automatically when they confirm registration.
+<pre><fixedpre>
+    <p>Congratulations, you are now a subscriber!</p>
+</fixedpre></pre>
 
-Make a note of the ID of your Registration Confirmed page
+<p>The User should be logged in automatically when they confirm registration.</p>
 
-Create a Resource called Confirm Register. Make it published but hidden from menus. Put only this code in the Resource Content field (replace ## with the ID of your Registration Confirmed page):
+<p>Make a note of the ID of your Registration Confirmed page.</p>
 
-[[!ConfirmRegister?
-    &redirectTo=`##`
-    &errorPage=`[[++site_start]]`
-]]
+<p>Create a Resource called Confirm Register. Make it published but hidden from menus. Put only this code in the Resource Content field (replace ## with the ID of your Registration Confirmed page):</p>
 
-Create a Resource called Register with something like this in the Resource Content field. Replace the two ## values with the Ids of your Confirm Register page and Thank You pages:
+<pre><fixedpre>
+    [[!ConfirmRegister?
+        &redirectTo=`##`
+        &errorPage=`[[++site_start]]`
+    ]]
+</fixedpre></pre>
 
-<p>Please fill out the following form and submit it to become a subscriber:</p>
-
-[[$SmRegisterForm? &confirmRegisterPageId=`##` &thankYouPageId=`##`]]
-
-
-Put the following tag in the <fixedpre><head></fixedpre> section of any templates for pages that should show the request to subscribe or the register form.
-
-[[!SmLoadFiles]]
-
-Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request to subscribe (replace ## with the ID of your Register page).
-
-[[!SmSubscribe? &loginPageId = `##` &registerPageId=`##`]]
+<p>Create a Resource called Register with something like this in the Resource Content field ( Replace the two ## values with the Ids of your Confirm Register page and Thank You pages):</p>
 
 
-Test your system.
+<pre><fixedpre>
+    <p>Please fill out the following form and submit it to become a subscriber:</p>
+
+    [[$SmRegisterForm? &confirmRegisterPageId=`##` &thankYouPageId=`##`]]
+
+</fixedpre></pre>
+
+<p>Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request to subscribe. Replace the first two ## entries with the IDs of your Login page and Register page. In the <fixedpre>&noShow</fixedpre> property, put a comma-separated list containing the IDs of other pages where the request should not be shown. By default, the request is not shown on the Login page or the Register page.</p>
+
+<pre><fixedpre>
+    [[!SmSubscribe? &loginPageId = `##` &registerPageId=`##` &noShow=`##,##,##`]]
+</fixedpre></pre>
+
+
+<p>Test your system.</p>
+
+<p>&nbsp;</p>
 
 Edit the checkboxes at the end of the SmRegisterForm chunk to use any tags you want. Leave the hidden one at the beginning.
 

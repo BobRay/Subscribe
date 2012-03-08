@@ -54,17 +54,6 @@ $snippets[1]->fromArray(array(
 $snippets[2]= $modx->newObject('modSnippet');
 $snippets[2]->fromArray(array(
     'id' => 2,
-    'name' => 'SmLoadFiles',
-    'description' => 'Loads SubscribeMe JS and CSS files if user is not logged in',
-    'snippet' => getSnippetContent($sources['source_core'].'/elements/snippets/SmLoadFiles.snippet.php'),
-),'',true,true);
-//$properties = include $sources['data'].'/properties/properties.mysnippet2.php';
-//$snippets[2]->setProperties($properties);
-//unset($properties);
-
-$snippets[3]= $modx->newObject('modSnippet');
-$snippets[3]->fromArray(array(
-    'id' => 3,
     'name' => 'SmSubscribe',
     'description' => 'Displays request to subscribe if user is not logged in or logout link',
     'snippet' => getSnippetContent($sources['source_core'].'/elements/snippets/SmSubscribe.snippet.php'),
@@ -72,9 +61,9 @@ $snippets[3]->fromArray(array(
 //$properties = include $sources['data'].'/properties/properties.mysnippet2.php';
 //$snippets[2]->setProperties($properties);
 //unset($properties);
-$snippets[4]= $modx->newObject('modSnippet');
-$snippets[4]->fromArray(array(
-    'id' => 4,
+$snippets[3]= $modx->newObject('modSnippet');
+$snippets[3]->fromArray(array(
+    'id' => 3,
     'name' => 'SmLoadRegisterJS',
     'description' => 'Loads JS to validate registration form',
     'snippet' => getSnippetContent($sources['source_core'].'/elements/snippets/SmLoadRegisterJS.snippet.php'),

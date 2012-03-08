@@ -31,11 +31,16 @@
 
 
 /* Display request to subscribe unless user is admin or logged in */
-
+/* @var $modx modX */ 
+/* @var $scriptProperties array */
 
 if ($modx->user->hasSessionContext($modx->context->get('key')) ) {
-   
    return '<a href="[[!~' . $scriptProperties['loginPageId'] . ']]? &service=logout" style="padding-left:30px;color:lavender">Log out</a>';
 } else {
+   $modx->regClientCSS(MODX_ASSETS_URL . 'components/subscribeme/css/subscribeme.css');
+   $modx->regClientCSS('http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css');
+    $modx->regClientStartupScript('http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js');
+    $modx->regClientStartupScript('http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js');
+    
    return $modx->getChunk('SmSubscribe', array('registerPageId' => $scriptProperties['registerPageId'], 'loginPageId' => $scriptProperties['loginPageId'])) ;
 }
