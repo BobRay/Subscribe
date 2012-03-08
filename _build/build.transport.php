@@ -28,24 +28,7 @@
  * @subpackage build
  */
 
-/* See the subscribeme/core/docs/tutorial.html file for
- * more detailed information about using the package
- *
- * Search and replace tasks:
- * (edit the resource and element names first if they have
- * different names than your package.)
- *
- * SubscribeMe -> Name of your package
- * subscribeme -> lowercase name of your package
- * Bob Ray -> Your Actual Name
- * Bob's Guides -> Name of your site
- * yoursite -> domain name of your site
- * http://bobsguides/com -> your email address
- * Description -> Description of file or component
- *
- * 3/3/12 -> Current date
- * 2012 -> Current Year
- */
+
 
 /* Set package info be sure to set all of these */
 define('PKG_NAME','SubscribeMe');
@@ -156,14 +139,7 @@ if ($hasSnippets) {
     } else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding snippets failed.'); }
 }
 
-if ($hasPropertySets) { /* add property sets */
-    $modx->log(modX::LOG_LEVEL_INFO,'Adding in property sets.');
-    $propertysets = include $sources['data'].'transport.propertysets.php';
-    /* note: property set' properties are set in transport.propertysets.php */
-    if (is_array($snippets)) {
-        $category->addMany($propertysets, 'PropertySets');
-    } else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding property sets failed.'); }
-}
+
 if ($hasChunks) { /* add chunks  */
     $modx->log(modX::LOG_LEVEL_INFO,'Adding in chunks.');
     /* note: Chunks' default properties are set in transport.chunks.php */    
@@ -173,35 +149,6 @@ if ($hasChunks) { /* add chunks  */
     } else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding chunks failed.'); }
 }
 
-
-if ($hasTemplates) { /* add templates  */
-    $modx->log(modX::LOG_LEVEL_INFO,'Adding in templates.');
-    /* note: Templates' default properties are set in transport.templates.php */
-    $templates = include $sources['data'].'transport.templates.php';
-    if (is_array($templates)) {
-        if (! $category->addMany($templates,'Templates')) {
-            $modx->log(modX::LOG_LEVEL_INFO,'addMany failed with templates.');
-        };
-    } else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding templates failed.'); }
-}
-
-if ($hasTemplateVariables) { /* add templatevariables  */
-    $modx->log(modX::LOG_LEVEL_INFO,'Adding in Template Variables.');
-    /* note: Template Variables' default properties are set in transport.tvs.php */
-    $templatevariables = include $sources['data'].'transport.tvs.php';
-    if (is_array($templatevariables)) {
-        $category->addMany($templatevariables, 'TemplateVars');
-    } else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding templatevariables failed.'); }
-}
-
-
-if ($hasPlugins) {
-    $modx->log(modX::LOG_LEVEL_INFO,'Adding in Plugins.');
-    $plugins = include $sources['data'] . 'transport.plugins.php';
-     if (is_array($plugins)) {
-        $category->addMany($plugins);
-     }
-}
 
 /* Create Category attributes array dynamically
  * based on which elements are present
@@ -225,13 +172,6 @@ if ($hasSnippets) {
         );
 }
 
-if ($hasPropertySets) {
-    $attr[xPDOTransport::RELATED_OBJECT_ATTRIBUTES]['PropertySets'] = array(
-            xPDOTransport::PRESERVE_KEYS => false,
-            xPDOTransport::UPDATE_OBJECT => true,
-            xPDOTransport::UNIQUE_KEY => 'name',
-        );
-}
 
 if ($hasChunks) {
     $attr[xPDOTransport::RELATED_OBJECT_ATTRIBUTES]['Chunks'] = array(
@@ -241,29 +181,6 @@ if ($hasChunks) {
         );
 }
 
-if ($hasPlugins) {
-    $attr[xPDOTransport::RELATED_OBJECT_ATTRIBUTES]['Plugins'] = array(
-        xPDOTransport::PRESERVE_KEYS => false,
-        xPDOTransport::UPDATE_OBJECT => true,
-        xPDOTransport::UNIQUE_KEY => 'name',
-    );
-}
-
-if ($hasTemplates) {
-    $attr[xPDOTransport::RELATED_OBJECT_ATTRIBUTES]['Templates'] = array(
-        xPDOTransport::PRESERVE_KEYS => false,
-        xPDOTransport::UPDATE_OBJECT => true,
-        xPDOTransport::UNIQUE_KEY => 'templatename',
-    );
-}
-
-if ($hasTemplateVariables) {
-    $attr[xPDOTransport::RELATED_OBJECT_ATTRIBUTES]['TemplateVars'] = array(
-        xPDOTransport::PRESERVE_KEYS => false,
-        xPDOTransport::UPDATE_OBJECT => true,
-        xPDOTransport::UNIQUE_KEY => 'name',
-    );
-}
 
 /* create a vehicle for the category and all the things
  * we've added to it.
@@ -318,14 +235,6 @@ if ($hasCore) {
  *  "Search Locally for Packages" in Package Manager
  */
 
-if ($hasSubPackages) {
-    $modx->log(modX::LOG_LEVEL_INFO, 'Adding in subpackages.');
-     $vehicle->resolve('file',array(
-        'source' => $sources['packages'],
-        'target' => "return MODX_CORE_PATH;",
-        ));
-}
-
 /* Put the category vehicle (with all the stuff we added to the
  * category) into the package 
  */
@@ -360,54 +269,6 @@ foreach ($resources as $resource) {
         $modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($resources).' resources.');
     }
     unset($resources,$resource,$attributes);
-}
-
-/* Transport Menus */
-if ($hasMenu) {
-    /* load menu */
-    $modx->log(modX::LOG_LEVEL_INFO,'Packaging in menu...');
-    $menu = include $sources['data'].'transport.menu.php';
-    if (empty($menu)) {
-        $modx->log(modX::LOG_LEVEL_ERROR,'Could not package in menu.');
-    } else {
-        $vehicle= $builder->createVehicle($menu,array (
-        xPDOTransport::PRESERVE_KEYS => true,
-        xPDOTransport::UPDATE_OBJECT => true,
-        xPDOTransport::UNIQUE_KEY => 'text',
-        xPDOTransport::RELATED_OBJECTS => true,
-        xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
-            'Action' => array (
-                xPDOTransport::PRESERVE_KEYS => false,
-                xPDOTransport::UPDATE_OBJECT => true,
-                xPDOTransport::UNIQUE_KEY => array ('namespace','controller'),
-            ),
-        ),
-));
-        $builder->putVehicle($vehicle);
-
-        $modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($menu).' menu items.');
-        unset($vehicle,$menu);
-    }
-}
-
-/* load system settings */
-if ($hasSettings) {
-    $settings = include $sources['data'].'transport.settings.php';
-    if (!is_array($settings)) {
-        $modx->log(modX::LOG_LEVEL_ERROR,'Could not package in settings.');
-    } else {
-        $attributes= array(
-            xPDOTransport::UNIQUE_KEY => 'key',
-            xPDOTransport::PRESERVE_KEYS => true,
-            xPDOTransport::UPDATE_OBJECT => false,
-        );
-        foreach ($settings as $setting) {
-            $vehicle = $builder->createVehicle($setting,$attributes);
-            $builder->putVehicle($vehicle);
-        }
-        $modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($settings).' System Settings.');
-        unset($settings,$setting,$attributes);
-    }
 }
 
 /* Next-to-last step - pack in the license file, readme.txt, changelog,
