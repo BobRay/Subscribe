@@ -4,8 +4,13 @@ div#sm_subscribe {
 
 }
 
-div#sm_login {
+div#sm_subscribe div#sm_login {
    display:inline;
+   padding-left:230px;
+}
+
+div#sm_subscribe div#sm_login a {
+   color:lavender;
 
 }
 

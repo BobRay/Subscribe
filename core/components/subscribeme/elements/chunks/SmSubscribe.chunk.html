@@ -1,11 +1,11 @@
 
-<div id="sm_subscribe" width="50%" style="margin:auto;">
+<div id="sm_subscribe">
       &nbsp;Become a subscriber!
       <button id = "launch-why-dialog">Why Should I?</button>
       <button id = "launch-privacy-dialog">Privacy Policy</button>
       <a href="[[~[[+registerPageId]]]]"><button>Subscribe Me</button></a>
 
-<div id="sm_login" style="padding-left:230px;display:inline;"><a style="color:lavender" href="[[~[[+loginPageId]]]]">Login</a></div>
+<div id="sm_login"><a href="[[~[[+loginPageId]]]]">Login</a></div>
   
 
     
@@ -18,7 +18,7 @@
     $(function() {
                    
         $('#why-dialog').dialog({
-            position: [195,250],
+            position: [212,55],
             bgiframe: true,
             height: 475,
             width: 300,
@@ -38,9 +38,9 @@
 
        $(function() {
         $('#privacy-dialog').dialog({
-            position: [330,250], 
+            position: [347,55], 
             bgiframe: true,
-            height: 390,
+            height: 500,
             width: 300,
             modal: true,
             show: 'slide',
