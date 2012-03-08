@@ -1,3 +1,4 @@
+<?php
 /**
      * SubscribeMe
      * Copyright 2012 Bob Ray <http://bobsguides/com>
@@ -35,7 +36,10 @@
 /* @var $scriptProperties array */
 
   $sp =& $scriptProperties;
-if ($modx->user->hasSessionContext($modx->context->get('key')) ) {
+  $noShows = array($sp['loginPageId'],$sp['registerPageId']);
+  $noShows = array_merge($noShows,explode(',', $sp['noShow']));
+
+if ($modx->user->hasSessionContext($modx->context->get('key')) || in_array($modx->resource->get('id'),$noShows) ) {
    return '<a href="[[!~' . $scriptProperties['loginPageId'] . ']]? &service=logout" style="padding-left:30px;color:lavender">Log out</a>';
 } else {
    $modx->regClientCSS(MODX_ASSETS_URL . 'components/subscribeme/css/subscribeme.css');
