@@ -9,6 +9,11 @@
 $inFile = $modx->getOption('assets_url') . "components/subscribeme/js/emailcheck.js";
 $modx->regClientStartupScript($inFile);
 
+$inFile = $modx->getOption('assets_url') . "components/subscribeme/css/subscribe.css";
+$modx->regClientCSS($inFile);
+
+
+
 if (!empty($scriptProperties['language'])) {
     $modx->setOption('cultureKey', $scriptProperties['language']);
 }
