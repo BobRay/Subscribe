@@ -51,11 +51,37 @@
 </fixedpre></pre>
 
 
-<p>Test your system.</p>
+<p>Test your system by visiting the site from another browser where you are not logged in to the Manager. When you are logged in to the Manager and are previewing the site, your login status is ambiguous. You're logged in, but not to the 'web' context, so SubscribeMe's login status checks can give odd results.</p>
+
+<h3>Customizing SubscribeMe</h3>
+
+<p>To set the interests checkboxes on the Register form Edit the checkboxes at the end of the SmRegisterForm chunk to use any tags you want. You can add or delete checkboxes to meet your needs, but leave the hidden one at the beginning. When changing the name of an interest, be sure to change both the value and the visible HTML. in The code for each checkbox, the &quot;value&quot part is what will be saved to the User Profile. The visible part (the one on the right) is what the user will see when filling out the form.
+</p>
+        
+<p>There is JavaScript validation for all fields in the Register form. All fields are required. The Username and Password fields are required to be at least 6 characters long and the two Password fields must match. The Email field is also checked to make sure it's a valid address. The User must also check at least one of the Interests checkboxes.</p>        
+        
+<p>If you don't want to use the interests feature at all, you can delete all the checkboxes, but the JavaScript validation may complain. You can either leave the hidden field and set its value to something, or edit the  SmRegisterJS chunk and remove the check at the end of the code. Be sure not to delete the closing curly brace at the end of the code or the code that follows it. You'll also need to remove the <fixedpre>&postHooks</fixedpre> property from the snippet tag at the top of the SmRegisterForm chunk.</p>        
+        
+<p>Styling the forms</p>        
+
+<p>Both the Register form and the request to subscribe can be styled by editing the /assets/components/subscribeme/css/subscribeme.css file.</p>
+        
+<p>The height, width, and position of the two popup windows on the request to subscribe (triggered by the &quot;Why Should I&quot; and &quot;Privacy Policy&quot; buttons), can be controlled by adding the following properties to the SmSubscribe snippet tag in your template:</p>
+        
+<pre><fixedpre>
+    &whyDialogHeight
+    &whyDialogWidth
+    &whyDialogTop
+    &whyDialogLeft
+    &privacyDialogHeight
+    &privacyDialogWidth
+    &privacyDialogTop
+    &privacyDialogLeft
+</fixedpre></pre>        
+        
+        
 
 <p>&nbsp;</p>
-
-Edit the checkboxes at the end of the SmRegisterForm chunk to use any tags you want. Leave the hidden one at the beginning.
 
 
 

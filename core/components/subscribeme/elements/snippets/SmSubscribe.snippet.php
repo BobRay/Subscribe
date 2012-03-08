@@ -34,6 +34,7 @@
 /* @var $modx modX */ 
 /* @var $scriptProperties array */
 
+  $sp =& $scriptProperties;
 if ($modx->user->hasSessionContext($modx->context->get('key')) ) {
    return '<a href="[[!~' . $scriptProperties['loginPageId'] . ']]? &service=logout" style="padding-left:30px;color:lavender">Log out</a>';
 } else {
@@ -42,5 +43,20 @@ if ($modx->user->hasSessionContext($modx->context->get('key')) ) {
     $modx->regClientStartupScript('http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js');
     $modx->regClientStartupScript('http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js');
     
-   return $modx->getChunk('SmSubscribe', array('registerPageId' => $scriptProperties['registerPageId'], 'loginPageId' => $scriptProperties['loginPageId'])) ;
+    $fields = array();
+    $fields['registerPageId'] = $sp['registerPageId'];
+    $fields['loginPageId'] = $scriptProperties['loginPageId'];
+
+    $fields['whyDialogHeight'] = $modx->getOption('whyDialogHeight',$sp, 475);
+    $fields['whyDialogWidth'] = $modx->getOption('whyDialogWidth',$sp, 300);
+    $fields['whyDialogTop'] = $modx->getOption('whyDialogTop',$sp, 55);
+    $fields['whyDialogLeft'] = $modx->getOption('whyDialogLeft',$sp, 212);
+
+    $fields['privacyDialogHeight'] = $modx->getOption('privacyDialogHeight',$sp, 500);
+    $fields['privacyDialogWidth'] = $modx->getOption('privacyDialogWidth',$sp, 300);
+    $fields['privacyDialogTop'] = $modx->getOption('privacyDialogTop',$sp, 55);
+    $fields['privacyDialogLeft'] = $modx->getOption('privacyDialogLeft',$sp, 347);
+
+
+    return $modx->getChunk('SmSubscribe', $fields) ;
 }
