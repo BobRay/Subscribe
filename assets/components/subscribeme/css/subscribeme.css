@@ -6,8 +6,14 @@ div#sm_subscribe {
 
 div#sm_subscribe div#sm_login {
    display:inline;
-   padding-left:230px;
+   padding-left:20px;
 }
+
+div#sm_subscribe span#sm_login_button {
+   display:inline;
+   padding-left:50px;
+}
+
 
 div#sm_subscribe div#sm_login a {
    color:lavender;
