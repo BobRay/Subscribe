@@ -1,0 +1,62 @@
+[[!Register?
+    &activationResourceId=`[[+confirmRegisterId]]`
+    &submittedResourceId=`[[+thankYouId]]`
+    &postHooks=`SmGetInterests`
+    &activationttl=`480`
+    &usergroups=`Subscribers`
+    &activationEmailTpl=`SmActivateEmailTpl`
+    &activationEmailSubject=`Please activate your account at [[++site_name]]!`
+    
+]]
+
+[[SmLoadRegisterJS]]
+
+<div class="register">
+    <div class="registerMessage">[[+error.message]]</div>
+
+    <form class="sm_register_form" action="[[~[[*id]]]]" method="post" onsubmit="return checkform(this); return false;">
+        <fieldset>
+        <input type="hidden" name="nospam:blank" value="" />
+
+        <label for="username">[[%register.username? &namespace=`login` &topic=`register`]]:
+            
+        </label>
+        <input type="text" name="username:required:minLength=6" id="username" value="[[+username]]" /><span class="error">[[+error.username]]</span><br />
+
+        <label for="password">[[%register.password]]:
+            
+        </label>
+        <input type="password" name="password:required:minLength=6" id="password" value="[[+password]]" /><span class="error">[[+error.password]]</span><br />
+
+        <label for="password_confirm">[[%register.password_confirm]]:
+            
+        </label>
+        <input type="password" name="password_confirm:password_confirm=`password`" id="password_confirm" value="[[+password_confirm]]" /><span class="error">[[+error.password_confirm]]</span><br />
+
+        <label for="fullname">[[%register.fullname]]:
+            
+        </label>
+        <input type="text" name="fullname:required" id="fullname" value="[[+fullname]]" /><span class="error">[[+error.fullname]]</span><br />
+
+        <label for="email">[[%register.email]]:
+            
+        </label>
+        <input type="text" name="email:email:required" id="email" value="[[+email]]" /><span class="error">[[+error.email]]</span><br />
+        <br />
+        <p>Pleased keep me informed about new content in the following areas:</p>
+        <input type="hidden" name="interests[]:required" value=""><br />
+        <input type="checkbox" name="interests[]" value="modx"> MODX<br />
+        <input type="checkbox" name="interests[]" value="rv"> RV<br />
+        <input type="checkbox" name="interests[]" value="bread"> Bread<br />
+
+        <br class="clear" />
+
+        [[+register.recaptcha_html]]
+        [[+error.recaptcha]]
+        <br />
+        <div class="form-buttons">
+            <input type="submit" name="login-register-btn" value="Register" />
+        </div>
+    </fieldset>
+    </form>
+</div>

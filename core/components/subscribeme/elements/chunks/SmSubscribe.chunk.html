@@ -1,0 +1,62 @@
+
+<div id="sm_subscribe" width="50%" style="margin:auto;">
+      &nbsp;Become a subscriber!
+      <button id = "launch-why-dialog">Why Should I?</button>
+      <button id = "launch-privacy-dialog">Privacy Policy</button>
+      <a href="[[~[[+registerPageId]]]]"><button>Subscribe Me</button></a>
+
+<div id="sm_login" style="padding-left:230px;display:inline;"><a style="color:lavender" href="[[~[[+loginPageId]]]]">Login</a></div>
+  
+
+    
+    <div id="privacy-dialog"><p>I'm too lazy to collect any information about you other than the data you submit when you subscribe, which I will never intentionally share with anyone. If this policy changes, I'll let you know.</p></div>
+
+<div id="why-dialog"><p>As a Subscriber, you will receive access to certain parts of the site that are hidden from others. You'll also get email updates when new content is available on the site or existing content is updated.</p></div>
+    
+    <script type="text/javascript">
+
+    $(function() {
+                   
+        $('#why-dialog').dialog({
+            position: [195,250],
+            bgiframe: true,
+            height: 475,
+            width: 300,
+            modal: true,
+            show: 'slide',
+            hide: 'slide',
+            title:'Why Subscribe?',
+            buttons:{ "Close": function() { $(this).dialog("close"); } },
+            autoOpen:false   
+        });
+        $('#launch-why-dialog').click(function() {
+            $('#why-dialog').dialog('open');
+            return false;
+        });
+    });
+
+
+       $(function() {
+        $('#privacy-dialog').dialog({
+            position: [330,250], 
+            bgiframe: true,
+            height: 390,
+            width: 300,
+            modal: true,
+            show: 'slide',
+            hide: 'slide',
+            title:'Bob\'s Guides<br />Privacy Policy',
+            buttons:{ "Close": function() { $(this).dialog("close"); } },
+            autoOpen:false
+        });
+        $('#launch-privacy-dialog').click(function() {
+            $('#privacy-dialog').dialog('open');
+            return false;
+        });
+    });
+
+
+        
+    </script>  
+
+</div>

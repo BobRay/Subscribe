@@ -1,0 +1,42 @@
+Create a Resource called Thank You for Registering. Make it published but hidden from menus. Put something like this in the Resource Content field:
+
+<p>Thanks for registering. You will receive an email message soon containing a link that will activate your subscription. Please click on the link in the message to become an active subscriber.</p>
+
+Make a note of the Thank You page's ID once you have saved it.
+
+Create a resource called Registration Confirmed. Make it published but hidden from menus. Put something like the following in the Resource Content field:
+
+<p>Congratulations, you are now a subscriber!</p>
+
+Make a note of the ID of your Registration Confirmed page
+
+Create a Resource called Confirm Register. Make it published but hidden from menus. Put only this code in the Resource Content field (replace ## with the ID of your Registration Confirmed page):
+
+[[!ConfirmRegister?
+    &redirectTo=`##`
+    &errorPage=`[[++site_start]]`
+]]
+
+Create a Resource called Register with something like this in the Resource Content field. Replace
+the two ## values with the Ids of your Confirm Register page and Thank You pages:
+
+<p>Please fill out the following form and submit it to become a subscriber:</p>
+
+[[$SmRegisterForm? &confirmRegisterId=`##` &thankYouId=`##`]]
+
+
+Put the following tag in the <fixedpre><head></fixedpre> section of any templates for pages that should show the request to subscribe or the register form.
+
+[[!SmLoadFiles]]
+
+Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request to subscribe (replace ## with the ID of your Register page).
+
+[[!SmSubscribe? &loginPageId = `##` &registerPageId=`##`]]
+
+
+Test your system.
+
+Edit the checkboxes at the end of the SmRegisterForm chunk to use any tags you want. Leave the hidden one at the beginning.
+
+
+
