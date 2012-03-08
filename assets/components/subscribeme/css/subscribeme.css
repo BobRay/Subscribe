@@ -1,10 +1,10 @@
-/* edit for your css */
+/* Request to Subscribe CSS */
 
 div#subscribe  {
     border: 3px solid #5E5E5E;
     background-color: red;
     margin: 0;
-    padding: 20;
+    padding: 20px;
     text-align: left;
     width: 50%
 }
@@ -12,8 +12,8 @@ div#subscribe  {
 div#why-dialog {
     background-color: red;
     padding: 10px;
-    border: 6px solid #ccc;
-    font-weight: bold
+    border: 1px solid #ccc;
+
 }
 
 div#privacy-dialog {
