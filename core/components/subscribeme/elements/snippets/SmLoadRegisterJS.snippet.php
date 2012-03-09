@@ -9,7 +9,7 @@
 $inFile = $modx->getOption('assets_url') . "components/subscribeme/js/emailcheck.js";
 $modx->regClientStartupScript($inFile);
 
-$inFile = $modx->getOption('assets_url') . "components/subscribeme/css/subscribe.css";
+$inFile = $modx->getOption('assets_url') . "components/subscribeme/css/subscribeme.css";
 $modx->regClientCSS($inFile);
 
 

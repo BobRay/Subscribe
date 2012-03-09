@@ -25,7 +25,7 @@
 
 <p>Make a note of the ID of your Registration Confirmed page.</p>
 
-<p>Create a Resource called Confirm Register. Make it published but hidden from menus. Put only this code in the Resource Content field (replace ## with the ID of your Registration Confirmed page):</p>
+<p>Create a Resource called Confirm Register. Make it published but hidden from menus. Put only this code in the Resource Content field. Rreplace ## with the ID of your Registration Confirmed page (*not* the Confirm Register page).</p>
 
 <pre><fixedpre>
     [[!ConfirmRegister?
@@ -34,7 +34,7 @@
     ]]
 </fixedpre></pre>
 
-<p>Create a Resource called Register with something like this in the Resource Content field ( Replace the two ## values with the Ids of your Confirm Register page and Thank You pages):</p>
+<p>Create a Resource called Register with something like this in the Resource Content field. Replace the two ## values with the Ids of your Confirm Register page (*not* the Registration Confirmed page) and Thank You pages.</p>
 
 
 <pre><fixedpre>
@@ -44,13 +44,20 @@
 
 </fixedpre></pre>
 
-<p>Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request to subscribe. Replace the first two ## entries with the IDs of your Login page and Register page. In the <fixedpre>&noShow</fixedpre> property, put a comma-separated list containing the IDs of other pages where the request should not be shown. By default, the request is not shown on the Login page or the Register page, you'll probably also want to add the IDs of the &quot;Thank You for Registering&quot; page and the &quot;Confirm Register&quot page.</p>
+<p>Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request to subscribe. Replace the first two ## entries with the IDs of your Login page and Register page. In the <fixedpre>&noShow</fixedpre> property, put a comma-separated list containing the IDs of other pages where the request should not be shown. By default, the request is not shown on the Login page or the Register page, you'll probably also want to add the IDs of the &quot;Thank You for Registering&quot; page, the &quot;Registration Confirmed&quot; page and the &quot;Confirm Register&quot page.</p>
 
 <pre><fixedpre>
     [[!SmSubscribe? &loginPageId = `##` &registerPageId=`##` &noShow=`##,##,##`]]
 </fixedpre></pre>
 
 
+<p>Before testing, clear the cache and make sure that the following resources are published and hidden from menus (unless you want to show the Register page in the menu).
+<ul>
+    <li>Register</li>
+    <li>Confirm Register</li>
+    <li>Registration Confirmed</li>
+    <li>Thank You for Registering pages</li>
+</ul>
 <p>Test your system by visiting the site from another browser where you are not logged in to the Manager. When you are logged in to the Manager and are previewing the site, your login status is ambiguous. You're logged in, but not to the 'web' context, so SubscribeMe's login status checks can give odd results.</p>
 
 <h3>Customizing SubscribeMe</h3>
