@@ -54,6 +54,8 @@ if ($loggedIn || in_array($docId,$noShows) ) {
 
 } else {
    /* Load CSS and JS, and show the subscribe request */
+   $modx->regClientCSS('<script type="text/javascript" src="https://www.google.com/jsapi"></script>');
+
     $modx->regClientCSS(MODX_ASSETS_URL . 'components/subscribeme/css/subscribeme.css');
     $modx->regClientCSS('http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css');
     $modx->regClientStartupScript('http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js');
