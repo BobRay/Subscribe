@@ -1,34 +1,51 @@
+
+
+/* request to subscribe div */
 div#sm_subscribe {
-   width:50%;
-   margin:20px;
+   width:50em;
+   margin: 3px 0px 3px 20px;
 
 }
 
-div#sm_subscribe div#sm_login {
-   display:inline;
-   padding-left:20px;
-}
-
+/* login button shown with request to subscribe */
 div#sm_subscribe span#sm_login_button {
    display:inline;
-   padding-left:50px;
+   margin-left:3em;
+
+
+}
+/* keep FF from underlining some buttons */
+div#sm_subscribe a {
+   text-decoration:none;
 }
 
+div#sm_subscribe span#sm_subscribe_msg {
+   vertical-align:middle;
+   font-size:large;
+}
 
-div#sm_subscribe div#sm_login a {
+div#sm_subscribe button {
+   margin-left:1em;
+   padding:0px 10px 0px 10px;
+}
+/* login/logout link shown when request to subscribe is not shown */
+/*
+ a#sm_logout {
    color:lavender;
+   padding-left:30px;
+   text-decoration: none;
+}
+*/
+
+a#sm_login_logout {
+
+   color:lavender;
+   padding-left:30px;
+   text-decoration: none;
+}
 
 }
-
-a#sm_login_link {
-    color:#ddd;
-    margin-left:20px;
-}
-#subscribe  {
-    display:inline;
-    margin: 0;
-    padding: 20px;
-}
+/* Registration form styling */
 
 #why-dialog {
     background-color: #ddd;
