@@ -84,7 +84,13 @@
     &privacyDialogWidth
     &privacyDialogTop
     &privacyDialogLeft
-</fixedpre></pre>        
+</fixedpre></pre>
+
+<h3>Speed Issues</h3>
+
+<p>The SubscribeMe plugin may slow down page loads if you use the built-in &quot;Request to Subscribe&quot; snippet. By default, it loads JQuery via URL from Google, and that can slow things down, especially for users on slow internet connections. JQuery is only used for the two popup boxes (&quot;Why Should I&quot;, and &quot;Privacy Policy&quot;). You can eliminate the delay in various ways. You can download the files and make the links local, use plain JS for them, or change them to local links pointing to resources on your site. In making your changes, be careful not to eliminate the plain JS that validates the Register form or the loading of the subscribeme CSS.</p>
+
+<p>For maximum speed, you could just display a standard link to the Register page.</p>
         
 <p>&nbsp;</p>
 
