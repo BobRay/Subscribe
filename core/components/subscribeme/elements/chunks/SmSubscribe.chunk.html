@@ -1,59 +1,38 @@
 
 <div id="sm_subscribe">
       <span id="sm_subscribe_msg">Become a subscriber!</span>
-      <button id = "launch-why-dialog">Why Should I?</button>
-      <button id = "launch-privacy-dialog">Privacy Policy</button>
-      <a href="[[~[[+registerPageId]]]]"><button>Subscribe Me</button></a>
-      <span id="sm_login_button"><a href="[[~[[+loginPageId]]]]"><button>Login</button></a></span>
-    
-    <div id="privacy-dialog"><p>I'm too lazy to collect any information about you other than the data you submit when you subscribe, which I will never intentionally share with anyone. If this policy changes, I'll let you know.</p></div>
+      <div id="sm_why_dialog_outer">
+          <button id="launch-why-dialog">Why Should I?</button>
+          <div id="why-dialog">
+              <h3>Why Subscribe?</h3>
 
-<div id="why-dialog"><p>As a Subscriber, you will receive access to certain parts of the site that are hidden from others. You'll also get email updates when new content is available on the site or existing content is updated.</p></div>
-    
-    <script type="text/javascript">
+              <p>As a Subscriber, you will receive access to certain parts 
+                 of the site that are hidden from others. You'll also get 
+                 email updates when new content is available 
+                 on the site or existing content is updated.</p>
+              
+              <p>As an added incentive to subscribe, I have a bunch
+                 of new and updated MODX extras I plan to release
+                 as soon as I have a significant number of subscribers
+                 to notify.</p>
+          </div>
+          
+      </div>
+      <div id="sm_privacy_dialog_outer">
+          <button id="launch-privacy-dialog">Privacy Policy</button>
+          <div id="privacy-dialog">
+              <h3>Privacy Policy</h3>
+              <p>I'm too lazy to collect any information about you other
+                  than the data you submit when you subscribe, which I will
+                  never intentionally share with anyone.</p>
 
-    $(function() {
-                   
-        $('#why-dialog').dialog({
-            position: [ [[+whyDialogLeft]],[[+whyDialogTop]] ],
-            bgiframe: true,
-            height: [[+whyDialogHeight]],
-            width: [[+whyDialogWidth]],
-            modal: true,
-            show: 'slide',
-            hide: 'slide',
-            title:'Why Subscribe?',
-            buttons:{ "Close": function() { $(this).dialog("close"); } },
-            autoOpen:false   
-        });
-        $('#launch-why-dialog').click(function() {
-            $('#why-dialog').dialog('open');
-            return false;
-        });
-    });
+              <p>As usual, Google and other entities may also collect
+                  information about you during your visit.</p>
 
-
-       $(function() {
-        $('#privacy-dialog').dialog({
-            position: [ [[+privacyDialogLeft]],[[+privacyDialogTop]] ],
-            bgiframe: true,
-            height: [[+privacyDialogHeight]],
-            width: [[+privacyDialogWidth]],
-            modal: true,
-            show: 'slide',
-            hide: 'slide',
-            title:'Bob\'s Guides<br />Privacy Policy',
-            buttons:{ "Close": function() { $(this).dialog("close"); } },
-            autoOpen:false
-        });
-        $('#launch-privacy-dialog').click(function() {
-            $('#privacy-dialog').dialog('open');
-            return false;
-        });
-    });
-
-
-        
-    </script>  
-
+                  <p>If this policy changes, I'll let you know.</p>
+          </div>
+      </div>
+      <button onclick='location.href="[[~[[+registerPageId]]]]"'>Subscribe Me</button>
+      <span id="sm_login_button"><button onclick='location.href="[[~[[+loginPageId]]]]"'>Login</button></span>
+ 
 </div>

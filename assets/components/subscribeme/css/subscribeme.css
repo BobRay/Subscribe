@@ -2,21 +2,93 @@
 
 /* request to subscribe div */
 div#sm_subscribe {
-   width:50em;
+   width:60em;
    margin: 3px 0px 3px 20px;
-
 }
 
 /* login button shown with request to subscribe */
 div#sm_subscribe span#sm_login_button {
    display:inline;
    margin-left:3em;
-
-
 }
-/* keep FF from underlining some buttons */
-div#sm_subscribe a {
-   text-decoration:none;
+
+button#sm_logout_button {
+  margin-left:10px;
+}
+
+a#sm_logout_link:visited {
+  text-decoration: none;
+  color:white;
+  margin-left:30px;
+}
+
+
+div#sm_subscribe div#sm_why_dialog_outer {
+   display:inline;
+}
+
+div#sm_subscribe div#sm_privacy_dialog_outer {
+   display:inline;
+}
+
+/* CSS for hidden div revealed on hover */
+div#sm_subscribe div#sm_why_dialog_outer div#why-dialog {
+    display:none;
+    font-size:large;
+    position:absolute;
+    width:20em;
+    top:265px;
+    left: 250px;
+    padding:20px;
+    background-color:lavender;
+    color:black;
+    z-index:9999;
+    border: 2px solid #777;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    box-shadow: 10px 12px 28px rgba(0, 0, 0, 0.86);
+    -moz-box-shadow: 10px 12px 28px rgba(0, 0, 0, 0.86);
+    -webkit-box-shadow: 10px 12px 28px rgba(0, 0, 0, 0.86);
+    /* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=17, Direction=135, Color='#000000')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=17, Direction=135, Color='#000000');
+}
+
+/* reveal on hover */
+div#sm_subscribe div#sm_why_dialog_outer:hover div#why-dialog {
+    display:block;
+}
+
+/* CSS for hidden div revealed on hover */
+div#sm_subscribe div#sm_privacy_dialog_outer div#privacy-dialog {
+    display: none;
+    font-size:large;
+    position:absolute;
+    width:20em;
+    top:265px;
+    left:420px;
+    padding:20px;
+    background-color:lavender;
+    color:black;
+    z-index:9999;
+    border: 2px solid #777;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    box-shadow: 10px 12px 28px rgba(0, 0, 0, 0.86);
+    -moz-box-shadow: 10px 12px 28px rgba(0, 0, 0, 0.86);
+    -webkit-box-shadow: 10px 12px 28px rgba(0, 0, 0, 0.86);
+    /* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=17, Direction=135, Color='#000000')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=17, Direction=135, Color='#000000');
+}
+
+/* reveal on hover */
+div#sm_subscribe div#sm_privacy_dialog_outer:hover div#privacy-dialog {
+    display: block;
 }
 
 div#sm_subscribe span#sm_subscribe_msg {
@@ -28,36 +100,8 @@ div#sm_subscribe button {
    margin-left:1em;
    padding:0px 10px 0px 10px;
 }
-/* login/logout link shown when request to subscribe is not shown */
-/*
- a#sm_logout {
-   color:lavender;
-   padding-left:30px;
-   text-decoration: none;
-}
-*/
 
-a#sm_login_logout {
-
-   color:lavender;
-   padding-left:30px;
-   text-decoration: none;
-}
-
-}
 /* Registration form styling */
-
-#why-dialog {
-    background-color: #ddd;
-    padding: 10px;
-    border: 1px solid black;
-}
-
-#privacy-dialog {
-    background-color: #ddd;
-    padding: 10px;
-    border: 1px solid black
-}
 
 form.sm_register_form fieldset {
   padding:20px;
@@ -69,7 +113,6 @@ form.sm_register_form fieldset {
 form.sm_register_form span.error {
   color: red;
   width: 200px;
-
 }
 
 form.sm_register_form label {
@@ -80,8 +123,6 @@ form.sm_register_form label {
     margin-right: 10px;
 
 }
-
-
 
 form.sm_register_form input {
    width: 160px;

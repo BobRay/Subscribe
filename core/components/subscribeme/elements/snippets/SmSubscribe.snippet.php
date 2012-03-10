@@ -45,36 +45,30 @@
 
 $docId = $modx->resource->get('id');
 
-/* Just show login_logout button (if requested)
- if we're not showing the subscribe request */
+/* Show Logout button if we're not showing the subscribe 
+ * request and user is logged in */
 $loggedIn = $modx->user->hasSessionContext($modx->context->get('key'));
 if ($loggedIn || in_array($docId,$noShows) ) {
-       /* <br /> maintains page layout. Change to '' if necessary for your layout */
-       return '<br />';
+
+    if ($loggedIn) {
+        $modx->regClientCSS(MODX_ASSETS_URL . 'components/subscribeme/css/subscribeme.css');
+        $url = $modx->makeUrl($sp['loginPageId'],"","service=logout","full");
+        /* return '<a id="sm_logout_link" href="' . $url  . '">Logout</a><br />'; */
+        return "<button id=" . '"sm_logout_button"' .  "onclick=" . "'" .  'location.href="'  . $url . '"' . "'" . '>Logout</button>';
+//<button onclick='location.href="[[~[[+loginPageId]]]]"'>Login</button>
+    } else {
+        /* <br /> maintains page layout. Change to '' if necessary for your layout */
+        return '<br />';
+    }
 
 } else {
    /* Load CSS and JS, and show the subscribe request */
-   $modx->regClientCSS('<script type="text/javascript" src="https://www.google.com/jsapi"></script>');
 
     $modx->regClientCSS(MODX_ASSETS_URL . 'components/subscribeme/css/subscribeme.css');
-    $modx->regClientCSS('http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css');
-    $modx->regClientStartupScript('http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js');
-    $modx->regClientStartupScript('http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js');
-    
+
     $fields = array();
     $fields['registerPageId'] = $sp['registerPageId'];
     $fields['loginPageId'] = $scriptProperties['loginPageId'];
-
-    $fields['whyDialogHeight'] = $modx->getOption('whyDialogHeight',$sp, 475);
-    $fields['whyDialogWidth'] = $modx->getOption('whyDialogWidth',$sp, 300);
-    $fields['whyDialogTop'] = $modx->getOption('whyDialogTop',$sp, 40);
-    $fields['whyDialogLeft'] = $modx->getOption('whyDialogLeft',$sp, 202);
-
-    $fields['privacyDialogHeight'] = $modx->getOption('privacyDialogHeight',$sp, 500);
-    $fields['privacyDialogWidth'] = $modx->getOption('privacyDialogWidth',$sp, 300);
-    $fields['privacyDialogTop'] = $modx->getOption('privacyDialogTop',$sp, 40);
-    $fields['privacyDialogLeft'] = $modx->getOption('privacyDialogLeft',$sp, 340);
-
 
     return $modx->getChunk('SmSubscribe', $fields) ;
 }
