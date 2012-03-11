@@ -59,7 +59,7 @@ Go to System | Package Management on the main menu in the MODX Manager and click
 
 </fixedpre></pre>
 
-<p>Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request to subscribe. Replace the first two ## entries with the IDs of your Login page and Register page. In the <fixedpre>&noShow</fixedpre> property, put a comma-separated list containing the IDs of other pages where the request should not be shown. By default, the request is not shown on the Login page, you'll probably also want to add the IDs of the &quot;Thank You for Registering&quot; page, the &quot;Registration Confirmed&quot; page and the &quot;Confirm Register&quot pages. The tag will be replaced by the &quot;Request to Subscribe&quot; message (which appears horizontally on a single line) for users who are not logged in and by the &quot;Logout&quot; link for users who are logged in.</p>
+<p>Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request to subscribe. Replace the first two ## entries with the IDs of your Login page and Register page. In the <fixedpre>&noShow</fixedpre> property, put a comma-separated list containing the IDs of other pages where the request should not be shown. By default, the request is not shown on the Login page. You'll probably also want to add the IDs of the &quot;Thank You for Registering&quot; page, the &quot;Registration Confirmed&quot; page and the &quot;Confirm Register&quot pages. The tag will be replaced by the &quot;Request to Subscribe&quot; message (which appears horizontally on a single line) for users who are not logged in and by the &quot;Logout&quot; link for users who are logged in.</p>
 
 <pre><fixedpre>
     [[!SmSubscribe? &loginPageId = `##` &registerPageId=`##` &noShow=`##,##,##`]]
@@ -88,7 +88,7 @@ Go to System | Package Management on the main menu in the MODX Manager and click
         
 <p>There is JavaScript validation for all fields in the Register form. All fields are required. The Username and Password fields are required to be at least 6 characters long and the two Password fields must match. The Email field is also checked to make sure it's a valid address. The User must also check at least one of the &quot;Interests&quot; checkboxes.</p>
         
-<p>If you don't want to use the interests feature at all, you can delete all the checkboxes, but the JavaScript validation may complain. You can either leave the hidden field and set its value to something, or edit the SmRegisterJS chunk and remove the check at the end of the code. Be sure not to delete the closing curly brace at the end of the code or the code that follows it. You'll also need to remove the <fixedpre>&postHooks</fixedpre> property from the snippet tag at the top of the SmRegisterForm chunk, which stores the interest in the database.</p>
+<p>If you don't want to use the interests feature at all, you can delete all the checkboxes, but the JavaScript validation may complain. You can either leave the hidden field and set its value to something, or edit the SmRegisterJS chunk and remove the check at the end of the code. Be sure not to delete the closing curly brace at the end of the code or the code that follows it. You'll also need to remove the <fixedpre>&postHooks</fixedpre> property from the snippet tag at the top of the SmRegisterForm chunk, which stores the interests in the database.</p>
         
 <h3>Styling the forms</h3>
 
