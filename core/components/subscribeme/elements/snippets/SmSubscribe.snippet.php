@@ -35,11 +35,11 @@
 /* @var $scriptProperties array */
 
   $sp =& $scriptProperties;
-  $noShows = array($sp['loginPageId'],$sp['registerPageId']);
+  $noShows = array($sp['loginPageId']);
   $noShows = array_merge($noShows,explode(',', $sp['noShow']));
 
 
-/* don't show subscribe request is user is logged in or
+/* don't show subscribe request if user is logged in or
  * current page is in noShow list
 */
 
