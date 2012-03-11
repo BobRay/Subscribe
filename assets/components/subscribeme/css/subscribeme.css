@@ -2,6 +2,15 @@
 div#sm_subscribe {
     width: 60em;
     margin: 3px 0px 3px 20px;
+    font-size: 100%;
+}
+
+div#sm_subscribe h3 {
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
 }
 
 div#sm_subscribe div#sm_why_dialog_outer {
@@ -15,12 +24,15 @@ div#sm_subscribe div#sm_privacy_dialog_outer {
 /* CSS for hidden div revealed on hover */
 div#sm_subscribe div#sm_why_dialog_outer div#why-dialog {
     display: none;
-    font-size: large;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.3em;
+    line-height: 1.1em;
+    padding: 2em;
+    margin: 0;
     position: absolute;
     width: 20em;
     top: 265px;
     left: 250px;
-    padding: 20px;
     background-color: lavender;
     color: black;
     z-index: 9999;
@@ -45,12 +57,15 @@ div#sm_subscribe div#sm_why_dialog_outer:hover div#why-dialog {
 /* CSS for hidden div revealed on hover */
 div#sm_subscribe div#sm_privacy_dialog_outer div#privacy-dialog {
     display: none;
-    font-size: large;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.3em;
+    line-height: 1.1em;
+    padding: 2em;
+    margin: 0;
     position: absolute;
     width: 20em;
     top: 265px;
     left: 420px;
-    padding: 20px;
     background-color: lavender;
     color: black;
     z-index: 9999;
@@ -89,6 +104,11 @@ div#sm_subscribe span#launch-why-dialog {
     border-radius: 15px;
 }
 
+div#sm_subscribe span#launch-why-dialog:hover {
+    color: teal;
+    background-color: #669999;
+}
+
 div#sm_subscribe span#launch-privacy-dialog {
     margin-left: 1em;
     padding: 0px 10px 0px 10px;
@@ -97,7 +117,11 @@ div#sm_subscribe span#launch-privacy-dialog {
     -moz-border-radius: 15px;
     -webkit-border-radius: 15px;
     border-radius: 15px;
+}
 
+div#sm_subscribe span#launch-privacy-dialog:hover {
+    color: teal;
+    background-color: #669999;
 }
 
 div#sm_subscribe span#sm_subscribe_link a {
@@ -139,9 +163,10 @@ div#sm_subscribe span#sm_login_link a:hover {
 /* logout link shown only when user is not logged in */
 
 span#sm_logout_link {
-    display:block;
+    display: block;
     margin: 3px 0px 3px 30px;
 }
+
 span#sm_logout_link a {
     padding: 0px 10px;
     color: teal;
