@@ -53,9 +53,7 @@ if ($loggedIn || in_array($docId,$noShows) ) {
     if ($loggedIn) {
         $modx->regClientCSS(MODX_ASSETS_URL . 'components/subscribeme/css/subscribeme.css');
         $url = $modx->makeUrl($sp['loginPageId'],"","service=logout","full");
-        /* return '<a id="sm_logout_link" href="' . $url  . '">Logout</a><br />'; */
-        return "<button id=" . '"sm_logout_button"' .  "onclick=" . "'" .  'location.href="'  . $url . '"' . "'" . '>Logout</button>';
-//<button onclick='location.href="[[~[[+loginPageId]]]]"'>Login</button>
+        return '<span id="sm_logout_link"><a href="' . $url  . '">Logout</a></span>';
     } else {
         /* <br /> maintains page layout. Change to '' if necessary for your layout */
         return '<br />';

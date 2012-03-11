@@ -2,7 +2,7 @@
 <div id="sm_subscribe">
       <span id="sm_subscribe_msg">Become a subscriber!</span>
       <div id="sm_why_dialog_outer">
-          <button id="launch-why-dialog">Why Should I?</button>
+          <span id="launch-why-dialog">Why Should I?</span>
           <div id="why-dialog">
               <h3>Why Subscribe?</h3>
 
@@ -10,6 +10,9 @@
                  of the site that are hidden from others. You'll also get 
                  email updates when new content is available 
                  on the site or existing content is updated.</p>
+              
+                 <p>When logged in, you'll no longer see this request to 
+                    subscribe</p>
               
               <p>As an added incentive to subscribe, I have a bunch
                  of new and updated MODX extras I plan to release
@@ -19,7 +22,7 @@
           
       </div>
       <div id="sm_privacy_dialog_outer">
-          <button id="launch-privacy-dialog">Privacy Policy</button>
+          <span id="launch-privacy-dialog">Privacy Policy</span>
           <div id="privacy-dialog">
               <h3>Privacy Policy</h3>
               <p>I'm too lazy to collect any information about you other
@@ -32,7 +35,7 @@
                   <p>If this policy changes, I'll let you know.</p>
           </div>
       </div>
-      <button onclick='location.href="[[~[[+registerPageId]]]]"'>Subscribe Me</button>
-      <span id="sm_login_button"><button onclick='location.href="[[~[[+loginPageId]]]]"'>Login</button></span>
+      <span id="sm_subscribe_link"><a href="[[~[[+registerPageId]]]]">Subscribe Me</a></span>
+      <span id="sm_login_link"><a href="[[~[[+loginPageId]]]]">Login</a></span>
  
 </div>

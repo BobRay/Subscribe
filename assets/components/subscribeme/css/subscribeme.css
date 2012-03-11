@@ -1,48 +1,29 @@
-
-
 /* request to subscribe div */
 div#sm_subscribe {
-   width:60em;
-   margin: 3px 0px 3px 20px;
+    width: 60em;
+    margin: 3px 0px 3px 20px;
 }
-
-/* login button shown with request to subscribe */
-div#sm_subscribe span#sm_login_button {
-   display:inline;
-   margin-left:3em;
-}
-
-button#sm_logout_button {
-  margin-left:10px;
-}
-
-a#sm_logout_link:visited {
-  text-decoration: none;
-  color:white;
-  margin-left:30px;
-}
-
 
 div#sm_subscribe div#sm_why_dialog_outer {
-   display:inline;
+    display: inline;
 }
 
 div#sm_subscribe div#sm_privacy_dialog_outer {
-   display:inline;
+    display: inline;
 }
 
 /* CSS for hidden div revealed on hover */
 div#sm_subscribe div#sm_why_dialog_outer div#why-dialog {
-    display:none;
-    font-size:large;
-    position:absolute;
-    width:20em;
-    top:265px;
+    display: none;
+    font-size: large;
+    position: absolute;
+    width: 20em;
+    top: 265px;
     left: 250px;
-    padding:20px;
-    background-color:lavender;
-    color:black;
-    z-index:9999;
+    padding: 20px;
+    background-color: lavender;
+    color: black;
+    z-index: 9999;
     border: 2px solid #777;
     -moz-border-radius: 15px;
     -webkit-border-radius: 15px;
@@ -53,26 +34,26 @@ div#sm_subscribe div#sm_why_dialog_outer div#why-dialog {
     /* For IE 8 */
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=17, Direction=135, Color='#000000')";
     /* For IE 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=17, Direction=135, Color='#000000');
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength = 17, Direction = 135, Color = '#000000');
 }
 
 /* reveal on hover */
 div#sm_subscribe div#sm_why_dialog_outer:hover div#why-dialog {
-    display:block;
+    display: block;
 }
 
 /* CSS for hidden div revealed on hover */
 div#sm_subscribe div#sm_privacy_dialog_outer div#privacy-dialog {
     display: none;
-    font-size:large;
-    position:absolute;
-    width:20em;
-    top:265px;
-    left:420px;
-    padding:20px;
-    background-color:lavender;
-    color:black;
-    z-index:9999;
+    font-size: large;
+    position: absolute;
+    width: 20em;
+    top: 265px;
+    left: 420px;
+    padding: 20px;
+    background-color: lavender;
+    color: black;
+    z-index: 9999;
     border: 2px solid #777;
     -moz-border-radius: 15px;
     -webkit-border-radius: 15px;
@@ -83,7 +64,7 @@ div#sm_subscribe div#sm_privacy_dialog_outer div#privacy-dialog {
     /* For IE 8 */
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=17, Direction=135, Color='#000000')";
     /* For IE 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=17, Direction=135, Color='#000000');
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength = 17, Direction = 135, Color = '#000000');
 }
 
 /* reveal on hover */
@@ -92,27 +73,103 @@ div#sm_subscribe div#sm_privacy_dialog_outer:hover div#privacy-dialog {
 }
 
 div#sm_subscribe span#sm_subscribe_msg {
-   vertical-align:middle;
-   font-size:large;
+    vertical-align: middle;
+    font-size: large;
 }
 
-div#sm_subscribe button {
-   margin-left:1em;
-   padding:0px 10px 0px 10px;
+/* Request to Subscribe "buttons" */
+
+div#sm_subscribe span#launch-why-dialog {
+    margin-left: 1em;
+    padding: 0px 10px 0px 10px;
+    color: teal;
+    background-color: lavender;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+}
+
+div#sm_subscribe span#launch-privacy-dialog {
+    margin-left: 1em;
+    padding: 0px 10px 0px 10px;
+    color: teal;
+    background-color: lavender;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+
+}
+
+div#sm_subscribe span#sm_subscribe_link a {
+    margin-left: 1em;
+    padding: 0px 10px 0px 10px;
+    color: teal;
+    background-color: lavender;
+    text-decoration: none;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+
+}
+
+div#sm_subscribe span#sm_login_link a {
+    margin-left: 4em;
+    padding: 0px 10px 0px 10px;
+    color: teal;
+    background-color: lavender;
+    text-decoration: none;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+
+}
+
+div#sm_subscribe span#sm_subscribe_link a:hover {
+    color: teal;
+    background-color: #669999;
+    text-decoration: none;
+}
+
+div#sm_subscribe span#sm_login_link a:hover {
+    color: teal;
+    background-color: #669999;
+    text-decoration: none;
+}
+
+span#sm_logout_link {
+    display:block;
+    margin: 3px 0px 3px 30px;
+}
+span#sm_logout_link a {
+    padding: 0px 10px;
+    color: teal;
+    background-color: lavender;
+    text-decoration: none;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+
+}
+
+span#sm_logout_link a:hover {
+    text-decoration: none;
+    color: teal;
+    background-color: #669999;
+
 }
 
 /* Registration form styling */
 
 form.sm_register_form fieldset {
-  padding:20px;
-  background-color: #ddd;
-  width:750px;
-  margin: 30px;
+    padding: 20px;
+    background-color: #ddd;
+    width: 750px;
+    margin: 30px;
 }
 
 form.sm_register_form span.error {
-  color: red;
-  width: 200px;
+    color: red;
+    width: 200px;
 }
 
 form.sm_register_form label {
@@ -125,7 +182,7 @@ form.sm_register_form label {
 }
 
 form.sm_register_form input {
-   width: 160px;
-   display: inline-block;
-   vertical-align: top;
+    width: 160px;
+    display: inline-block;
+    vertical-align: top;
 }
