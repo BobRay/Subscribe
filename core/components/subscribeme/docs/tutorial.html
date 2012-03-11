@@ -1,8 +1,8 @@
 <p>SubscribeMe provides a double-opt-in User registration system. It uses some parts of the Login package, so be sure that package is installed before using SubscribeMe.</p>
         
-<p>SubscribeMe provides a request-to-subscribe message that will appear on pages at your site. When Users choose to subscribe and submit the registration form, they receive an email message with a link to confirm their registration. The request-to-subscribe message will not be shown to Users who are logged in. You can also hide it on selected pages with the <fixedpre>&noShow</fixedpre> property in the SmSubscribe snippet tag.</p>
+<p>SubscribeMe provides a request-to-subscribe message that will appear on pages at your site. When Users choose to subscribe and submit the registration form, they receive an email message with a link to confirm their registration. The request-to-subscribe message will not be shown to Users who are logged in (they will see a logout link). You can also hide the request-to-subscribe message on selected pages with the <fixedpre>&noShow</fixedpre> property in the SmSubscribe snippet tag.</p>
         
-<p>As soon as they submit the form, a User record and a User Profile for the User are saved in the MODX database, but with the User marked as inactive. When they respond by clicking on the link in the email, they are taken to the site, marked as active, logged in, and sent to a &quot;Registration Confirmed&quot; page (or another page of your choice).</p>
+<p>As soon as a User submits the Registration form, a User record and a User Profile for the User are saved in the MODX database, but with the User marked as inactive. When the User responds by clicking on the link in the email, they are taken to the site, marked as active, logged in, and sent to a &quot;Registration Confirmed&quot; page (or another page of your choice).</p>
         
 <p>The default registration form also includes the option of checkboxes for the User to indicate interests. The User's interests will be saved as a comma-separated list in the <fixedpre>comment</fixedpre> field of the User's Profile. This allows you to send email messages to Users based on their interests (an upcoming version of EmailResource will do this automatically). You can also design systems that respond to User interests by customizing menus, forwarding Users to particular parts of the site on login, etc.</p>
 
@@ -26,7 +26,7 @@ Go to System | Package Management on the main menu in the MODX Manager and click
 
 <p>Make a note of the Thank You page's ID once you have saved it.</p>
 
-<p>Create a resource called Registration Confirmed. Make it published but hidden from menus. Put something like the following in the Resource Content field:
+<p>Create a resource called Registration Confirmed. This is the page users will see when they click on the link in the email message. Make it published but hidden from menus. Put something like the following in the Resource Content field:
 </p>
 
 <pre><fixedpre>
@@ -37,7 +37,7 @@ Go to System | Package Management on the main menu in the MODX Manager and click
 
 <p>Make a note of the ID of your Registration Confirmed page.</p>
 
-<p>Create a Resource called Confirm Register. Make it published but hidden from menus. Put only this code in the Resource Content field. Rreplace ## with the ID of your Registration Confirmed page (*not* the Confirm Register page).</p>
+<p>Create a Resource called Confirm Register. This is the page that actually processes the user when they click on the link in the email message. The user will never see this page. The snippet on the page marks them as an active user, logs them in, and forwards them to the &quot;Registration Confirmed&quot; page. Make sure this resource is published but hidden from menus. Put only this code in the Resource Content field. Rreplace ## with the ID of your Registration Confirmed page (*not* the Confirm Register page).</p>
 
 <pre><fixedpre>
     [[!ConfirmRegister?
@@ -46,7 +46,7 @@ Go to System | Package Management on the main menu in the MODX Manager and click
     ]]
 </fixedpre></pre>
 
-<p>Create a Resource called Register with something like this in the Resource Content field. Replace the two ## values with the Ids of your Confirm Register page (*not* the Registration Confirmed page) and Thank You pages.</p>
+<p>Create a Resource called Register. This page contains the Registration form.  Put something like this in the Resource Content field. Replace the two ## values with the Ids of your Confirm Register page (*not* the Registration Confirmed page) and Thank You pages.</p>
 
 
 <pre><fixedpre>
@@ -56,14 +56,11 @@ Go to System | Package Management on the main menu in the MODX Manager and click
 
 </fixedpre></pre>
 
-<p>Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request to subscribe. Replace the first two ## entries with the IDs of your Login page and Register page. In the <fixedpre>&noShow</fixedpre> property, put a comma-separated list containing the IDs of other pages where the request should not be shown. By default, the request is not shown on the Login page or the Register page, you'll probably also want to add the IDs of the &quot;Thank You for Registering&quot; page, the &quot;Registration Confirmed&quot; page and the &quot;Confirm Register&quot page.</p>
+<p>Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request to subscribe. Replace the first two ## entries with the IDs of your Login page and Register page. In the <fixedpre>&noShow</fixedpre> property, put a comma-separated list containing the IDs of other pages where the request should not be shown. By default, the request is not shown on the Login page or the Register page, you'll probably also want to add the IDs of the &quot;Thank You for Registering&quot; page, the &quot;Registration Confirmed&quot; page and the &quot;Confirm Register&quot pages. The tag will be replaced by the &quot;Request to Subscribe&quot; message (which appears horizontally on a single line) for users who are not logged in and by the &quot;Logout&quot; link for users who are logged in.</p>
 
 <pre><fixedpre>
     [[!SmSubscribe? &loginPageId = `##` &registerPageId=`##` &noShow=`##,##,##`]]
 </fixedpre></pre>
-
-
-
 
 <h3>Testing</h3>
 
@@ -77,42 +74,29 @@ Go to System | Package Management on the main menu in the MODX Manager and click
 </ul>
 <p>Test your system by visiting the site from another browser where you are not logged in to the Manager. When you are logged in to the Manager and are previewing the site, your login status is ambiguous. You're logged in, but not to the 'web' context, so SubscribeMe's login status checks can give odd results.</p>
 
-<p>It's recommended that you test the system with the settings above before modifying it to meet your needs. Go to the Register page and register as a new user. See if you get the email and, if so, use the link in the email to confirm the registration. You should end up on the Registration Confirmed page. If that doesn't all happen, check the publication status of the resources -- all should be published. If they are, check the various Resource IDs used in the tags in all the Subscribme Resources and Chunks.</p>
+<p>It's recommended that you test the system with the settings above before modifying it to meet your needs. Go to the Register page and register as a new User. See if you get the email and, if so, use the link in the email to confirm the registration. You should end up on the Registration Confirmed page. If that doesn't all happen, check the publication status of the resources -- all should be published. If they are, check the various Resource IDs used in the tags in all the Subscribme Resources and Chunks.</p>
 
-<p>Next, log in to the Manager. Check to make sure that the new user exists and is active. Check the <fixedpre>comment</fixedpre> field of the User Profile to make sure that the interests are recorded there. Delete the user.</p>
+<p>Next, log in to the Manager. Check to make sure that the new User exists and is active. Check the <fixedpre>comment</fixedpre> field of the User Profile to make sure that the interests are recorded there. Delete the User.</p>
 
 <h3>Customizing SubscribeMe</h3>
 
-<p>To set the interests checkboxes on the Register form Edit the checkboxes at the end of the SmRegisterForm chunk to use any tags you want. You can add or delete checkboxes to meet your needs, but leave the hidden one at the beginning. When changing the name of an interest, be sure to change both the value and the visible HTML. in The code for each checkbox, the &quot;value&quot part is what will be saved to the User Profile. The visible part (the one on the right) is what the user will see when filling out the form.
+<p>To set the interests checkboxes on the Register form Edit the checkboxes at the end of the SmRegisterForm chunk to use any tags you want. You can add or delete checkboxes to meet your needs, but leave the hidden one at the beginning. When changing the name of an interest, be sure to change both the value and the visible HTML. In The code for each checkbox, the &quot;value&quot; part is what will be saved to the User Profile. The visible part (the one on the right) is what the User will see when filling out the form. It's recommended that you leave no spaces in the &quot;value&quot; part and that you make it all lowercase.
 </p>
         
-<p>There is JavaScript validation for all fields in the Register form. All fields are required. The Username and Password fields are required to be at least 6 characters long and the two Password fields must match. The Email field is also checked to make sure it's a valid address. The User must also check at least one of the Interests checkboxes.</p>        
+<p>There is JavaScript validation for all fields in the Register form. All fields are required. The Username and Password fields are required to be at least 6 characters long and the two Password fields must match. The Email field is also checked to make sure it's a valid address. The User must also check at least one of the &quot;Interests&quot; checkboxes.</p>
         
-<p>If you don't want to use the interests feature at all, you can delete all the checkboxes, but the JavaScript validation may complain. You can either leave the hidden field and set its value to something, or edit the  SmRegisterJS chunk and remove the check at the end of the code. Be sure not to delete the closing curly brace at the end of the code or the code that follows it. You'll also need to remove the <fixedpre>&postHooks</fixedpre> property from the snippet tag at the top of the SmRegisterForm chunk.</p>        
+<p>If you don't want to use the interests feature at all, you can delete all the checkboxes, but the JavaScript validation may complain. You can either leave the hidden field and set its value to something, or edit the SmRegisterJS chunk and remove the check at the end of the code. Be sure not to delete the closing curly brace at the end of the code or the code that follows it. You'll also need to remove the <fixedpre>&postHooks</fixedpre> property from the snippet tag at the top of the SmRegisterForm chunk, which stores the interest in the database.</p>
         
 <h3>Styling the forms</h3>
 
-<p>Both the Register form and the request to subscribe can be styled by editing the /assets/components/subscribeme/css/subscribeme.css file.</p>
-        
-<p>The height, width, and position of the two popup windows on the request to subscribe (triggered by the &quot;Why Should I&quot; and &quot;Privacy Policy&quot; buttons), can be controlled by adding the following properties to the SmSubscribe snippet tag in your template, but be aware that the locations may be different in different browsers &mdash; let me know if you find a good solution for this:</p>
-        
-<pre><fixedpre>
-    &whyDialogHeight
-    &whyDialogWidth
-    &whyDialogTop
-    &whyDialogLeft
-    &privacyDialogHeight
-    &privacyDialogWidth
-    &privacyDialogTop
-    &privacyDialogLeft
-</fixedpre></pre>
+<p>The &quot;request-to-subscribe&quot; message is styled to be appear on a single horizontal line, but you can restyle it with CSS to appear in another form since the message and all buttons are contained in identifiable span tags. You can also edit the SmSubscibe chunk, if necessary. The SmSubScribe snippet replaces the placeholders in the chunk and displays it, so the HTML with the placeholders must remain in that chunk unless you replace the placeholders with your own code.</p>
 
-<h3>Speed Issues</h3>
+<p>Both the Register form and the &quot;request-to-subscribe&quot; message can be styled by editing the /assets/components/subscribeme/css/subscribeme.css file, as can the two popup windows.</p>
 
-<p>The SubscribeMe plugin may slow down page loads if you use the built-in &quot;Request to Subscribe&quot; snippet. By default, it loads JQuery via URL from Google. JQuery is only used for the two popup boxes (&quot;Why Should I&quot;, and &quot;Privacy Policy&quot;). You can eliminate the delay in various ways. You can write your own JS and use that for them, or just change them to local links pointing to resources on your site, using no JS at all. In making your changes, be careful not to eliminate the plain JS that validates the Register form or the loading of the subscribeme CSS.</p>
+<p>I originally had a nice JQuery slider for the two popups, but since they are loaded for every page on the site, I decided that the speed penalty involved in loading the JQuery core, UI, and CSS files was just not worth it. They are now done with pure CSS and no JavaScript at all. You can modify their position and appearance in the subscribeme.css file.</p>
 
-<p>For maximum speed, you could just display a standard link to the Register page.</p>
-        
+<p>To change the message in the popups, just edit the SmSubscribe chunk. As currently styled, the popups will automatically expand to match the content length.</p>
+
 <p>&nbsp;</p>
 
 
