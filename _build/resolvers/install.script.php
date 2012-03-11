@@ -1,5 +1,7 @@
 <?php
 
+/* File not used, but left here for possible future use */
+
 /**
  * SubscribeMe resolver script - runs on install.
  *
