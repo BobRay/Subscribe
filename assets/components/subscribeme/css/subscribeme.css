@@ -136,6 +136,8 @@ div#sm_subscribe span#sm_login_link a:hover {
     text-decoration: none;
 }
 
+/* logout link shown only when user is not logged in */
+
 span#sm_logout_link {
     display:block;
     margin: 3px 0px 3px 30px;
@@ -155,7 +157,6 @@ span#sm_logout_link a:hover {
     text-decoration: none;
     color: teal;
     background-color: #669999;
-
 }
 
 /* Registration form styling */
