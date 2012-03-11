@@ -64,4 +64,16 @@ $chunks[4]->fromArray(array(
     'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/SmRegisterJS.chunk.html'),
     'properties' => '',
 ),'',true,true);
+
+$chunks[5]= $modx->newObject('modChunk');
+$chunks[5]->fromArray(array(
+    'id' => 5,
+    'name' => 'SmLogoutLink',
+    'description' => 'Chunk containing logout link shown when user is logged in',
+    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/SmLogoutLink.chunk.html'),
+    'properties' => '',
+),'',true,true);
+
+
+
 return $chunks;

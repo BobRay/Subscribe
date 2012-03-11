@@ -53,7 +53,7 @@ if ($loggedIn || in_array($docId,$noShows) ) {
     if ($loggedIn) {
         $modx->regClientCSS(MODX_ASSETS_URL . 'components/subscribeme/css/subscribeme.css');
         $url = $modx->makeUrl($sp['loginPageId'],"","service=logout","full");
-        return '<span id="sm_logout_link"><a href="' . $url  . '">Logout</a></span>';
+        return $modx->getChunk('SmLogoutLink', array('logoutUrl' => $url));
     } else {
         /* <br /> maintains page layout. Change to '' if necessary for your layout */
         return '<br />';
