@@ -1,0 +1,5 @@
+Changelog for Subscribe
+
+Subscribe 1.0.0
+-------------------
+Initial Version

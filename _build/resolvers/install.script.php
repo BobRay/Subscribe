@@ -3,30 +3,30 @@
 /* File not used, but left here for possible future use */
 
 /**
- * SubscribeMe resolver script - runs on install.
+ * Subscribe resolver script - runs on install.
  *
  * Copyright 2012 Bob Ray <http://bobsguides/com>
  * @author Bob Ray <http://bobsguides/com>
  * 3/3/12
  *
- * SubscribeMe is free software; you can redistribute it and/or modify it
+ * Subscribe is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 2 of the License, or (at your option) any
  * later version.
  *
- * SubscribeMe is distributed in the hope that it will be useful, but WITHOUT ANY
+ * Subscribe is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License along with
- * SubscribeMe; if not, write to the Free Software Foundation, Inc., 59 Temple
+ * Subscribe; if not, write to the Free Software Foundation, Inc., 59 Temple
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
- * @package subscribeme
+ * @package subscribe
  */
 /**
- * Description: Resolver script for SubscribeMe package
- * @package subscribeme
+ * Description: Resolver script for Subscribe package
+ * @package subscribe
  * @subpackage build
  */
 
@@ -57,7 +57,7 @@ $pluginEvents = array('OnBeforeUserFormSave','OnUserFormSave');
 $plugins = array('MyPlugin1', 'MyPlugin2');
 //$templates = array('myTemplate1','myTemplate2');
 //$tvs = array('MyTv1','MyTv2');
-$category = 'SubscribeMe';
+$category = 'Subscribe';
 
 $hasPlugins = true;
 $hasTemplates = true;
@@ -207,7 +207,7 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
          *
          * For example, to connect all our property sets to all our snippets, we'd do this:
          *
-         * $category = $modx->getObject('modCategory', array('category','SubscribeMe'));
+         * $category = $modx->getObject('modCategory', array('category','Subscribe'));
          * $cId = $category->get('id');
          * $snippets = $modx->getCollection('modSnippet',array('category'=>$cId));
          * $propertySets = $modx->getCollection('modPropertySet',array('category'=>$cId));

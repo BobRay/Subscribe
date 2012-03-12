@@ -1,22 +1,22 @@
-<p>SubscribeMe provides a double-opt-in User registration system. It uses some parts of the Login package, so be sure that package is installed before using SubscribeMe.</p>
+<p>Subscribe provides a double-opt-in User registration system. It uses some parts of the Login package, so be sure that package is installed before using Subscribe.</p>
         
-<p>SubscribeMe provides a request-to-subscribe message that will appear on pages at your site. When Users choose to subscribe and submit the registration form, they receive an email message with a link to confirm their registration. The request-to-subscribe message will not be shown to Users who are logged in (they will see a logout link). You can also hide the request-to-subscribe message on selected pages with the <fixedpre>&noShow</fixedpre> property in the SmSubscribe snippet tag.</p>
+<p>Subscribe provides a request-to-subscribe message that will appear on pages at your site. When Users choose to subscribe and submit the registration form, they receive an email message with a link to confirm their registration. The request-to-subscribe message will not be shown to Users who are logged in (they will see a logout link). You can also hide the request-to-subscribe message on selected pages with the <fixedpre>&noShow</fixedpre> property in the SmSubscribe snippet tag.</p>
         
 <p>As soon as a User submits the Registration form, a User record and a User Profile for the User are saved in the MODX database, but with the User marked as inactive. When the User responds by clicking on the link in the email, they are taken to the site, marked as active, logged in, and sent to a &quot;Registration Confirmed&quot; page (or another page of your choice).</p>
         
 <p>The default registration form also includes the option of checkboxes for the User to indicate interests. The User's interests will be saved as a comma-separated list in the <fixedpre>comment</fixedpre> field of the User's Profile. This allows you to send email messages to Users based on their interests (an upcoming version of EmailResource will do this automatically). You can also design systems that respond to User interests by customizing menus, forwarding Users to particular parts of the site on login, etc.</p>
 
-<h3>Installing SubscribeMe</h3>
+<h3>Installing Subscribe</h3>
 
 <p>
-Go to System | Package Management on the main menu in the MODX Manager and click on the "Download Extras" button. That will take you to the Revolution Repository (AKA Web Transport Facility). Put SubscribeMe in the search box and press Enter. Click on the "Download" button, and when it changes to "Downloaded," click on the "Finish" button. That should bring you back to your Package Management grid. Click on the "Install" button next to SubscribeMe in the grid. The SubscribeMe package should now be installed.</p>
+Go to System | Package Management on the main menu in the MODX Manager and click on the "Download Extras" button. That will take you to the Revolution Repository (AKA Web Transport Facility). Put Subscribe in the search box and press Enter. Click on the "Download" button, and when it changes to "Downloaded," click on the "Finish" button. That should bring you back to your Package Management grid. Click on the "Install" button next to Subscribe in the grid. The Subscribe package should now be installed.</p>
 
 <p>If you have not installed the Login package, do that before continuing.</p>
 
 
-<h3>Creating the SubscribeMe Resources</h3>
+<h3>Creating the Subscribe Resources</h3>
 
-<p>All resources used in the SubscribeMe package should be published and hidden from menus (unless you want to show a link to the Register page in a menu).</p>
+<p>All resources used in the Subscribe package should be published and hidden from menus (unless you want to show a link to the Register page in a menu).</p>
 
 <p>Create a Resource called Thank You for Registering. Make it published but hidden from menus. Put something like this in the Resource Content field:</p>
 
@@ -75,13 +75,13 @@ Go to System | Package Management on the main menu in the MODX Manager and click
     <li>Registration Confirmed</li>
     <li>Thank You for Registering pages</li>
 </ul>
-<p>Test your system by visiting the site from another browser where you are not logged in to the Manager. When you are logged in to the Manager and are previewing the site, your login status is ambiguous. You're logged in, but not to the 'web' context, so SubscribeMe's login status checks can give odd results.</p>
+<p>Test your system by visiting the site from another browser where you are not logged in to the Manager. When you are logged in to the Manager and are previewing the site, your login status is ambiguous. You're logged in, but not to the 'web' context, so Subscribe's login status checks can give odd results.</p>
 
 <p>It's recommended that you test the system with the settings above before modifying it to meet your needs. Go to the Register page and register as a new User. See if you get the email and, if so, use the link in the email to confirm the registration. You should end up on the Registration Confirmed page. If that doesn't all happen, check the publication status of the resources -- all should be published. If they are, check the various Resource IDs used in the tags in all the Subscribme Resources and Chunks.</p>
 
 <p>Next, log in to the Manager. Check to make sure that the new User exists and is active. Check the <fixedpre>comment</fixedpre> field of the User Profile to make sure that the interests are recorded there. Delete the User.</p>
 
-<h3>Customizing SubscribeMe</h3>
+<h3>Customizing Subscribe</h3>
 
 <p>To set the interests checkboxes on the Register form Edit the checkboxes at the end of the SmRegisterForm chunk to use any tags you want. You can add or delete checkboxes to meet your needs, but leave the hidden one at the beginning. When changing the name of an interest, be sure to change both the value and the visible HTML. In The code for each checkbox, the &quot;value&quot; part is what will be saved to the User Profile. The visible part (the one on the right) is what the User will see when filling out the form. It's recommended that you leave no spaces in the &quot;value&quot; part and that you make it all lowercase.
 </p>
@@ -94,9 +94,9 @@ Go to System | Package Management on the main menu in the MODX Manager and click
 
 <p>The &quot;request-to-subscribe&quot; message is styled to be appear on a single horizontal line, but you can restyle it with CSS to appear in another form since the message and all buttons are contained in identifiable span tags. You can also edit the SmSubscibe chunk, if necessary. The SmSubScribe snippet replaces the placeholders in the chunk and displays it, so the HTML with the placeholders must remain in that chunk unless you replace the placeholders with your own code.</p>
 
-<p>Both the Register form and the &quot;request-to-subscribe&quot; message can be styled by editing the /assets/components/subscribeme/css/subscribeme.css file, as can the two popup windows.</p>
+<p>Both the Register form and the &quot;request-to-subscribe&quot; message can be styled by editing the /assets/components/subscribe/css/subscribe.css file, as can the two popup windows.</p>
 
-<p>I originally had a nice JQuery slider for the two popups, but since they are loaded for every page on the site, I decided that the speed penalty involved in loading the JQuery core, UI, and CSS files was just not worth it. They are now done with pure CSS and no JavaScript at all. You can modify their position and appearance in the subscribeme.css file.</p>
+<p>I originally had a nice JQuery slider for the two popups, but since they are loaded for every page on the site, I decided that the speed penalty involved in loading the JQuery core, UI, and CSS files was just not worth it. They are now done with pure CSS and no JavaScript at all. You can modify their position and appearance in the subscribe.css file.</p>
 
 <p>To change the message in the popups, just edit the SmSubscribe chunk. As currently styled, the popups will automatically expand to match the content length.</p>
 

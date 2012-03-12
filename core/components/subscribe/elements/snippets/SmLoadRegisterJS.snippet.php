@@ -6,10 +6,10 @@
 /* javascript validation */
 /* load email check  JS */
 /* @var $modx modX */
-$inFile = $modx->getOption('assets_url') . "components/subscribeme/js/emailcheck.js";
+$inFile = $modx->getOption('assets_url') . "components/subscribe/js/emailcheck.js";
 $modx->regClientStartupScript($inFile);
 
-$inFile = $modx->getOption('assets_url') . "components/subscribeme/css/subscribeme.css";
+$inFile = $modx->getOption('assets_url') . "components/subscribe/css/subscribe.css";
 $modx->regClientCSS($inFile);
 
 
@@ -22,7 +22,7 @@ $language = !empty($scriptProperties['language'])
     : $modx->getOption('cultureKey', null, $modx->getOption('manager_language', null, 'en'));
 $language = empty($language) ? 'en' : $language;
 
-$modx->lexicon->load($language . ':subscribeme:default');
+$modx->lexicon->load($language . ':subscribe:default');
 $fields = array();
 $fields['sm_username_required'] = $modx->lexicon('sm_username_required');
 $fields['sm_username_too_short'] = $modx->lexicon('sm_username_too_short');

@@ -1,5 +1,0 @@
-Changelog for SubscribeMe
-
-SubscribeMe 1.0.0
--------------------
-Initial Version

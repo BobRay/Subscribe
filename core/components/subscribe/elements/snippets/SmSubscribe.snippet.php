@@ -1,21 +1,21 @@
 /**
-     * SubscribeMe
+     * Subscribe
      * Copyright 2012 Bob Ray <http://bobsguides/com>
      *
-     * SubscribeMe is free software; you can redistribute it and/or modify it
+     * Subscribe is free software; you can redistribute it and/or modify it
      * under the terms of the GNU General Public License as published by the Free
      * Software Foundation; either version 2 of the License, or (at your option) any
      * later version.
      *
-     * SubscribeMe is distributed in the hope that it will be useful, but WITHOUT ANY
+     * Subscribe is distributed in the hope that it will be useful, but WITHOUT ANY
      * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
      * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
      *
      * You should have received a copy of the GNU General Public License along with
-     * SubscribeMe; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
+     * Subscribe; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
      * Suite 330, Boston, MA 02111-1307 USA
      *
-     * @package subscribeme
+     * @package subscribe
      * @author Bob Ray <http://bobsguides/com>
      *
      * @version Version 1.0.0 Beta-1
@@ -26,7 +26,7 @@
 
     /**
      *  @version Version 1.0.0 Beta-1
-     *  @package subscribeme
+     *  @package subscribe
      */
 
 
@@ -51,7 +51,7 @@ $loggedIn = $modx->user->hasSessionContext($modx->context->get('key'));
 if ($loggedIn || in_array($docId,$noShows) ) {
 
     if ($loggedIn) {
-        $modx->regClientCSS(MODX_ASSETS_URL . 'components/subscribeme/css/subscribeme.css');
+        $modx->regClientCSS(MODX_ASSETS_URL . 'components/subscribe/css/subscribe.css');
         $url = $modx->makeUrl($sp['loginPageId'],"","service=logout","full");
         return $modx->getChunk('SmLogoutLink', array('logoutUrl' => $url));
     } else {
@@ -62,7 +62,7 @@ if ($loggedIn || in_array($docId,$noShows) ) {
 } else {
    /* Load CSS and JS, and show the subscribe request */
 
-    $modx->regClientCSS(MODX_ASSETS_URL . 'components/subscribeme/css/subscribeme.css');
+    $modx->regClientCSS(MODX_ASSETS_URL . 'components/subscribe/css/subscribe.css');
 
     $fields = array();
     $fields['registerPageId'] = $sp['registerPageId'];

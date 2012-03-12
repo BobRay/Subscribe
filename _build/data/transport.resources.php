@@ -1,10 +1,10 @@
 <?php
 /**
- * Resource objects for the SubscribeMe package
+ * Resource objects for the Subscribe package
  * @author Bob Ray <http://bobsguides/com>
  * 3/3/12
  *
- * @package subscribeme
+ * @package subscribe
  * @subpackage build
  */
 

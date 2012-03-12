@@ -1,41 +1,41 @@
 <?php
 /**
- * SubscribeMe Build Script
+ * Subscribe Build Script
  *
  * Copyright 2012 Bob Ray <http://bobsguides/com>
  *
- * SubscribeMe is free software; you can redistribute it and/or modify it
+ * Subscribe is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 2 of the License, or (at your option) any
  * later version.
  *
- * SubscribeMe is distributed in the hope that it will be useful, but WITHOUT ANY
+ * Subscribe is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License along with
- * SubscribeMe; if not, write to the Free Software Foundation, Inc., 59 Temple
+ * Subscribe; if not, write to the Free Software Foundation, Inc., 59 Temple
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
- * @package subscribeme
+ * @package subscribe
  * @subpackage build
  */
 /**
- * Build SubscribeMe Package
+ * Build Subscribe Package
  *
- * Description: Build script for SubscribeMe package
- * @package subscribeme
+ * Description: Build script for Subscribe package
+ * @package subscribe
  * @subpackage build
  */
 
 
 
 /* Set package info be sure to set all of these */
-define('PKG_NAME','SubscribeMe');
-define('PKG_NAME_LOWER','subscribeme');
+define('PKG_NAME','Subscribe');
+define('PKG_NAME_LOWER','subscribe');
 define('PKG_VERSION','1.0.0');
 define('PKG_RELEASE','beta1');
-define('PKG_CATEGORY','SubscribeMe');
+define('PKG_CATEGORY','Subscribe');
 
 /* Set package options - you can turn these on one-by-one
  * as you create the transport package
@@ -202,8 +202,8 @@ if ($hasResolver) {
     ));
 }
 /* This section transfers every file in the local
- subscribemes/subscribeme/assets directory to the
- target site's assets/subscribeme directory on install.
+ subscribes/subscribe/assets directory to the
+ target site's assets/subscribe directory on install.
  If the assets dir. has been renamed or moved, they will still
  go to the right place.
  */
@@ -216,8 +216,8 @@ if ($hasCore) {
 }
 
 /* This section transfers every file in the local 
- subscribemes/subscribeme/core directory to the
- target site's core/subscribeme directory on install.
+ subscribes/subscribe/core directory to the
+ target site's core/subscribe directory on install.
  If the core has been renamed or moved, they will still
  go to the right place.
  */
