@@ -21,7 +21,7 @@ div#sm_subscribe div#sm_privacy_dialog_outer {
     display: inline;
 }
 
-/* CSS for hidden div revealed on hover */
+/* CSS for hidden div revealed on click */
 div#sm_subscribe div#sm_why_dialog_outer div#why-dialog {
     display: none;
     font-family: Georgia, "Times New Roman", serif;
@@ -49,12 +49,9 @@ div#sm_subscribe div#sm_why_dialog_outer div#why-dialog {
     filter: progid:DXImageTransform.Microsoft.Shadow(Strength = 17, Direction = 135, Color = '#000000');
 }
 
-/* reveal on hover */
-div#sm_subscribe div#sm_why_dialog_outer:hover div#why-dialog {
-    display: block;
-}
 
-/* CSS for hidden div revealed on hover */
+
+/* CSS for hidden div revealed on click */
 div#sm_subscribe div#sm_privacy_dialog_outer div#privacy-dialog {
     display: none;
     font-family: Georgia, "Times New Roman", serif;
@@ -80,11 +77,6 @@ div#sm_subscribe div#sm_privacy_dialog_outer div#privacy-dialog {
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=17, Direction=135, Color='#000000')";
     /* For IE 5.5 - 7 */
     filter: progid:DXImageTransform.Microsoft.Shadow(Strength = 17, Direction = 135, Color = '#000000');
-}
-
-/* reveal on hover */
-div#sm_subscribe div#sm_privacy_dialog_outer:hover div#privacy-dialog {
-    display: block;
 }
 
 div#sm_subscribe span#sm_subscribe_msg {

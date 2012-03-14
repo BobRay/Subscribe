@@ -1,8 +1,18 @@
-
+<script type="text/javascript">
+/* <![CDATA[ */
+    function toggle(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+/* ]]> */
+</script>
 <div id="sm_subscribe">
       <span id="sm_subscribe_msg">Become a subscriber!</span>
       <div id="sm_why_dialog_outer">
-          <span id="launch-why-dialog">Why Should I?</span>
+          <span id="launch-why-dialog" onclick="toggle('why-dialog');">Why Should I?</span>
           <div id="why-dialog">
               <h3>Why Subscribe?</h3>
 
@@ -18,11 +28,12 @@
                  of new and updated MODX extras I plan to release
                  as soon as I have a significant number of subscribers
                  to notify.</p>
+              <div style="text-align:center"><button onclick="toggle('why-dialog');">Close</button></div>
           </div>
           
       </div>
       <div id="sm_privacy_dialog_outer">
-          <span id="launch-privacy-dialog">Privacy Policy</span>
+          <span id="launch-privacy-dialog" onclick="toggle('privacy-dialog');">Privacy Policy</span>
           <div id="privacy-dialog">
               <h3>Privacy Policy</h3>
               <p>I'm too lazy to collect any information about you other
@@ -32,7 +43,9 @@
               <p>As usual, Google and other entities may also collect
                   information about you during your visit.</p>
 
-                  <p>If this policy changes, I'll let you know.</p>
+              <p>If this policy changes, I'll let you know.</p>
+
+              <div style="text-align:center"><button onclick="toggle('privacy-dialog');">Close</button></div>
           </div>
       </div>
       <span id="sm_subscribe_link"><a href="[[~[[+registerPageId]]]]">Subscribe Me</a></span>
