@@ -33,19 +33,6 @@
 $_lang['subscribe'] = 'Subscribe';
 $_lang['subscribe.menu_desc'] = 'Subscribe description';
 
-$_lang['sm_not_in_group'] = 'You are not in any of the authorized user groups.';
-$_lang['sm_not_logged_in'] = 'You must be logged in to post.';
-$_lang['sm_no_permissions'] = 'You do not have the necessary permissions.';
-
-/* These are for any new system settings your component creates */
-$_lang['setting_subscribe_setting1'] = 'Setting One Name';
-$_lang['setting_subscribe_setting1_desc'] = 'Setting One Description';
-
-$_lang['setting_subscribe_setting2'] = 'Setting Two Name';
-$_lang['setting_subscribe_setting2_desc'] = 'Setting Two Description';
-
-$_lang['setting_subscribe_setting3'] = 'Setting Three Name';
-$_lang['setting_subscribe_setting3_desc'] = 'Setting Three Description';
 
 /* Register form error messages */
 
