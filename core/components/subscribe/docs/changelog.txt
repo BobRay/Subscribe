@@ -1,5 +1,13 @@
 Changelog for Subscribe
 
+Subscribe 1.0.1
+---------------
+ Changes to CSS
+ Better rendering on mobil devices
+ No longer uses JQuery
+ Minor bugfixes
+
+
 Subscribe 1.0.0
--------------------
+---------------
 Initial Version
