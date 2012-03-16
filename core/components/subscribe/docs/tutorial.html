@@ -21,9 +21,10 @@ Go to System | Package Management on the main menu in the MODX Manager and click
 <p>Create a Resource called Thank You for Registering. Make it published but hidden from menus. Put something like this in the Resource Content field:</p>
 
 <pre><fixedpre>
-    <p>Thanks for registering. You will receive an email message soon containing a 
-       link that will activate your subscription. Please click on the link in the 
-       message to become an active subscriber.
+    <p>
+    Thanks for registering. You will receive an email message soon
+    containing a link that will activate your subscription. Please 
+    click on the link in the message to become an active subscriber.
     </p>
 </fixedpre></pre>
 
@@ -59,10 +60,9 @@ Go to System | Package Management on the main menu in the MODX Manager and click
         &confirmRegisterPageId=`##`
         &thankYouPageId=`##`
     ]]
-
 </fixedpre></pre>
 
-<p>Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request-to-subscribe. Replace the first two ## entries with the IDs of your Login page and Register page. In the <fixedpre>&noShow</fixedpre> property, put a comma-separated list containing the IDs of other pages where the request should not be shown. By default, the request is not shown on the Login page. You'll probably also want to add the IDs of the &quot;Thank You for Registering&quot; page, the &quot;Registration Confirmed&quot; page and the &quot;Confirm Register&quot pages. The tag will be replaced by the &quot;Request to Subscribe&quot; message (which appears horizontally on a single line) for users who are not logged in and by the &quot;Logout&quot; link for users who are logged in.</p>
+<p>Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request-to-subscribe. Replace the first two ## entries with the IDs of your Login page and Register page. In the <fixedpre>&noShow</fixedpre> property, put a comma-separated list containing the IDs of other pages where the request should not be shown. By default, the request is not shown on the Login page. You'll probably also want to add the IDs of the &quot;Thank You for Registering&quot; page, the &quot;Registration Confirmed&quot; page and the &quot;Confirm Register&quot; pages. The tag will be replaced by the &quot;Request to Subscribe&quot; message (which appears horizontally on a single line) for users who are not logged in and by the &quot;Logout&quot; link for users who are logged in.</p>
 
 <pre><fixedpre>
     [[!SmSubscribe?
@@ -75,13 +75,15 @@ Go to System | Package Management on the main menu in the MODX Manager and click
 <h3>Testing</h3>
 
 
-<p>Before testing, clear the cache and make sure that the following resources are published and hidden from menus (unless you want to show the Register page in the menu).
+<p>Before testing, clear the cache and make sure that the following resources are published and hidden from menus (unless you want to show the Register page in the menu).</p>
 <ul>
     <li>Register</li>
     <li>Confirm Register</li>
     <li>Registration Confirmed</li>
     <li>Thank You for Registering pages</li>
 </ul>
+
+
 <p>Test your system by visiting the site from another browser where you are not logged in to the Manager. When you are logged in to the Manager and are previewing the site, your login status is ambiguous. You're logged in, but not to the 'web' context, so Subscribe's login status checks can give odd results.</p>
 
 <p>It's recommended that you test the system with the settings above before modifying it to meet your needs. Go to the Register page and register as a new User. See if you get the email and, if so, use the link in the email to confirm the registration. You should end up on the Registration Confirmed page. If that doesn't all happen, check the publication status of the resources -- all should be published. If they are, check the various Resource IDs used in the tags in all the Subscribme Resources and Chunks.</p>
@@ -108,5 +110,3 @@ Go to System | Package Management on the main menu in the MODX Manager and click
 <p>To change the message in the popups, just edit the SmSubscribe chunk. As currently styled, the popups will automatically expand to match the content length.</p>
 
 <p>&nbsp;</p>
-
-
