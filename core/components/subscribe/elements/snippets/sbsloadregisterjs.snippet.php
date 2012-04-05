@@ -36,7 +36,7 @@ $fields['sbs_fullname_required'] = $modx->lexicon('sbs_fullname_required');
 $fields['sbs_interests_required'] = $modx->lexicon('sbs_interests_required');
 
 
-$src = $modx->getChunk('SbsRegisterJS', $fields);
+$src = $modx->getChunk('SbsRegisterJsTpl', $fields);
 
 $modx->regClientStartupScript($src);
 

@@ -66,7 +66,7 @@ if (isset($_POST['sbs_register_form'])) {
         if (($userName != '(anonymous)') && ($userId != 1)) {
             $modx->user->set('active', 0);
             $modx->user->save();
-            $modx->setPlaceholder('success', $modx->getChunk('SbsUnsubscribeMessage'));
+            $modx->setPlaceholder('success', $modx->getChunk('SbsUnsubscribeMessageTpl'));
         } else {
             $modx->setPlaceholder('success', '<h3>Unable to unsubscribe (anonymous) user or admin</h3>');
         }
@@ -93,7 +93,7 @@ if ($setPrefs && $profile) {
         die('could not save profile');
     } else {
         $modx->setPlaceholder('currentPrefs', $intString);
-        $modx->setPlaceholder('success', $modx->getChunk('SbsChangePrefsSuccessMessage'));
+        $modx->setPlaceholder('success', $modx->getChunk('SbsChangePrefsSuccessMessageTpl'));
     }
 } else {
     if (!$profile) {
