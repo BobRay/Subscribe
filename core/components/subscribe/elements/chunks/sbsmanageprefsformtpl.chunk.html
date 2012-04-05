@@ -1,8 +1,8 @@
 <p>Submit the following form to change your preferences.</p>
 
-[[!SmGetCurrentPrefs]]
+[[!SbsGetCurrentPrefs]]
 
-[[!SmGetInterests]]
+[[!SbsGetInterests]]
 
 [[!+fi.error_message:notempty=`<p>[[!+fi.error_message]]</p>`]]
 [[!+success:notempty=`[[+success]]`]]
@@ -27,7 +27,7 @@ function checkform (form) {
          }
      }
     if (p==0){
-        alert('[[+sm_interests_required]]');
+        alert('[[+sbs_interests_required]]');
         return false;
     }
 }
@@ -39,20 +39,20 @@ function checkform (form) {
 <div class="register">
     <div class="registerMessage">[[+error.message]]</div>
 
-    <form class="sm_register_form" action="[[~[[*id]]]]" method="post" onsubmit="return checkform(this); return false;" >
+    <form class="sbs_register_form" action="[[~[[*id]]]]" method="post" onsubmit="return checkform(this); return false;" >
         <fieldset>
         <input type="hidden" name="nospam:blank" value="" />
-        <input type="hidden" name="sm_manage_prefs_form" value="sm_manage_prefs" />
+        <input type="hidden" name="sbs_manage_prefs_form" value="sbs_manage_prefs" />
         <p>Username: [[+username]]</p>
         <p>Your current preferences: [[+currentPrefs]]</p>
         
         <br />
         <p>Pleased keep me informed about new content in the following areas:</p>
         
-        [[$SmInterestList]]
+        [[$SbsInterestList]]
 
         <br /><br class="clear" />
-         <input type="checkbox" id="unsubscribe" name="unsubscribe" value="sm_unsubscribe">UNSUBSCRIBE<br />
+         <input type="checkbox" id="unsubscribe" name="unsubscribe" value="sbs_unsubscribe">UNSUBSCRIBE<br />
         <br class="clear" />
         <div class="form-buttons">
             <input type="submit" name="change_prefs_btn" value="Submit" />

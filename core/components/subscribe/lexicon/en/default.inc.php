@@ -36,14 +36,14 @@ $_lang['subscribe.menu_desc'] = 'Subscribe description';
 
 /* Register form error messages */
 
-$_lang['sm_username_required'] = 'Please enter a username';
-$_lang['sm_username_too_short'] = 'Username must be at least 6 characters long';
-$_lang['sm_password_required'] = 'Please enter a password';
-$_lang['sm_password_too_short'] = 'Password must be at least 6 characters long';
-$_lang['sm_password_mismatch'] = 'Password entries must match';
-$_lang['sm_email_required'] = 'Please enter an email address';
-$_lang['sm_bad_email'] = "That doesn't look like a valid email address";
-$_lang['sm_fullname_required'] = 'Please enter a full name';
-$_lang['sm_interests_required'] = 'Please check at least one checkbox';
+$_lang['sbs_username_required'] = 'Please enter a username';
+$_lang['sbs_username_too_short'] = 'Username must be at least 6 characters long';
+$_lang['sbs_password_required'] = 'Please enter a password';
+$_lang['sbs_password_too_short'] = 'Password must be at least 6 characters long';
+$_lang['sbs_password_mismatch'] = 'Password entries must match';
+$_lang['sbs_email_required'] = 'Please enter an email address';
+$_lang['sbs_bad_email'] = "That doesn't look like a valid email address";
+$_lang['sbs_fullname_required'] = 'Please enter a full name';
+$_lang['sbs_interests_required'] = 'Please check at least one checkbox';
 
 

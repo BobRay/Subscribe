@@ -9,7 +9,7 @@ $language = empty($language) ? 'en' : $language;
 
 $modx->lexicon->load($language . ':subscribe:default');
 
-$modx->setPlaceholder('sm_interests_required', $modx->lexicon('sm_interests_required'));
+$modx->setPlaceholder('sbs_interests_required', $modx->lexicon('sbs_interests_required'));
 
 $profile = $modx->user->getOne('Profile');
 

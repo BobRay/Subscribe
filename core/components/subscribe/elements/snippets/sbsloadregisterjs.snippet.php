@@ -25,18 +25,18 @@ $language = empty($language) ? 'en' : $language;
 
 $modx->lexicon->load($language . ':subscribe:default');
 $fields = array();
-$fields['sm_username_required'] = $modx->lexicon('sm_username_required');
-$fields['sm_username_too_short'] = $modx->lexicon('sm_username_too_short');
-$fields['sm_password_required'] = $modx->lexicon('sm_password_required');
-$fields['sm_password_too_short'] = $modx->lexicon('sm_password_too_short');
-$fields['sm_password_mismatch'] = $modx->lexicon('sm_password_mismatch');
-$fields['sm_email_required'] = $modx->lexicon('sm_email_required');
-$fields['sm_bad_email'] = $modx->lexicon('sm_bad_email');
-$fields['sm_fullname_required'] = $modx->lexicon('sm_fullname_required');
-$fields['sm_interests_required'] = $modx->lexicon('sm_interests_required');
+$fields['sbs_username_required'] = $modx->lexicon('sbs_username_required');
+$fields['sbs_username_too_short'] = $modx->lexicon('sbs_username_too_short');
+$fields['sbs_password_required'] = $modx->lexicon('sbs_password_required');
+$fields['sbs_password_too_short'] = $modx->lexicon('sbs_password_too_short');
+$fields['sbs_password_mismatch'] = $modx->lexicon('sbs_password_mismatch');
+$fields['sbs_email_required'] = $modx->lexicon('sbs_email_required');
+$fields['sbs_bad_email'] = $modx->lexicon('sbs_bad_email');
+$fields['sbs_fullname_required'] = $modx->lexicon('sbs_fullname_required');
+$fields['sbs_interests_required'] = $modx->lexicon('sbs_interests_required');
 
 
-$src = $modx->getChunk('SmRegisterJS', $fields);
+$src = $modx->getChunk('SbsRegisterJS', $fields);
 
 $modx->regClientStartupScript($src);
 

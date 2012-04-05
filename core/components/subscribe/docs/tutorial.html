@@ -8,9 +8,10 @@
 <p>
 When upgrading from 1.1.0, you'll also need to create a Manage Preferences Resource and add the <fixedpre>&managePrefsPageId</fixedpre> property to the Subscribe snippet tag in your template(s) as described below.
 </p>
+<p>All &quot;sm&quot; and &quot;Sm&quot; prefixes have been changed to &quot;sbs&quot; and &quot;Sbs&quot; to avoid conflicts with other extras. If you've created a custom CSS file or custom chunks or snippets, you'll have to change the prefixes.</p>
 </div>
 
-<p>Subscribe provides a request-to-subscribe message that will appear on pages at your site. When Users choose to subscribe and submit the registration form, they receive an email message with a link to confirm their registration. The request-to-subscribe message will not be shown to Users who are logged in (they will see a logout link). You can also hide the request-to-subscribe message on selected pages with the <fixedpre>&noShow</fixedpre> property in the SmSubscribe snippet tag.</p>
+<p>Subscribe provides a request-to-subscribe message that will appear on pages at your site. When Users choose to subscribe and submit the registration form, they receive an email message with a link to confirm their registration. The request-to-subscribe message will not be shown to Users who are logged in (they will see a logout link). You can also hide the request-to-subscribe message on selected pages with the <fixedpre>&noShow</fixedpre> property in the SbsSubscribe snippet tag.</p>
         
 <p>As soon as a User submits the Registration form, a User record and a User Profile for the User are saved in the MODX database, but with the User marked as inactive. When the User responds by clicking on the link in the email, they are taken to the site, marked as active, logged in, and sent to a &quot;Registration Confirmed&quot; page (or another page of your choice).</p>
         
@@ -66,7 +67,7 @@ Go to System | Package Management on the main menu in the MODX Manager and click
 <pre><fixedpre>
     <p>Please fill out the following form and submit it to become a subscriber:</p>
 
-[[$SmRegisterForm?
+[[$SbsRegisterForm?
     &confirmRegisterPageId=`##`
     &thankYouPageId=`##`
 ]]
@@ -76,15 +77,15 @@ Go to System | Package Management on the main menu in the MODX Manager and click
 <p>
 Put this tag in the Resource Content field of the Manage Preferences Resource:</p>
 <pre><fixedpre>
-[[$SmManagePrefsForm]]
+[[$SbsManagePrefsForm]]
 </fixedpre></pre>
 
 
 
 <p>Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request-to-subscribe. Replace the first three ## entries with the IDs of your Login page, Register page, and Manage Preferences page. In the <fixedpre>&noShow</fixedpre> property, put a comma-separated list containing the IDs of other pages where the request should not be shown. By default, the request is not shown on the Login page. You'll probably also want to add the IDs of the &quot;Thank You for Registering&quot; page, the &quot;Registration Confirmed&quot; page and the &quot;Confirm Register&quot; pages. The tag will be replaced by the &quot;Request to Subscribe&quot; message (which appears horizontally on a single line) for users who are not logged in and by the &quot;Logout&quot; link for users who are logged in.</p>
-[[!SmSubscribe? &loginPageId = `153` &ManagePrefsPageId=`157` &registerPageId=`149` &noShow=`152,153,157,149`]]
+[[!SbsSubscribe? &loginPageId = `153` &ManagePrefsPageId=`157` &registerPageId=`149` &noShow=`152,153,157,149`]]
 <pre><fixedpre>
-[[!SmSubscribe?
+[[!SbsSubscribe?
     &loginPageId = `##`
     &registerPageId=`##`
     &ManagePrefsPageId=`##`
@@ -112,21 +113,21 @@ Put this tag in the Resource Content field of the Manage Preferences Resource:</
 
 <h3>Customizing Subscribe</h3>
 
-<p>To set the interests checkboxes on the Register form Edit the checkboxes at the end of the SmRegisterForm chunk to use any tags you want. You can add or delete checkboxes to meet your needs, but leave the hidden one at the beginning. When changing the name of an interest, be sure to change both the value and the visible HTML. In The code for each checkbox, the &quot;value&quot; part is what will be saved to the User Profile. The visible part (the one on the right) is what the User will see when filling out the form. It's recommended that you leave no spaces in the &quot;value&quot; part and that you make it all lowercase.
+<p>To set the interests checkboxes on the Register form Edit the checkboxes at the end of the SbsRegisterForm chunk to use any tags you want. You can add or delete checkboxes to meet your needs, but leave the hidden one at the beginning. When changing the name of an interest, be sure to change both the value and the visible HTML. In The code for each checkbox, the &quot;value&quot; part is what will be saved to the User Profile. The visible part (the one on the right) is what the User will see when filling out the form. It's recommended that you leave no spaces in the &quot;value&quot; part and that you make it all lowercase.
 </p>
         
 <p>There is JavaScript validation for all fields in the Register form. All fields are required. The Username and Password fields are required to be at least 6 characters long and the two Password fields must match. The Email field is also checked to make sure it's a valid address. The User must also check at least one of the &quot;Interests&quot; checkboxes.</p>
         
-<p>If you don't want to use the interests feature at all, you can delete all the checkboxes, but the JavaScript validation may complain. You can either leave the hidden field and set its value to something, or edit the SmRegisterJS chunk and remove the check at the end of the code. Be sure not to delete the closing curly brace at the end of the code or the code that follows it. You'll also need to remove the <fixedpre>&postHooks</fixedpre> property from the snippet tag at the top of the SmRegisterForm chunk, which stores the interests in the database.</p>
+<p>If you don't want to use the interests feature at all, you can delete all the checkboxes, but the JavaScript validation may complain. You can either leave the hidden field and set its value to something, or edit the SbsRegisterJS chunk and remove the check at the end of the code. Be sure not to delete the closing curly brace at the end of the code or the code that follows it. You'll also need to remove the <fixedpre>&postHooks</fixedpre> property from the snippet tag at the top of the SbsRegisterForm chunk, which stores the interests in the database.</p>
         
 <h3>Styling the forms</h3>
 
-<p>The &quot;request-to-subscribe&quot; message is styled to be appear on a single horizontal line, but you can restyle it with CSS to appear in another form since the message and all buttons are contained in identifiable span tags. You can also edit the SmSubscibe chunk, if necessary. The SmSubScribe snippet replaces the placeholders in the chunk and displays it, so the HTML with the placeholders must remain in that chunk unless you replace the placeholders with your own code.</p>
+<p>The &quot;request-to-subscribe&quot; message is styled to be appear on a single horizontal line, but you can restyle it with CSS to appear in another form since the message and all buttons are contained in identifiable span tags. You can also edit the SbsSubscibe chunk, if necessary. The SbsSubScribe snippet replaces the placeholders in the chunk and displays it, so the HTML with the placeholders must remain in that chunk unless you replace the placeholders with your own code.</p>
 
 <p>Both the Register form and the &quot;request-to-subscribe&quot; message can be styled by editing the /assets/components/subscribe/css/subscribe.css file, as can the two popup windows.</p>
 
 <p>I originally had a nice JQuery slider for the two popups, but since they might be loaded for every page on a site, I decided that the speed penalty involved in loading the JQuery core, UI, and CSS files was just not worth it. The popups are now done with CSS and a tiny bit of embedded JavaScript to toggle their visibility. You can modify their position and appearance in the subscribe.css file.</p>
 
-<p>To change the message in the popups, just edit the SmSubscribe chunk. As currently styled, the popups will automatically expand to match the content length.</p>
+<p>To change the message in the popups, just edit the SbsSubscribe chunk. As currently styled, the popups will automatically expand to match the content length.</p>
 
 <p>&nbsp;</p>

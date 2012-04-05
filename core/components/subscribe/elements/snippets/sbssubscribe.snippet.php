@@ -55,8 +55,8 @@ if ($loggedIn || in_array($docId,$noShows) ) {
         $modx->regClientCSS(MODX_ASSETS_URL . 'components/subscribe/css/subscribe.css');
         $url = $modx->makeUrl($sp['loginPageId'],"","service=logout","full");
         $managePrefsUrl = $modx->makeUrl($sp['ManagePrefsPageId'],"","","full");
-        $output =  $modx->getChunk('SmLogoutLink', array('logoutUrl' => $url));
-        $output .= $modx->getChunk('SmManagePrefsLink', array('managePrefsUrl' => $managePrefsUrl));
+        $output =  $modx->getChunk('SbsLogoutLink', array('logoutUrl' => $url));
+        $output .= $modx->getChunk('SbsManagePrefsLink', array('managePrefsUrl' => $managePrefsUrl));
         return $output;
     } else {
         /* <br /> maintains page layout. Change to '' if necessary for your layout */
@@ -72,5 +72,5 @@ if ($loggedIn || in_array($docId,$noShows) ) {
     $fields['registerPageId'] = $sp['registerPageId'];
     $fields['loginPageId'] = $scriptProperties['loginPageId'];
 
-    return $modx->getChunk('SmSubscribe', $fields) ;
+    return $modx->getChunk('SbsSubscribe', $fields) ;
 }

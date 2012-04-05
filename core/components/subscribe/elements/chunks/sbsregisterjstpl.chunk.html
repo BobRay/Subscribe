@@ -3,42 +3,42 @@
 
 function checkform (form) {
         if (form.username.value == "") {
-            alert('[[+sm_username_required]]');
+            alert('[[+sbs_username_required]]');
             form.username.focus();
             return false;
         }
         if (form.username.value.length < 6) {
-            alert('[[+sm_username_too_short]]');
+            alert('[[+sbs_username_too_short]]');
             form.username.focus();
             return false;
         }
         if (form.password.value == "") {
-            alert('[[+sm_password_required]]');
+            alert('[[+sbs_password_required]]');
             form.password.focus();
             return false;
         }
         if (form.password.value.length < 6) {
-            alert('[[+sm_password_too_short]]');
+            alert('[[+sbs_password_too_short]]');
             form.password.focus();
             return false;
         }
         if (form.password_confirm.value != form.password.value) {
-            alert('[[+sm_password_mismatch]]');
+            alert('[[+sbs_password_mismatch]]');
             form.password.focus();
             return false;
         }
         if (form.fullname.value == "") {
-                alert('[[+sm_fullname_required]]');
+                alert('[[+sbs_fullname_required]]');
                 form.email.focus();
                 return false;
             }
         if (form.email.value == "") {
-            alert('[[+sm_email_required]]');
+            alert('[[+sbs_email_required]]');
             form.email.focus();
             return false;
         }
         if(emailCheck(form.email.value) == false) {
-            alert("[[+sm_bad_email]]");
+            alert("[[+sbs_bad_email]]");
             form.email.focus();
             return false;
          }
@@ -53,7 +53,7 @@ function checkform (form) {
          }
      }
     if (p==0){
-        alert('[[+sm_interests_required]]');
+        alert('[[+sbs_interests_required]]');
         return false;
     }
 }
