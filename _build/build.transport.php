@@ -33,7 +33,7 @@
 /* Set package info be sure to set all of these */
 define('PKG_NAME','Subscribe');
 define('PKG_NAME_LOWER','subscribe');
-define('PKG_VERSION','1.1.0');
+define('PKG_VERSION','1.1.1');
 define('PKG_RELEASE','rc');
 define('PKG_CATEGORY','Subscribe');
 
