@@ -155,7 +155,7 @@ div#sm_subscribe span#sm_login_link a:hover {
 /* logout link shown only when user is not logged in */
 
 span#sm_logout_link {
-    display: block;
+    display: inline;
     margin: 3px 0px 3px 30px;
 }
 
@@ -175,6 +175,32 @@ span#sm_logout_link a:hover {
     color: teal;
     background-color: #669999;
 }
+
+/* manage prefs link */
+
+span#sm_manage_prefs_link {
+    display: inline;
+    margin: 3px 0px 3px 30px;
+}
+
+span#sm_manage_prefs_link a {
+    padding: 0px 10px;
+    color: teal;
+    background-color: lavender;
+    text-decoration: none;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+
+}
+
+span#sm_manage_prefs_link a:hover {
+    text-decoration: none;
+    color: teal;
+    background-color: #669999;
+}
+
+
 
 /* Registration form styling */
 

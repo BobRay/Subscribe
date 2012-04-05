@@ -1,5 +1,15 @@
 <p>Subscribe provides a double-opt-in User registration system. It uses some parts of the Login package, so be sure that package is installed before using Subscribe.</p>
-        
+
+<div class="box">
+<p>
+<b>Important Upgrade Note!</b>
+<p>If you are upgrading from version 1.1.0, please uninstall and remove the Subscribe package before downloading and installing the new version. A number of element and directory names have changed and a number of internal changes were made to make Subscribe easier to configure. If you don't uninstall the older version, Subscribe should still work, but you will have a number of unused pieces of the old version cluttering up your site and confusing you.
+</p>
+<p>
+When upgrading from 1.1.0, you'll also need to create a Manage Preferences Resource and add the <fixedpre>&managePrefsPageId</fixedpre> property to the Subscribe snippet tag in your template(s) as described below.
+</p>
+</div>
+
 <p>Subscribe provides a request-to-subscribe message that will appear on pages at your site. When Users choose to subscribe and submit the registration form, they receive an email message with a link to confirm their registration. The request-to-subscribe message will not be shown to Users who are logged in (they will see a logout link). You can also hide the request-to-subscribe message on selected pages with the <fixedpre>&noShow</fixedpre> property in the SmSubscribe snippet tag.</p>
         
 <p>As soon as a User submits the Registration form, a User record and a User Profile for the User are saved in the MODX database, but with the User marked as inactive. When the User responds by clicking on the link in the email, they are taken to the site, marked as active, logged in, and sent to a &quot;Registration Confirmed&quot; page (or another page of your choice).</p>
@@ -44,32 +54,42 @@ Go to System | Package Management on the main menu in the MODX Manager and click
 <p>Create a Resource called Confirm Register. This is the page that actually processes the user when they click on the link in the email message. The user will never see this page. The snippet on the page marks them as an active user, logs them in, and forwards them to the &quot;Registration Confirmed&quot; page. Make sure this resource is published but hidden from menus. Put only this code in the Resource Content field. Rreplace ## with the ID of your Registration Confirmed page (*not* the Confirm Register page).</p>
 
 <pre><fixedpre>
-    [[!ConfirmRegister?
-        &redirectTo=`##`
-        &errorPage=`[[++site_start]]`
-    ]]
+[[!ConfirmRegister?
+    &redirectTo=`##`
+    &errorPage=`[[++site_start]]`
+]]
 </fixedpre></pre>
 
-<p>Create a Resource called Register. This page contains the Registration form.  Put something like this in the Resource Content field. Replace the two ## values with the Ids of your Confirm Register page (*not* the Registration Confirmed page) and Thank You pages.</p>
+<p>Create a Resource called Register. Make sure it is published. This page contains the Registration form.  Put something like this in the Resource Content field. Replace the two ## values with the Ids of your Confirm Register page (*not* the Registration Confirmed page) and Thank You pages.</p>
 
 
 <pre><fixedpre>
     <p>Please fill out the following form and submit it to become a subscriber:</p>
 
-    [[$SmRegisterForm?
-        &confirmRegisterPageId=`##`
-        &thankYouPageId=`##`
-    ]]
+[[$SmRegisterForm?
+    &confirmRegisterPageId=`##`
+    &thankYouPageId=`##`
+]]
 </fixedpre></pre>
 
-<p>Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request-to-subscribe. Replace the first two ## entries with the IDs of your Login page and Register page. In the <fixedpre>&noShow</fixedpre> property, put a comma-separated list containing the IDs of other pages where the request should not be shown. By default, the request is not shown on the Login page. You'll probably also want to add the IDs of the &quot;Thank You for Registering&quot; page, the &quot;Registration Confirmed&quot; page and the &quot;Confirm Register&quot; pages. The tag will be replaced by the &quot;Request to Subscribe&quot; message (which appears horizontally on a single line) for users who are not logged in and by the &quot;Logout&quot; link for users who are logged in.</p>
-
+<p>Create a Resource called Manage Preferences. Make sure it is published. This page will allow users to change the tags that show their preferences. It also contains an unsubscribe feature that changes the user's status from active to inactive. Unsubscribed users retain their username, password, and preferences, and can be simply by changing their status back to active.</p>
+<p>
+Put this tag in the Resource Content field of the Manage Preferences Resource:</p>
 <pre><fixedpre>
-    [[!SmSubscribe?
-        &loginPageId = `##`
-        &registerPageId=`##`
-        &noShow=`##,##,##`
-    ]]
+[[$SmManagePrefsForm]]
+</fixedpre></pre>
+
+
+
+<p>Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request-to-subscribe. Replace the first three ## entries with the IDs of your Login page, Register page, and Manage Preferences page. In the <fixedpre>&noShow</fixedpre> property, put a comma-separated list containing the IDs of other pages where the request should not be shown. By default, the request is not shown on the Login page. You'll probably also want to add the IDs of the &quot;Thank You for Registering&quot; page, the &quot;Registration Confirmed&quot; page and the &quot;Confirm Register&quot; pages. The tag will be replaced by the &quot;Request to Subscribe&quot; message (which appears horizontally on a single line) for users who are not logged in and by the &quot;Logout&quot; link for users who are logged in.</p>
+[[!SmSubscribe? &loginPageId = `153` &ManagePrefsPageId=`157` &registerPageId=`149` &noShow=`152,153,157,149`]]
+<pre><fixedpre>
+[[!SmSubscribe?
+    &loginPageId = `##`
+    &registerPageId=`##`
+    &ManagePrefsPageId=`##`
+    &noShow=`##,##,##`
+]]
 </fixedpre></pre>
 
 <h3>Testing</h3>

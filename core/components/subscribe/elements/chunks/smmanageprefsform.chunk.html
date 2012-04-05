@@ -1,0 +1,62 @@
+<p>Submit the following form to change your preferences.</p>
+
+[[!SmGetCurrentPrefs]]
+
+[[!SmGetInterests]]
+
+[[!+fi.error_message:notempty=`<p>[[!+fi.error_message]]</p>`]]
+[[!+success:notempty=`[[+success]]`]]
+
+<script type="text/javascript">
+/* <![CDATA[ */
+
+function checkform (form) {
+        
+        var a=form['interests[]'];
+        var u=form['unsubscribe'];
+        
+        if (u.checked) {
+           return true;
+        }
+     //alert('Length:'+a.length);
+        var p=0;
+     for(i=0;i < a.length; i++){
+        if(a[i].checked){
+             //alert(a[i].value);
+             p=1;
+         }
+     }
+    if (p==0){
+        alert('[[+sm_interests_required]]');
+        return false;
+    }
+}
+
+/* ]]> */
+</script>
+
+
+<div class="register">
+    <div class="registerMessage">[[+error.message]]</div>
+
+    <form class="sm_register_form" action="[[~[[*id]]]]" method="post" onsubmit="return checkform(this); return false;" >
+        <fieldset>
+        <input type="hidden" name="nospam:blank" value="" />
+        <input type="hidden" name="sm_manage_prefs_form" value="sm_manage_prefs" />
+        <p>Username: [[+username]]</p>
+        <p>Your current preferences: [[+currentPrefs]]</p>
+        
+        <br />
+        <p>Pleased keep me informed about new content in the following areas:</p>
+        
+        [[$SmInterestList]]
+
+        <br /><br class="clear" />
+         <input type="checkbox" id="unsubscribe" name="unsubscribe" value="sm_unsubscribe">UNSUBSCRIBE<br />
+        <br class="clear" />
+        <div class="form-buttons">
+            <input type="submit" name="change_prefs_btn" value="Submit" />
+        </div>
+    </fieldset>
+    </form>
+</div>

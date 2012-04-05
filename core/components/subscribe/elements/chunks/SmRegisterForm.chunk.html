@@ -17,6 +17,7 @@
     <form class="sm_register_form" action="[[~[[*id]]]]" method="post" onsubmit="return checkform(this); return false;">
         <fieldset>
         <input type="hidden" name="nospam:blank" value="" />
+        <input type="hidden" name="sm_register_form" value="sm_register" />
 
         <label for="username">[[%register.username? &namespace=`login` &topic=`register`]]:
             
@@ -44,10 +45,8 @@
         <input type="text" name="email:email:required" id="email" value="[[+email]]" /><span class="error">[[+error.email]]</span><br />
         <br />
         <p>Pleased keep me informed about new content in the following areas:</p>
-        <input type="hidden" name="interests[]:required" value=""><br />
-        <input type="checkbox" name="interests[]" value="modx"> MODX<br />
-        <input type="checkbox" name="interests[]" value="rv"> RV<br />
-        <input type="checkbox" name="interests[]" value="bread"> Bread<br />
+
+         [[$SmInterestList]]
 
         <br class="clear" />
 

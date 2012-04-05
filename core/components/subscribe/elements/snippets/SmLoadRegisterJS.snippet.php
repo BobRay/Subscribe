@@ -1,3 +1,4 @@
+<?php
 /**
  * Inserts the javascript code to validate the form.
  *
