@@ -6,13 +6,49 @@
 
 /* javascript validation */
 /* load email check  JS */
-/* @var $modx modX */
-$inFile = $modx->getOption('assets_url') . "components/subscribe/js/emailcheck.js";
-$modx->regClientStartupScript($inFile);
 
-$inFile = $modx->getOption('assets_url') . "components/subscribe/css/subscribe.css";
+/* Properties
+ *
+ * &cssPath string
+ *      default: MODX_ASSETS_PATH .components/subscribe/css/ 
+ *  &cssFile string
+ *      default: subscribe.css
+ *  &jsPath string
+*      default: MODX_ASSETS_PATH .components/subscribe/js/
+ *  &jsFile string default: emailcheck.js
+ *  &language string default: en
+ * */
+
+/* @var $modx modX */
+
+$sp =& $scriptProperties;
+
+$cssPath = $modx->getOption('cssPath', $sp, null);
+$cssPath = empty($cssPath)
+    ? MODX_ASSETS_URL . 'components/subscribe/css/'
+    : $cssPath;
+
+$cssFile = $modx->getOption('cssFile', $sp, null);
+$cssFile = empty($cssFile)
+    ? 'subscribe.css'
+    : $cssFile;
+
+$jsPath = $modx->getOption('jsPath', $sp, null);
+$jsPath = empty($jsPath)
+    ? MODX_ASSETS_URL . 'components/subscribe/js/'
+    : $jsPath;
+
+$jsFile = $modx->getOption('jsFile', $sp, null);
+$jsFile = empty($jsFile)
+    ? 'emailcheck.js'
+    : $jsFile;
+
+
+$inFile = $cssPath . $cssFile;
 $modx->regClientCSS($inFile);
 
+$inFile = $jsPath . $jsFile;
+$modx->regClientStartupScript($inFile);
 
 
 if (!empty($scriptProperties['language'])) {
