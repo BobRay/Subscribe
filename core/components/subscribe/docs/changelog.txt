@@ -1,5 +1,12 @@
 Changelog for Subscribe
 
+Subscribe 1.1.1
+---------------
+ Added Manage Preferences feature
+ Added Unsubscribe feature
+ Renamed chunks for consistency
+ Changed all prefixes to sbs
+
 Subscribe 1.0.1
 ---------------
  Changes to CSS
