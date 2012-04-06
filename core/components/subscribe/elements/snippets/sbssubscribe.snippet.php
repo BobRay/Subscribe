@@ -49,18 +49,23 @@
  * */
 
 $sp =& $scriptProperties;
+if ($sp['cssPath'] == 'none') {
+    $useCss = false;
+} else {
+    $useCss = true;
+    $cssPath = $modx->getOption('cssPath', $sp, null);
+    $cssPath = empty($cssPath)
+        ? MODX_ASSETS_URL . 'components/subscribe/css/'
+        : $cssPath;
 
-$cssPath = $modx->getOption('cssPath', $sp, null);
-$cssPath = empty($cssPath)
-    ? MODX_ASSETS_URL . 'components/subscribe/css/'
-    : $cssPath;
+    $cssFile = $modx->getOption('cssFile', $sp, null);
+    $cssFile = empty($cssFile)
+        ? 'subscribe.css'
+        : $cssFile;
 
-$cssFile = $modx->getOption('cssFile', $sp, null);
-$cssFile = empty($cssFile)
-    ? 'subscribe.css'
-    : $cssFile;
+    $css = $cssPath . $cssFile;
+}
 
-$css = $cssPath . $cssFile;
 $noShows = array($sp['loginPageId']);
 $noShows = array_merge($noShows,explode(',', $sp['noShow']));
 
@@ -77,7 +82,9 @@ $loggedIn = $modx->user->hasSessionContext($modx->context->get('key'));
 if ($loggedIn || in_array($docId,$noShows) ) {
 
     if ($loggedIn) {
-        $modx->regClientCSS($css);
+        if ($useCss) {
+            $modx->regClientCSS($css);
+        }
         $url = $modx->makeUrl($sp['loginPageId'],"","service=logout","full");
         $managePrefsUrl = $modx->makeUrl($sp['ManagePrefsPageId'],"","","full");
         $output =  $modx->getChunk('SbsLogoutLinkTpl', array('logoutUrl' => $url));
@@ -91,7 +98,9 @@ if ($loggedIn || in_array($docId,$noShows) ) {
 } else {
    /* Load CSS and JS, and show the subscribe request */
 
-    $modx->regClientCSS($css);
+    if ($useCss) {
+      $modx->regClientCSS($css);
+    }
 
     $fields = array();
     $fields['registerPageId'] = $sp['registerPageId'];

@@ -3,12 +3,16 @@
 <div class="box">
 <p>
 <b>Important Upgrade Note!</b>
-<p>If you are upgrading from version 1.1.0, please uninstall and remove the Subscribe package before downloading and installing the new version. A number of element and directory names have changed and a number of internal changes were made to make Subscribe easier to configure. If you don't uninstall the older version, Subscribe should still work, but you will have a number of unused pieces of the old version cluttering up your site and confusing you.
+<p>A number of element and directory names have changed and quite a few internal changes were made to make Subscribe easier to configure and to avoid conflicts with other extras. All of the default chunks and snippets have been renamed.</p>
+
+<p>If you are upgrading from version 1.1.0 and have made changes to the default Tpl chunks, be sure to back them up, then uninstall and remove the Subscribe package before downloading and installing the new version.
 </p>
 <p>
 When upgrading from 1.1.0, you'll also need to create a Manage Preferences Resource and add the <fixedpre>&managePrefsPageId</fixedpre> property to the Subscribe snippet tag in your template(s) as described below.
 </p>
+
 <p>All &quot;sm&quot; and &quot;Sm&quot; prefixes have been changed to &quot;sbs&quot; and &quot;Sbs&quot; to avoid conflicts with other extras. If you've created a custom CSS file or custom chunks or snippets, you'll have to change the prefixes. All chunk names now end in &quot;Tpl&quot; so you'll have to change the chunk tags in your Manage Preferences and Register resources.</p>
+
 </div>
 
 <p>Subscribe provides a request-to-subscribe message that will appear on pages at your site. When Users choose to subscribe and submit the registration form, they receive an email message with a link to confirm their registration. The request-to-subscribe message will not be shown to Users who are logged in (they will see a logout link). You can also hide the request-to-subscribe message on selected pages with the <fixedpre>&noShow</fixedpre> property in the SbsSubscribe snippet tag.</p>
@@ -88,7 +92,7 @@ Put this tag in the Resource Content field of the Manage Preferences Resource:</
 [[!SbsSubscribe?
     &loginPageId = `##`
     &registerPageId=`##`
-    &ManagePrefsPageId=`##`
+    &managePrefsPageId=`##`
     &noShow=`##,##,##`
 ]]
 </fixedpre></pre>
@@ -130,4 +134,32 @@ Put this tag in the Resource Content field of the Manage Preferences Resource:</
 
 <p>To change the message in the popups, just edit the SbsSubscribeTpl chunk. As currently styled, the popups will automatically expand to match the content length.</p>
 
+<h3>Modfying the CSS</h3>
+
+<p>
+If you want to modify the CSS used for Subscribe, it's better to duplicate or rename the subscribe.css file so it won't be overwritten by upgrades:</p>
+<pre><fixedpre>
+assets/components/subscribe/css/subscribe.css
+</fixedpre></pre>
+
+<p>
+You can specify your CSS file with the <fixedpre>&cssPath</fixedpre> and <fixedpre>&cssFile</fixedpre> properties. If your CSS file is in same directory as the original (see above), you only need the <fixedpre>&cssFile</fixedpre>property.
+</p>
+
+<p>The properties need to go in two places:
+
+<ul>
+    <li>The SbsSubscribe snippet tag in your template(s).</li>
+    <li>The SbsLoadRegisterJS snippet tag in the SbsRefisterFormTpl chunk</li>
+</ul>
+<p>If you want to add the CSS to your main CSS file, use <fixedpre>&cssFile=`none`</fixedpre> in both places and the CSS file will not be loaded.</p>
+
+<h3>Modifying the Tpl Chunks</h3>
+
+<p>
+If you want to modify the default Tpl chunks, duplicate them and change the name by adding &quot;My&quot; as a prefix.
+
+</p>
+
 <p>&nbsp;</p>
+

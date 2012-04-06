@@ -23,15 +23,20 @@
 
 $sp =& $scriptProperties;
 
-$cssPath = $modx->getOption('cssPath', $sp, null);
-$cssPath = empty($cssPath)
-    ? MODX_ASSETS_URL . 'components/subscribe/css/'
-    : $cssPath;
+if ($sp['cssFile'] == 'none') {
+    $useCss = false;
+} else {
+    $useCss = true;
+    $cssPath = $modx->getOption('cssPath', $sp, null);
+    $cssPath = empty($cssPath)
+        ? MODX_ASSETS_URL . 'components/subscribe/css/'
+        : $cssPath;
 
-$cssFile = $modx->getOption('cssFile', $sp, null);
-$cssFile = empty($cssFile)
-    ? 'subscribe.css'
-    : $cssFile;
+    $cssFile = $modx->getOption('cssFile', $sp, null);
+    $cssFile = empty($cssFile)
+        ? 'subscribe.css'
+        : $cssFile;
+}
 
 $jsPath = $modx->getOption('jsPath', $sp, null);
 $jsPath = empty($jsPath)
@@ -43,9 +48,10 @@ $jsFile = empty($jsFile)
     ? 'emailcheck.js'
     : $jsFile;
 
-
-$inFile = $cssPath . $cssFile;
-$modx->regClientCSS($inFile);
+if ($useCss) {
+    $inFile = $cssPath . $cssFile;
+    $modx->regClientCSS($inFile);
+}
 
 $inFile = $jsPath . $jsFile;
 $modx->regClientStartupScript($inFile);
