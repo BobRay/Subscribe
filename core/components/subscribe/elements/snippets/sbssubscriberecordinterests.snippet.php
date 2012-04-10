@@ -43,7 +43,7 @@
 /* @var $profile modUserProfile */
 /* @var $output string */
 /* @var $modx modX */
-/* @var $hook Hooks */
+/* @var $hook object */
 
 $ref = ''; /* which form called us */
 $setPrefs = false; /* set user prefs (or not) */
@@ -55,6 +55,11 @@ if (isset($_POST['sbs_register_form'])) {
     $ints = $hook->getValue('interests');
     $profile = $hook->getValue('register.profile');
 } elseif (isset($_POST['sbs_manage_prefs_form'])) {
+    /* check login status for security */
+    if (! $modx->user->hasSessionContext($modx->context->get('key'))) {
+        die('Unauthorized Access');
+    }
+
     $ref = 'manage_prefs';
     /* coming from Manage Preferences form */
     $userName = $modx->user->get('username');
@@ -66,9 +71,9 @@ if (isset($_POST['sbs_register_form'])) {
         if (($userName != '(anonymous)') && ($userId != 1)) {
             $modx->user->set('active', 0);
             $modx->user->save();
-            $modx->setPlaceholder('success', $modx->getChunk('SbsUnsubscribeMessageTpl'));
+            $modx->setPlaceholder('sbs_success_message', $modx->lexicon('sbs_unsubscribe_success_message'));
         } else {
-            $modx->setPlaceholder('success', '<h3>Unable to unsubscribe (anonymous) user or admin</h3>');
+            $modx->setPlaceholder('sbs_error_message', $modx->lexicon('sbs_anon_admin_error'));
         }
         /* return without setting prefs */
         return '';
@@ -92,8 +97,8 @@ if ($setPrefs && $profile) {
     if (!$profile->save()) {
         die('could not save profile');
     } else {
-        $modx->setPlaceholder('currentPrefs', $intString);
-        $modx->setPlaceholder('success', $modx->getChunk('SbsChangePrefsSuccessMessageTpl'));
+        $modx->setPlaceholder('sbs_current_prefs', $intString);
+        $modx->setPlaceholder('sbs_success_message', $modx->lexicon('sbs_change_prefs_success_message'));
     }
 } else {
     if (!$profile) {

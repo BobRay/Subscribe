@@ -1,0 +1,123 @@
+Subscribe snippet loads css, loads toggle js
+Sets the SbsSubscribe placeholder:
+
+properties:
+
+loginPageId
+managePrefsPageId
+loginButtonText (lexicon)
+logoutButtonText (lexicon)
+managePrefsButtonText (lexicon)
+requestMessageText (lexicon)
+whyDialogButtonText (lexicon)
+* whyDialogTpl
+* wyhDialogText
+privacyDialogButtonText (lexicon)
+* privacyDialogTpl
+* privacyDialogText
+
+[[+sbs_subscribe_display]] (request or logout/manage)
+
+to one of two chunks:
+
+* SbsLoggedInDisplayTpl
+
+[[+sbs_logout_button]] [[+sbs_manage_prefs_button]]
+
+sbsLoggedOutDisplayTpl
+
+[[+sbs_request_message]][[+sbs_why_dialog_button]][[+sbs_privacy_dialog_button]] [[+sbs_subscribeme_button]][[+sbs_login_button]]
+
+--------
+
+SbsForm Snippet
+Properties
+registerFormTpl
+managePrefsFormTpl
+submitButtonText (lexicon)
+form (manage_prefs or register)
+unsubscribe success message (lexicon)
+register success message (lexicon)
+change prefs success message (lexicon)
+change prefs error message (lexicon)
+forwardOnRegisterId (default empty)
+
+loads css
+loads appropriate JS
+loads appropriate Tpl chunk
+
+Sets appropriate ones of these:
+[[+sbs_error]]
+[[+sbs_success]]
+[[+sbs_username]]
+[[+sbs_current_prefs]]
+[[+sbs_form]] (from one of two Tpls RegisterFormTpl/ManagePrefsFormTpl based on $form property)
+[[+sbs_preferences_list]] (no, it's a chunk tag in the Tpl chunk)
+[[+sbs_unsubscribe_option]]
+<br />[[+sbs_unsubscribe]]
+
+* RegisterFormTpl
+[[Register
+  &some placeholders here
+]]
+[[+sbs_error]]
+[[+sbs_success]]
+[[+sbs_register_form]]
+
+
+SbsFormJs
+SbsEmailCheckJS
+SbsPreferences JS
+JS in two files: register.form.js manage.prefs.form.js
+
+
+Build in getinterests snippet.
+
+*ManagePrefsFormTpl
+[[+sbs_error]]
+[[+sbs_success]]
+<p>Username: [[+username]]</p>
+<p>current preferences: [[+current_prefs]]</p>
+<br />
+<p>fill out this form</p>
+[[$SbsInterestList]]
+<br />
+[[+sbs_unsubscribe]]
+
+On submit. Check for errors with no JS on.
+Try no posthook, save prefs ourselves (above register snippet)
+
+SbsForm snippet
+---------------
+Use for both forms
+&form=`register`
+&form=`managePrefs`
+
+Load CSS
+Load single JS file (add unsubscribe js code)
+if (register)
+    Load register form Tpl
+    Load preferences Tpl
+    Don't forward from Register form?
+if (managePrefs)
+    load preferencesTpl
+    load Unsubscribe Tpl
+
+create checkbox line Tpl chunk
+
+---------------------
+SbsRecordPreferences snippet
+
+if (RegisterForm) {
+
+
+} else if (ManagePrefs form) {
+   getCurrent Prefs
+   setPlaceholder()
+   if (is repost) {
+       change preferences
+   }
+
+
+}
+

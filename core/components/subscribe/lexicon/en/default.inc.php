@@ -26,24 +26,22 @@
  * @subpackage lexicon
  */
 
-/* subscribe example strings -
- * These would be used for messages displayed by your component
- * (e.g. error messages, prompts, etc.).
- */
 $_lang['subscribe'] = 'Subscribe';
 $_lang['subscribe.menu_desc'] = 'Subscribe description';
 
 
-/* Register form error messages */
+/* Request to subscribe strings */
 
-$_lang['sbs_username_required'] = 'Please enter a username';
-$_lang['sbs_username_too_short'] = 'Username must be at least 6 characters long';
-$_lang['sbs_password_required'] = 'Please enter a password';
-$_lang['sbs_password_too_short'] = 'Password must be at least 6 characters long';
-$_lang['sbs_password_mismatch'] = 'Password entries must match';
-$_lang['sbs_email_required'] = 'Please enter an email address';
-$_lang['sbs_bad_email'] = "That doesn't look like a valid email address";
-$_lang['sbs_fullname_required'] = 'Please enter a full name';
-$_lang['sbs_interests_required'] = 'Please check at least one checkbox';
+$_lang['sbs_subscribe_message'] = 'Become a subscriber!';
+$_lang['sbs_subscribe_button_text'] = 'Subscribe me';
+$_lang['sbs_login_button_text'] = 'Login';
+$_lang['sbs_why_button_text'] = 'Why should I?';
+$_lang['sbs_privacy_button_text'] = 'Privacy Policy';
+$_lang['sbs_close_button_text'] = 'Close';
+$_lang['sbs_logout_button_text'] = 'Logout';
+$_lang['sbs_manage_prefs_button_text'] = 'Manage Preferences';
+
+
+
 
 

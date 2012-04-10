@@ -1,40 +1,9 @@
 <p>Submit the following form to change your preferences.</p>
 
-[[!SbsGetCurrentPrefs]]
+[[!SubscribeRecordInterests]]
 
-[[!SbsGetInterests]]
-
-[[!+fi.error_message:notempty=`<p>[[!+fi.error_message]]</p>`]]
-[[!+success:notempty=`[[+success]]`]]
-
-<script type="text/javascript">
-/* <![CDATA[ */
-
-function checkform (form) {
-        
-        var a=form['interests[]'];
-        var u=form['unsubscribe'];
-        
-        if (u.checked) {
-           return true;
-        }
-     //alert('Length:'+a.length);
-        var p=0;
-     for(i=0;i < a.length; i++){
-        if(a[i].checked){
-             //alert(a[i].value);
-             p=1;
-         }
-     }
-    if (p==0){
-        alert('[[+sbs_interests_required]]');
-        return false;
-    }
-}
-
-/* ]]> */
-</script>
-
+[[!+sbs_error_message:notempty=`<div class="error">[[!+sbs_error_message]]</div>`]]
+[[!+sbs_success_message:notempty=`<div class="success">[[+sbs_success_message]]</div>` ]]
 
 <div class="register">
     <div class="registerMessage">[[+error.message]]</div>
@@ -43,20 +12,19 @@ function checkform (form) {
         <fieldset>
         <input type="hidden" name="nospam:blank" value="" />
         <input type="hidden" name="sbs_manage_prefs_form" value="sbs_manage_prefs" />
-        <p>Username: [[+username]]</p>
-        <p>Your current preferences: [[+currentPrefs]]</p>
-        
-        <br />
+        <p>Username: [[+sbs_username]]</p>
+        <p>Your current preferences: [[+sbs_current_prefs]]</p>
         <p>Pleased keep me informed about new content in the following areas:</p>
         
-        [[$SbsInterestListTpl]]
+        [[+sbs_interest_list]]
 
         <br /><br class="clear" />
-         <input type="checkbox" id="unsubscribe" name="unsubscribe" value="sbs_unsubscribe">UNSUBSCRIBE<br />
+         <input type="checkbox" id="unsubscribe" name="unsubscribe" value="sbs_unsubscribe">[[%sbs_unsubscribe]]<br />
         <br class="clear" />
         <div class="form-buttons">
-            <input type="submit" name="change_prefs_btn" value="Submit" />
+            <input type="submit" name="change_prefs_btn" value="[[%sbs_submit_button_text]]" />
         </div>
     </fieldset>
     </form>
+    <span id="sbs_js_lexicon" style="display:none">[[+sbs_lexicon_json]]</span>
 </div>

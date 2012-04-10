@@ -1,15 +1,13 @@
 [[!Register?
     &activationResourceId=`[[+confirmRegisterPageId]]`
     &submittedResourceId=`[[+thankYouPageId]]`
-    &postHooks=`SbsGetInterests`
+    &postHooks=`SubscribeRecordInterests`
     &activationttl=`480`
     &usergroups=`Subscribers`
-    &activationEmailTpl=`SbsActivateEmailTpl`
+    &activationEmailTpl=`[[+activationEmailTpl]]`
     &activationEmailSubject=`Please activate your account at [[++site_name]]!`
     
 ]]
-
-[[!SbsLoadRegisterJS]]
 
 <div class="register">
     <div class="registerMessage">[[+error.message]]</div>
@@ -18,7 +16,6 @@
         <fieldset>
         <input type="hidden" name="nospam:blank" value="" />
         <input type="hidden" name="sbs_register_form" value="sbs_register" />
-
         <label for="username">[[%register.username? &namespace=`login` &topic=`register`]]:
             
         </label>
@@ -46,7 +43,7 @@
         <br />
         <p>Pleased keep me informed about new content in the following areas:</p>
 
-         [[$SbsInterestListTpl]]
+         [[+sbs_interest_list]]
 
         <br class="clear" />
 
@@ -54,8 +51,9 @@
         [[+error.recaptcha]]
         <br />
         <div class="form-buttons">
-            <input type="submit" name="login-register-btn" value="Register" />
+            <input type="submit" name="login-register-btn" value="[[%sbs_submit_button_text]]" />
         </div>
     </fieldset>
     </form>
+    <span id="sbs_js_lexicon" style="display:none">[[+sbs_lexicon_json]]</span>
 </div>
