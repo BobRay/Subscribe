@@ -1,4 +1,5 @@
 [[!Register?
+    &form=`register`
     &submitVar=`login-register-btn`
     &activationResourceId=`331`
     &submittedResourceId=`329`
@@ -21,7 +22,6 @@
     <form class="sbs_register_form" action="[[~[[*id]]]]" method="post" onsubmit="return checkform(this); return false;">
         <fieldset>
         <input type="hidden" name="nospam" value="[[!+reg.nospam]]" />
-        <input type="hidden" name="sbs_register_form" value="sbs_register" />
         <label for="username">[[!%register.username? &namespace=`login` &topic=`register`]]:
             
         </label>

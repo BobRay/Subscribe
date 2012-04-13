@@ -127,61 +127,54 @@ $jsFile = empty($jsFile)
 $modx->regClientStartupScript($jsPath . $jsFile);
 //return "Done with snippet\n";
 require_once('c:/xampp/htdocs/addons/assets/mycomponents/subscribe/core/components/subscribe/model/subscribe/checkboxes.class.php');
+/* ToDo: Sanitize MODX tags in post */
+/* ToDo: Make sure admin and (anonymous) can't set prefs */
+/* ToDo: Make these system settings  */
+$sp['method'] = 'comment';
+$sp['fieldName'] = 'interests';
+$sp['extendedField'] = 'delights';
 
-//$interestListTpl = $modx->getOption('interestListTpl', $sp, 'sbsInterestListTpl');
-//$intString = $modx->getChunk($interestListTpl);
 
-/* turn ints into an associative array */
-/*$ints = explode('||',$intString);
-$checkboxTpl = $modx->getChunk('sbsCheckboxTpl');
-$intsPh = '';
-foreach($ints as $s) {
-    $couple = explode ('==', $s);
-    $result[trim($couple[0])] = trim($couple[1]);
-    $line = str_replace('[[+sbs_value]]', trim($couple[0]),$checkboxTpl);
-    $line = str_replace('[[+sbs_caption]]', trim($couple[1]),$line);
-    $intsPh .= $line;
-}*/
-
-if ($hook) {
+if ($hook && ($sp['form'] == 'register') ) {
     /* We're acting as a register postHook */
     echo "IN HOOK\n<pre>" . print_r($_POST,true);
-    /* ToDo: Make these system settings */
-    $sp['fieldName'] = 'interests';
-    $sp['method'] = 'extended';
-    $sp['extendedField'] = 'delights';
     $prefs = new CheckBoxes($modx,$sp);
     $prefs->init($hook->getValue('register.user'), $hook->getValue('register.profile'), true);
-     if (!$prefs->saveUserPrefs()) {
+    if (!$prefs->saveUserPrefs()) {
+        /* ToDo: move this to checkboxes class */
          die('Failed to save prefs');
-     }
-    return true;
-}
+    }
+    $output = true;
 
-if ($sp['form'] == 'managePrefs') {
-    $sp['markCurrent'] = true;
-    $prefs = new CheckBoxes($modx, $sp);
-    $profile = $modx->user->getOne('Profile');
-    $prefs->init($modx->user, $profile);
-    $modx->setPlaceholder('sbs_username', $modx->user->get('username'));
-
-    /* show current preferences unless posted from managaPrefs form
-     * (in which case the RecordPreferences snippet will set them).
-    */
-    $prefs->createDisplay('sbs_current_prefs');
-    //$prefs->saveUserPrefs();
-    $output = $modx->getChunk('sbsManagePrefsFormTpl');
 } else if ($sp['form'] == 'register') {
     $sp['markCurrent'] = false;
-    $sp['method'] = 'comment';
+
     $prefs = new CheckBoxes($modx, $sp);
     $profile = $modx->user->getOne('Profile');
     $prefs->init($modx->user, $profile);
     $prefs->createDisplay('sbs_interest_list');
     $modx->setPlaceholder('sbs_username', $modx->user->get('username'));
     $output = ''; //$modx->getChunk('sbsRegisterFormTpl', $fields);
-} else {
-    $output = 'Unauthorized Access';
+} else if ($sp['form'] == 'managePrefs') {
+    /* ToDo: , check login status, Handle Unsubscribe here */
+    $sp['markCurrent'] = true;
+    $prefs = new CheckBoxes($modx, $sp);
+    $profile = $modx->user->getOne('Profile');
+    $prefs->init($modx->user, $profile);
+    $modx->setPlaceholder('sbs_username', $modx->user->get('username'));
+    if ($prefs->saveUserPrefs() ) {
+        $modx->setPlaceholder('sbs_success_message', $modx->lexicon('sbs_change_prefs_success_message'));
+    }
+
+    /* show current preferences unless posted from managaPrefs form
+     * (in which case the RecordPreferences snippet will set them).
+    */
+    $prefs->createDisplay('sbs_current_prefs');
+    //$prefs->saveUserPrefs();
+    //$output = $modx->getChunk('sbsManagePrefsFormTpl');
+    $output = '';
+}  else {
+    die('Unauthorized Access');
 }
 
 //$output = str_replace('[[+sbs_interest_list]]', $intsPh, $output);
