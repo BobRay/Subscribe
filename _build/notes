@@ -117,7 +117,114 @@ if (RegisterForm) {
    if (is repost) {
        change preferences
    }
+}
+
+-----------------------
+SubscribePreferences class
+
+Member variables
+----------------
+modx
+props
+method (comment/extended)
+tpls[]
+    preferencesOuterTpl
+    preferencesRowTpl
+    preferencesPrefListTpl
+errors (array)
+possiblePreferencesArray (array)
+postPreferencesArray
+storedPreferencesArray
+
+markCurrent
+
+Methods
+-------
+protected getTpls
+public setMethod()
+public getMethod()
+public savePreferences()
+protected setError()
+protected getErrors()
+protected getPossiblePreferences()
+protected getPostPreferences()
+protected getStoredPreferences()
+   uses method, checkCurrent
+   $_POST['interests'] overrides
+createDisplay()
+
+
+
+---------
+Subscribe Operation
+
+switch($form) {
+   case 'register':
+      load JS
+      load lexicon
+      set lexicon JSON
+      if (repost) {
+          get user obj and profile from hook
+          save preferences (method)
+          /* register snippet will forward */
+      } else {
+         render prefs (method,
+         set placeholder
+      }
+      break;
+   case 'managePrefs':
+      load JS
+      load lexicon
+      set lexicon JSON
+      get user object from DB
+      if (repost) {
+         if (unsubscribe) {
+            unsubscribe user
+            render prefs from DB
+            set prefs placeholder
+            set success message
+
+         } else {
+            get user profile with getOne()
+            save preferences (method)
+            render prefs from post
+            set prefs placeholder
+            set success message
+         }
+      }
+   case SubscribeRequest:
+     if (loggedin)
+        render loggedInDisplay
+     else {
+        render loggedOutDisplay
+     }
 
 
 }
 
+----------
+Make all resource IDs System Settings in Subscribe area and use [[++setting_name]] in forms.
+
+Login Page Id
+sbs_login_page_id
+108
+
+Manage Preferences Page ID
+sbs_manage_prefs_page_id
+327
+
+Subscribe Method
+sbs_method
+comment
+
+Register Page Id
+sbs_register_page_id
+326
+
+Registration Confirmed Page Id
+sbs_registration_confirmed_page_id
+330
+
+Thanks for Registering Page Id
+sbs_thank_you_page_id
+329

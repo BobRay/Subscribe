@@ -1,12 +1,18 @@
 [[!Register?
-    &activationResourceId=`[[+confirmRegisterPageId]]`
-    &submittedResourceId=`[[+thankYouPageId]]`
-    &postHooks=`SubscribeRecordInterests`
+    &submitVar=`login-register-btn`
+    &activationResourceId=`331`
+    &submittedResourceId=`329`
+    &postHooks=`SubscribeForm`
     &activationttl=`480`
     &usergroups=`Subscribers`
-    &activationEmailTpl=`[[+activationEmailTpl]]`
+    &useExtended=`0`
+    &activationEmailTpl=`sbsActivationEmailTpl`
     &activationEmailSubject=`Please activate your account at [[++site_name]]!`
-    
+    &validate=`nospam:blank,
+         username:required:minLength=^6^,
+         password:required:minLength=^6^,
+         password_confirm:password_confirm=^password^,
+         email:required:email`
 ]]
 
 <div class="register">
@@ -14,36 +20,36 @@
 
     <form class="sbs_register_form" action="[[~[[*id]]]]" method="post" onsubmit="return checkform(this); return false;">
         <fieldset>
-        <input type="hidden" name="nospam:blank" value="" />
+        <input type="hidden" name="nospam" value="[[!+reg.nospam]]" />
         <input type="hidden" name="sbs_register_form" value="sbs_register" />
-        <label for="username">[[%register.username? &namespace=`login` &topic=`register`]]:
+        <label for="username">[[!%register.username? &namespace=`login` &topic=`register`]]:
             
         </label>
-        <input type="text" name="username:required:minLength=6" id="username" value="[[+username]]" /><span class="error">[[+error.username]]</span><br />
+        <input type="text" name="username" id="username" value="[[+username]]" /><span class="error">[[+error.username]]</span><br />
 
-        <label for="password">[[%register.password]]:
+        <label for="password">[[!%register.password]]:
             
         </label>
-        <input type="password" name="password:required:minLength=6" id="password" value="[[+password]]" /><span class="error">[[+error.password]]</span><br />
+        <input type="password" name="password" id="password" value="[[!+reg.password]]" /><span class="error">[[+error.password]]</span><br />
 
-        <label for="password_confirm">[[%register.password_confirm]]:
+        <label for="password_confirm">[[!%register.password_confirm]]:
             
         </label>
-        <input type="password" name="password_confirm:password_confirm=`password`" id="password_confirm" value="[[+password_confirm]]" /><span class="error">[[+error.password_confirm]]</span><br />
+        <input type="password" name="password_confirm" id="password_confirm" value="[[Q+reg.password_confirm]]" /><span class="error">[[+error.password_confirm]]</span><br />
 
-        <label for="fullname">[[%register.fullname]]:
+        <label for="fullname">[[!%register.fullname]]:
             
         </label>
-        <input type="text" name="fullname:required" id="fullname" value="[[+fullname]]" /><span class="error">[[+error.fullname]]</span><br />
+        <input type="text" name="fullname" id="fullname" value="[[!+reg.fullname]]" /><span class="error">[[+error.fullname]]</span><br />
 
-        <label for="email">[[%register.email]]:
+        <label for="email">[[!%register.email]]:
             
         </label>
-        <input type="text" name="email:email:required" id="email" value="[[+email]]" /><span class="error">[[+error.email]]</span><br />
+        <input type="text" name="email" id="email" value="[[!+reg.email]]" /><span class="error">[[+error.email]]</span><br />
         <br />
         <p>Pleased keep me informed about new content in the following areas:</p>
 
-         [[+sbs_interest_list]]
+         [[!+sbs_interest_list]]
 
         <br class="clear" />
 
@@ -51,7 +57,7 @@
         [[+error.recaptcha]]
         <br />
         <div class="form-buttons">
-            <input type="submit" name="login-register-btn" value="[[%sbs_submit_button_text]]" />
+            <input type="submit" name="login-register-btn" value="[[!%sbs_submit_button_text]]" />
         </div>
     </fieldset>
     </form>

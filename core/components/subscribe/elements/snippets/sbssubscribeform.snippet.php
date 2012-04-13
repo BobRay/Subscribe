@@ -95,6 +95,7 @@ if ($sp['cssPath'] == 'none' || $sp['cssFile'] == 'none') {
 
     $css = $cssPath . $cssFile;
 }
+//echo "Css: $css<br />";
 
 if ($css) {
     $modx->regClientCSS($css);
@@ -110,7 +111,7 @@ $modx->lexicon->load($language . ':subscribe:forms');
 $s = $modx->lexicon->fetch($prefix = 'sbs_js_',$removePrefix = false);
 $sj = $modx->toJSON($s);
 $modx->setPlaceholder('sbs_lexicon_json',$sj);
-
+//echo "Loading JS\n";
 /* load JS file */
 $jsPath = $modx->getOption('jsPath', $sp, null);
 $jsPath = empty($jsPath)
@@ -122,14 +123,16 @@ $jsFile = empty($jsFile)
     ? 'subscribe.js'
     : $jsFile;
 
+//echo "JS: " . $jsPath . $jsFile . "<br />";
 $modx->regClientStartupScript($jsPath . $jsFile);
+//return "Done with snippet\n";
+require_once('c:/xampp/htdocs/addons/assets/mycomponents/subscribe/core/components/subscribe/model/subscribe/checkboxes.class.php');
 
-
-$interestListTpl = $modx->getOption('interestListTpl', $sp, 'sbsInterestListTpl');
-$intString = $modx->getChunk($interestListTpl);
+//$interestListTpl = $modx->getOption('interestListTpl', $sp, 'sbsInterestListTpl');
+//$intString = $modx->getChunk($interestListTpl);
 
 /* turn ints into an associative array */
-$ints = explode('||',$intString);
+/*$ints = explode('||',$intString);
 $checkboxTpl = $modx->getChunk('sbsCheckboxTpl');
 $intsPh = '';
 foreach($ints as $s) {
@@ -138,30 +141,48 @@ foreach($ints as $s) {
     $line = str_replace('[[+sbs_value]]', trim($couple[0]),$checkboxTpl);
     $line = str_replace('[[+sbs_caption]]', trim($couple[1]),$line);
     $intsPh .= $line;
+}*/
+
+if ($hook) {
+    /* We're acting as a register postHook */
+    echo "IN HOOK\n<pre>" . print_r($_POST,true);
+    /* ToDo: Make these system settings */
+    $sp['fieldName'] = 'interests';
+    $sp['method'] = 'extended';
+    $sp['extendedField'] = 'delights';
+    $prefs = new CheckBoxes($modx,$sp);
+    $prefs->init($hook->getValue('register.user'), $hook->getValue('register.profile'), true);
+     if (!$prefs->saveUserPrefs()) {
+         die('Failed to save prefs');
+     }
+    return true;
 }
 
 if ($sp['form'] == 'managePrefs') {
+    $sp['markCurrent'] = true;
+    $prefs = new CheckBoxes($modx, $sp);
     $profile = $modx->user->getOne('Profile');
+    $prefs->init($modx->user, $profile);
     $modx->setPlaceholder('sbs_username', $modx->user->get('username'));
 
     /* show current preferences unless posted from managaPrefs form
      * (in which case the RecordPreferences snippet will set them).
     */
-    if ($profile && (!isset($_POST['sbs_manage_prefs_form']) || isset($_POST['unsubscribe']))) {
-        $prefs = $profile->get('comment');
-        $modx->setPlaceholder('sbs_current_prefs', $prefs);
-    }
-
+    $prefs->createDisplay('sbs_current_prefs');
+    //$prefs->saveUserPrefs();
     $output = $modx->getChunk('sbsManagePrefsFormTpl');
 } else if ($sp['form'] == 'register') {
-    $fields = array();
-    $fields['confirmRegisterPageId'] = $sp['confirmRegisterPageId'];
-    $fields['thankYouPageId'] = $sp['thankYouPageId'];
-    $fields['activationEmailTpl'] = $modx->getOption('activationEmailTpl', $sp, 'sbsActivationEmailTpl');
-
-    $output = $modx->getChunk('sbsRegisterFormTpl', $fields);
+    $sp['markCurrent'] = false;
+    $sp['method'] = 'comment';
+    $prefs = new CheckBoxes($modx, $sp);
+    $profile = $modx->user->getOne('Profile');
+    $prefs->init($modx->user, $profile);
+    $prefs->createDisplay('sbs_interest_list');
+    $modx->setPlaceholder('sbs_username', $modx->user->get('username'));
+    $output = ''; //$modx->getChunk('sbsRegisterFormTpl', $fields);
 } else {
     $output = 'Unauthorized Access';
 }
-$output = str_replace('[[+sbs_interest_list]]', $intsPh, $output);
+
+//$output = str_replace('[[+sbs_interest_list]]', $intsPh, $output);
 return $output;
