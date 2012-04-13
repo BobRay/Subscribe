@@ -78,9 +78,17 @@ if ($sp['form'] == 'managePrefs') {
         $modx->sendUnauthorizedPage();
     }
 }
+$assetsUrl = $modx->getOption('subscribe.assets_url', $sp, MODX_ASSETS_URL);
+$cssPath = $modx->getOption('cssPath',$sp, $assetsUrl) . 'css/';
+$cssFile = $modx->getOption('cssFile', $sp, null);
+$cssFile = empty($cssFile) ? 'subscribe.css' : $cssFile;
 
+if ($cssFile != 'none') {
+    $modx->regClientCSS($cssPath . $cssFile);
+
+}
 /* load CSS file unless &cssPath or &cssFile is set to 'none' */
-if ($sp['cssPath'] == 'none' || $sp['cssFile'] == 'none') {
+/*if ($sp['cssPath'] == 'none' || $sp['cssFile'] == 'none') {
     $css = false;
 } else {
     $cssPath = $modx->getOption('cssPath', $sp, null);
@@ -94,7 +102,7 @@ if ($sp['cssPath'] == 'none' || $sp['cssFile'] == 'none') {
         : $cssFile;
 
     $css = $cssPath . $cssFile;
-}
+}*/
 //echo "Css: $css<br />";
 
 if ($css) {
@@ -113,7 +121,13 @@ $sj = $modx->toJSON($s);
 $modx->setPlaceholder('sbs_lexicon_json', $sj);
 //echo "Loading JS\n";
 /* load JS file */
-$jsPath = $modx->getOption('jsPath', $sp, null);
+
+$jsPath = $modx->getOption('jsPath',$sp, $assetsUrl) . 'js/';
+$jsFile = $modx->getOption('jsFile', $sp, null);
+$jsFile = empty($jsFile) ? 'subscribe.js' : $jsFile;
+$modx->regClientStartupScript($jsPath . $jsFile);
+
+/*$jsPath = $modx->getOption('jsPath', $sp, null);
 $jsPath = empty($jsPath)
     ? MODX_ASSETS_URL . 'components/subscribe/js/'
     : $jsPath;
@@ -121,10 +135,10 @@ $jsPath = empty($jsPath)
 $jsFile = $modx->getOption('jsFile', $sp, null);
 $jsFile = empty($jsFile)
     ? 'subscribe.js'
-    : $jsFile;
+    : $jsFile;*/
 
 //echo "JS: " . $jsPath . $jsFile . "<br />";
-$modx->regClientStartupScript($jsPath . $jsFile);
+//$modx->regClientStartupScript($jsPath . $jsFile);
 //return "Done with snippet\n";
 $corePath = $modx->getOption('subscribe.core_path',$sp,$modx->getOption('core_path',null,MODX_CORE_PATH).'components/subscribe/');
 require_once($corePath . 'model/subscribe/checkboxes.class.php');
