@@ -25,7 +25,7 @@
  * @package subscribe
  * @subpackage lexicon
  */
-/* Register form error messages */
+/* Register form success and error messages */
 
 $_lang['sbs_js_username_required'] = 'Please enter a username';
 $_lang['sbs_js_username_too_short'] = 'Username must be at least 6 characters long';
@@ -40,5 +40,8 @@ $_lang['sbs_submit_button_text'] = 'Submit';
 $_lang['sbs_unsubscribe'] = 'UNSUBSCRIBE';
 $_lang['sbs_unsubscribe_success_message'] = '<h3>Unsubscription Successful</h3>
 <p>Your preferences, username, and password, have been saved and you are welcome to resubscribe at any time.</p>';
+$_lang['sbs_unsubscribe_failure_message'] = '<h3>Sorry, unsubscription failed</h3>';
 $_lang['sbs_anon_admin_error'] = '<h3>Unable to unsubscribe (anonymous) user or admin</h3>';
 $_lang['sbs_change_prefs_success_message'] = '<h3>Preferences changed</h3>';
+$_lang['sbs_change_prefs_failure_message'] = '<h3>Error: Preferences  not changed</h3>';
+$_lang['sbs_not_logged_in_error_message'] = '<h3>You must be logged in to manage preferences</h3>';

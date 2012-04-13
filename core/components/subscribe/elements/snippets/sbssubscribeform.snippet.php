@@ -74,7 +74,7 @@ $sp =& $scriptProperties;
 //return 'test';
 /* don't allow manage preferences if user is not logged in */
 if ($sp['form'] == 'managePrefs') {
-    if (! $modx->user->hasSessionContext($modx->context->get('key'))) {
+    if (!$modx->user->hasSessionContext($modx->context->get('key'))) {
         $modx->sendUnauthorizedPage();
     }
 }
@@ -108,9 +108,9 @@ $language = !empty($scriptProperties['language'])
 $language = empty($language) ? 'en' : $language;
 $modx->lexicon->load($language . ':subscribe:forms');
 
-$s = $modx->lexicon->fetch($prefix = 'sbs_js_',$removePrefix = false);
+$s = $modx->lexicon->fetch($prefix = 'sbs_js_', $removePrefix = false);
 $sj = $modx->toJSON($s);
-$modx->setPlaceholder('sbs_lexicon_json',$sj);
+$modx->setPlaceholder('sbs_lexicon_json', $sj);
 //echo "Loading JS\n";
 /* load JS file */
 $jsPath = $modx->getOption('jsPath', $sp, null);
@@ -133,48 +133,61 @@ require_once('c:/xampp/htdocs/addons/assets/mycomponents/subscribe/core/componen
 $sp['method'] = 'comment';
 $sp['fieldName'] = 'interests';
 $sp['extendedField'] = 'delights';
+$output = '';
 
 
-if ($hook && ($sp['form'] == 'register') ) {
+if ($hook && ($sp['form'] == 'register')) {
     /* We're acting as a register postHook */
-    echo "IN HOOK\n<pre>" . print_r($_POST,true);
-    $prefs = new CheckBoxes($modx,$sp);
+    $prefs = new CheckBoxes($modx, $sp);
     $prefs->init($hook->getValue('register.user'), $hook->getValue('register.profile'), true);
     if (!$prefs->saveUserPrefs()) {
         /* ToDo: move this to checkboxes class */
-         die('Failed to save prefs');
+        die('Failed to save prefs');
     }
     $output = true;
 
-} else if ($sp['form'] == 'register') {
-    $sp['markCurrent'] = false;
+} else {
+    if ($sp['form'] == 'register') {
+        $sp['markCurrent'] = false;
 
-    $prefs = new CheckBoxes($modx, $sp);
-    $profile = $modx->user->getOne('Profile');
-    $prefs->init($modx->user, $profile);
-    $prefs->createDisplay('sbs_interest_list');
-    $modx->setPlaceholder('sbs_username', $modx->user->get('username'));
-    $output = ''; //$modx->getChunk('sbsRegisterFormTpl', $fields);
-} else if ($sp['form'] == 'managePrefs') {
-    /* ToDo: , check login status, Handle Unsubscribe here */
-    $sp['markCurrent'] = true;
-    $prefs = new CheckBoxes($modx, $sp);
-    $profile = $modx->user->getOne('Profile');
-    $prefs->init($modx->user, $profile);
-    $modx->setPlaceholder('sbs_username', $modx->user->get('username'));
-    if ($prefs->saveUserPrefs() ) {
-        $modx->setPlaceholder('sbs_success_message', $modx->lexicon('sbs_change_prefs_success_message'));
+        $prefs = new CheckBoxes($modx, $sp);
+        $profile = $modx->user->getOne('Profile');
+        $prefs->init($modx->user, $profile);
+        $prefs->createDisplay('sbs_interest_list');
+        $modx->setPlaceholder('sbs_username', $modx->user->get('username'));
+
+    } else {
+        if ($sp['form'] == 'managePrefs') {
+            /* ToDo: , check login status, Handle Unsubscribe here */
+            if (!$modx->user->hasSessionContext($modx->context->get('key'))) {
+                return $modx->lexicon('sbs_not_logged_in_error_message');
+            }
+
+            if (isset($_POST['unsubscribe']) && ($_POST['unsubscribe'] == 'sbs_unsubscribe')) {
+                $modx->user->set('active', '0');
+                if ($modx->user->save()) {
+                    $modx->setPlaceholder('sbs_success_message', $modx->lexicon('sbs_unsubscribe_success_message'));
+                } else {
+                    $modx->setPlaceholder('sbs_error_message', $modx->lexicon('sbs_unsubscribe_failure_message'));
+
+                }
+
+            } else {
+                $sp['markCurrent'] = true;
+                $prefs = new CheckBoxes($modx, $sp);
+                $profile = $modx->user->getOne('Profile');
+                $prefs->init($modx->user, $profile);
+                $modx->setPlaceholder('sbs_username', $modx->user->get('username'));
+                $prefs->saveUserPrefs();
+
+                $prefs->createDisplay('sbs_current_prefs');
+            }
+
+            $output = '';
+        } else {
+            die('Unauthorized Access');
+        }
     }
-
-    /* show current preferences unless posted from managaPrefs form
-     * (in which case the RecordPreferences snippet will set them).
-    */
-    $prefs->createDisplay('sbs_current_prefs');
-    //$prefs->saveUserPrefs();
-    //$output = $modx->getChunk('sbsManagePrefsFormTpl');
-    $output = '';
-}  else {
-    die('Unauthorized Access');
 }
 
 //$output = str_replace('[[+sbs_interest_list]]', $intsPh, $output);

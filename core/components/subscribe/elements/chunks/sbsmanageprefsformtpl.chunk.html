@@ -1,7 +1,7 @@
 <p>Submit the following form to change your preferences.</p>
 
-[[!+sbs_error_message:notempty=`<div class="error">[[!+sbs_error_message]]</div>`]]
-[[!+sbs_success_message:notempty=`<div class="success">[[+sbs_success_message]]</div>` ]]
+[[!+sbs_error_message:notempty=`<div class="sbs_error">[[!+sbs_error_message]]</div>`]]
+[[!+sbs_success_message:notempty=`<div class="sbs_success">[[+sbs_success_message]]</div>` ]]
 
 <div class="register">
     <div class="registerMessage">[[+error.message]]</div>
@@ -19,7 +19,7 @@
         [[+sbs_interest_list]]
 
         <br class="clear" />
-         <input type="checkbox" id="unsubscribe" name="unsubscribe" value="sbs_unsubscribe">[[!%sbs_unsubscribe]]<br />
+         <input type="checkbox" id="unsubscribe" name="unsubscribe" value="sbs_unsubscribe" />[[!%sbs_unsubscribe]]<br />
         <br class="clear" />
         <div class="form-buttons">
             <input type="submit" name="change_prefs_btn" value="[[!%sbs_submit_button_text]]" />

@@ -174,8 +174,13 @@ protected function getTpls() {
                 break;
 
         }
-        return $this->userProfile->save();
-
+        if ($this->userProfile->save() ) {
+            $this->modx->setPlaceholder('sbs_success_message', $this->modx->lexicon('sbs_change_prefs_success_message'));
+            return true;
+        } else {
+            $this->modx->setPlaceholder('sbs_success_message', $this->modx->lexicon('sbs_change_prefs_failure_message'));
+            return false;
+        }
     }
 } /* end class */
 
