@@ -126,7 +126,10 @@ $jsFile = empty($jsFile)
 //echo "JS: " . $jsPath . $jsFile . "<br />";
 $modx->regClientStartupScript($jsPath . $jsFile);
 //return "Done with snippet\n";
-require_once('c:/xampp/htdocs/addons/assets/mycomponents/subscribe/core/components/subscribe/model/subscribe/checkboxes.class.php');
+$corePath = $modx->getOption('subscribe.core_path',$sp,$modx->getOption('core_path',null,MODX_CORE_PATH).'components/subscribe/');
+require_once($corePath . 'model/subscribe/checkboxes.class.php');
+//require_once('c:/xampp/htdocs/addons/assets/mycomponents/subscribe/core/components/subscribe/model/subscribe/checkboxes.class.php');
+
 /* ToDo: Sanitize MODX tags in post */
 /* ToDo: Make sure admin and (anonymous) can't set prefs */
 /* ToDo: Make these system settings  */
