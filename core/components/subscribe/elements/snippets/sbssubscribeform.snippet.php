@@ -146,8 +146,7 @@ if ($hook && ($sp['form'] == 'register')) {
     }
     $output = true;
 
-} else {
-    if ($sp['form'] == 'register') {
+} elseif ($sp['form'] == 'register') {
         $sp['markCurrent'] = false;
 
         $prefs = new CheckBoxes($modx, $sp);
@@ -156,39 +155,37 @@ if ($hook && ($sp['form'] == 'register')) {
         $prefs->createDisplay('sbs_interest_list');
         $modx->setPlaceholder('sbs_username', $modx->user->get('username'));
 
-    } else {
-        if ($sp['form'] == 'managePrefs') {
-            /* ToDo: , check login status, Handle Unsubscribe here */
-            if (!$modx->user->hasSessionContext($modx->context->get('key'))) {
-                return $modx->lexicon('sbs_not_logged_in_error_message');
-            }
+} elseif ($sp['form'] == 'managePrefs') {
 
-            if (isset($_POST['unsubscribe']) && ($_POST['unsubscribe'] == 'sbs_unsubscribe')) {
-                $modx->user->set('active', '0');
-                if ($modx->user->save()) {
-                    $modx->setPlaceholder('sbs_success_message', $modx->lexicon('sbs_unsubscribe_success_message'));
-                } else {
-                    $modx->setPlaceholder('sbs_error_message', $modx->lexicon('sbs_unsubscribe_failure_message'));
+    if (!$modx->user->hasSessionContext($modx->context->get('key'))) {
+        return $modx->lexicon('sbs_not_logged_in_error_message');
+    }
+    $sp['markCurrent'] = true;
+    $prefs = new CheckBoxes($modx, $sp);
+    $profile = $modx->user->getOne('Profile');
+    $prefs->init($modx->user, $profile);
+    $modx->setPlaceholder('sbs_username', $modx->user->get('username'));
+    $prefs->saveUserPrefs();
 
-                }
-
-            } else {
-                $sp['markCurrent'] = true;
-                $prefs = new CheckBoxes($modx, $sp);
-                $profile = $modx->user->getOne('Profile');
-                $prefs->init($modx->user, $profile);
-                $modx->setPlaceholder('sbs_username', $modx->user->get('username'));
-                $prefs->saveUserPrefs();
-
-                $prefs->createDisplay('sbs_current_prefs');
-            }
-
-            $output = '';
+    if (isset($_POST['unsubscribe']) && ($_POST['unsubscribe'] == 'sbs_unsubscribe')) {
+        if ($modx->user->get('username') == '(anonymous)' || $modx->user->get('id') == '1') {
+            $modx->setPlaceholder('sbs_error_message', $modx->lexicon('sbs_anon_admin_error'));
         } else {
-            die('Unauthorized Access');
+            $modx->user->set('active', '0');
+            if ($modx->user->save()) {
+                $modx->setPlaceholder('sbs_success_message', $modx->lexicon('sbs_unsubscribe_success_message'));
+            } else {
+                $modx->setPlaceholder('sbs_error_message', $modx->lexicon('sbs_unsubscribe_failure_message'));
+
+            }
         }
     }
+    $prefs->createDisplay('sbs_current_prefs');
+
+} else {
+        die('Unauthorized Access');
 }
+
 
 //$output = str_replace('[[+sbs_interest_list]]', $intsPh, $output);
 return $output;

@@ -156,9 +156,10 @@ protected function getTpls() {
         if ( (!isset($_POST[$this->props['fieldName']])) || empty($_POST[$this->props['fieldName']])) {
             return false;
         }
+        /* now it's a genuine repost */
 
         $ints = implode(',', $_POST[$this->props['fieldName']]);
-        echo 'Save ints: ' . $ints . "\n";
+        //echo 'Save ints: ' . $ints . "\n";
         switch($this->method) {
             case 'comment':
                 $this->userProfile->set('comment', $ints);
@@ -174,11 +175,12 @@ protected function getTpls() {
                 break;
 
         }
+
         if ($this->userProfile->save() ) {
             $this->modx->setPlaceholder('sbs_success_message', $this->modx->lexicon('sbs_change_prefs_success_message'));
             return true;
         } else {
-            $this->modx->setPlaceholder('sbs_success_message', $this->modx->lexicon('sbs_change_prefs_failure_message'));
+            $this->modx->setPlaceholder('sbs_error_message', $this->modx->lexicon('sbs_change_prefs_failure_message'));
             return false;
         }
     }
