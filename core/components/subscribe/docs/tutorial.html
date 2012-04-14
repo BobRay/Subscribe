@@ -1,25 +1,29 @@
-<p>Subscribe provides a double-opt-in User registration system. It uses some parts of the Login package, so be sure that package is installed before using Subscribe.</p>
+<p>Subscribe provides a double-opt-in User registration system. It uses some parts of the Login package, so be sure the Login package is installed before using Subscribe.</p>
 
 <div class="box">
-<p>
-<b>Important Upgrade Note!</b>
+<p><b>Important Upgrade Note!</b></p>
+
 <p>A number of element and directory names have changed and quite a few internal changes were made to make Subscribe easier to configure and to avoid conflicts with other extras. All of the default chunks and snippets have been renamed.</p>
 
-<p>If you are upgrading from version 1.1.0 and have made changes to the default Tpl chunks, be sure to back them up, then uninstall and remove the Subscribe package before downloading and installing the new version.
+<p>Since everything was changing, I took the opportunity to refactor Subscribe from the ground up to streamline the code and, hopefully, make it easier to use and configure.</p>
+
+<p>If you are upgrading from version 1.1.0 and have made changes to the default Tpl chunks, be sure to back them up so you'll have them for reference, then uninstall and remove the Subscribe package before downloading and installing the new version.
 </p>
 <p>
-When upgrading from 1.1.0, you'll also need to create a Manage Preferences Resource and add the <fixedpre>&managePrefsPageId</fixedpre> property to the Subscribe snippet tag in your template(s) as described below.
+When upgrading from 1.1.0, you'll also need to create a Manage Preferences Resource and set the Subscribe System Settings as described below.
 </p>
 
-<p>All &quot;sm&quot; and &quot;Sm&quot; prefixes have been changed to &quot;sbs&quot; and &quot;Sbs&quot; to avoid conflicts with other extras. If you've created a custom CSS file or custom chunks or snippets, you'll have to change the prefixes. All chunk names now end in &quot;Tpl&quot; so you'll have to change the chunk tags in your Manage Preferences and Register resources.</p>
+<p>All &quot;sm&quot; and &quot;Sm&quot; prefixes have been changed to &quot;sbs&quot; and &quot;Sbs&quot; to avoid conflicts with other extras. If you've created a custom CSS file be sure to back it up outside the subscribe directory. Any resources you created will be unchanged, but you may need to alter their content a little. I apoligize for the inconvenience. Future upgrades should go much more smoothly.</p>
 
 </div>
-
-<p>Subscribe provides a request-to-subscribe message that will appear on pages at your site. When Users choose to subscribe and submit the registration form, they receive an email message with a link to confirm their registration. The request-to-subscribe message will not be shown to Users who are logged in (they will see a logout link). You can also hide the request-to-subscribe message on selected pages with the <fixedpre>&noShow</fixedpre> property in the SbsSubscribe snippet tag.</p>
+<h3>About Subscribe</h3>
+<p>Subscribe provides a request-to-subscribe message that will appear on pages at your site. When Users choose to subscribe and submit the registration form, they receive an email message with a link to confirm their registration. The request-to-subscribe message will not be shown to Users who are logged in (they will see a logout link). You can also hide the request-to-subscribe message on selected pages with the <fixedpre>&noShows</fixedpre> property in the SubscribeRequest snippet tag.</p>
         
 <p>As soon as a User submits the Registration form, a User record and a User Profile for the User are saved in the MODX database, but with the User marked as inactive. When the User responds by clicking on the link in the email, they are taken to the site, marked as active, logged in, and sent to a &quot;Registration Confirmed&quot; page (or another page of your choice).</p>
         
-<p>The default registration form also includes the option of checkboxes for the User to indicate interests. The User's interests will be saved as a comma-separated list in the <fixedpre>comment</fixedpre> field of the User's Profile. This allows you to send email messages to Users based on their interests (an upcoming version of EmailResource will do this automatically). You can also design systems that respond to User interests by customizing menus, forwarding Users to particular parts of the site on login, etc.</p>
+<p>The default registration form also includes the option of checkboxes for the User to indicate interests. The User's interests will be saved as a comma-separated list in the <fixedpre>comment</fixedpre> field of the User's Profile (or, optionally, in an extended field of your choice). This allows you to send email messages to Users based on their interests (an upcoming version of EmailResource will do this automatically as will an upcoming extra called &quot;Notify&quot;). You can also design systems that respond to User interests by customizing menus, forwarding Users to particular parts of the site on login, etc.</p>
+
+<p>There is also a Manage Preferences form that lets the user change their interests at any time. It also allows the user to unsubscribe.</p>
 
 <h3>Installing Subscribe</h3>
 
@@ -36,11 +40,11 @@ Go to System | Package Management on the main menu in the MODX Manager and click
 <p>Create a Resource called Thank You for Registering. Make it published but hidden from menus. Put something like this in the Resource Content field:</p>
 
 <pre><fixedpre>
-    <p>
-    Thanks for registering. You will receive an email message soon
-    containing a link that will activate your subscription. Please 
-    click on the link in the message to become an active subscriber.
-    </p>
+<p>
+Thanks for registering. You will receive an email message soon
+containing a link that will activate your subscription. Please
+click on the link in the message to become an active subscriber.
+</p>
 </fixedpre></pre>
 
 <p>Make a note of the Thank You page's ID once you have saved it.</p>
@@ -56,7 +60,7 @@ Go to System | Package Management on the main menu in the MODX Manager and click
 
 <p>Make a note of the ID of your Registration Confirmed page.</p>
 
-<p>Create a Resource called Confirm Register. This is the page that actually processes the user when they click on the link in the email message. The user will never see this page. The snippet on the page marks them as an active user, logs them in, and forwards them to the &quot;Registration Confirmed&quot; page. Make sure this resource is published but hidden from menus. Put only this code in the Resource Content field. Rreplace ## with the ID of your Registration Confirmed page (*not* the Confirm Register page).</p>
+<p>Create a Resource called Confirm Register. This is the page that actually processes the user when they click on the link in the email message. The user will never see this page. The snippet on the page marks them as an active user, logs them in, and forwards them to the &quot;Registration Confirmed&quot; page. Make sure this resource is published but hidden from menus. Put only this code in the Resource Content field. Replace ## with the ID of your Registration Confirmed page (*not* the Confirm Register page).</p>
 
 <pre><fixedpre>
 [[!ConfirmRegister?
@@ -65,37 +69,40 @@ Go to System | Package Management on the main menu in the MODX Manager and click
 ]]
 </fixedpre></pre>
 
-<p>Create a Resource called Register. Make sure it is published. This page contains the Registration form.  Put something like this in the Resource Content field. Replace the two ## values with the Ids of your Confirm Register page (*not* the Registration Confirmed page) and Thank You pages.</p>
-
+<p>Create a Resource called Register (or Subscribe). Make sure it is published. This page contains the Registration form.  Put something like this in the Resource Content field.</p>
 
 <pre><fixedpre>
     <p>Please fill out the following form and submit it to become a subscriber:</p>
 
-[[$SbsRegisterFormTpl?
-    &confirmRegisterPageId=`##`
-    &thankYouPageId=`##`
-]]
+[[$SbsRegisterFormTpl]]
 </fixedpre></pre>
 
 <p>Create a Resource called Manage Preferences. Make sure it is published. This page will allow users to change the tags that show their preferences. It also contains an unsubscribe feature that changes the user's status from active to inactive. Unsubscribed users retain their username, password, and preferences, and can be simply by changing their status back to active.</p>
 <p>
-Put this tag in the Resource Content field of the Manage Preferences Resource:</p>
+Put this code in the Resource Content field of the Manage Preferences Resource:</p>
 <pre><fixedpre>
+<p>Submit the form below to manage your preferences or unsubscribe:</p>
 [[$SbsManagePrefsFormTpl]]
 </fixedpre></pre>
 
 
-
-<p>Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request-to-subscribe. Replace the first three ## entries with the IDs of your Login page, Register page, and Manage Preferences page. In the <fixedpre>&noShow</fixedpre> property, put a comma-separated list containing the IDs of other pages where the request should not be shown. By default, the request is not shown on the Login page. You'll probably also want to add the IDs of the &quot;Thank You for Registering&quot; page, the &quot;Registration Confirmed&quot; page and the &quot;Confirm Register&quot; pages. The tag will be replaced by the &quot;Request to Subscribe&quot; message (which appears horizontally on a single line) for users who are not logged in and by the &quot;Logout&quot; link for users who are logged in.</p>
-[[!SbsSubscribe? &loginPageId = `153` &ManagePrefsPageId=`157` &registerPageId=`149` &noShow=`152,153,157,149`]]
+<p>Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request-to-subscribe. In the <fixedpre>&noShows</fixedpre> property, put a comma-separated list containing the IDs of other pages where the request should not be shown. By default, the request is not shown on the Login, Registration, Thanks for Registering, and Confirm Registration pages. Add the IDs of any other pages it should not be shown on to the <fixedpre>&noShows</fixedpre> property in the snippet tag in the template. The tag will be replaced by the &quot;Request to Subscribe&quot; message (which appears horizontally on a single line) for users who are not logged in and by the &quot;Logout&quot; link for users who are logged in.</p>
 <pre><fixedpre>
-[[!SbsSubscribe?
-    &loginPageId = `##`
-    &registerPageId=`##`
-    &managePrefsPageId=`##`
-    &noShow=`##,##,##`
+[[!SbsSubscribe]]
+
+or
+
+[[!SubscribeRequest
+    &noShows=`##,##,##`
 ]]
 </fixedpre></pre>
+
+<h3>Subscribe System Settings</h3>
+<p>Once you have created the resources, it's time to set the Subscribe System Settings. In the current version, rather than setting properties in multiple places, you only need to set the basic system settings and they'll be used by all parts of the subscribe package. They can be overridden by properties in the Subscribe snippet tags, but you should rarely, if ever, need to do that.</p>
+
+<p>Go to System | System Settings in the MODX Manager. Using the drop-down list that says &quot;core&quot; (in the center, just above the grid), change the setting to &quot;subscribe&quot; (it may be on page two of the list). Once you've done that, you should see just the Subscribe settings. </p>
+
+<p>To set each setting, right-click on it and select &quot;Update Setting&quot;. Don't change anything but the &quot;value&quot; field. Set all of the five settings with page IDs in their names to the appropriate Resource IDs. You'll see these in parentheses in the Resource tree at the left. The other settings are optional and can be left alone. After changing each setting, be sure to click on the &quot;Save&quot; button (not &quot;Close&quot; or &quot;Cancel&quot;). Before leaving, check the settings in the grid and make sure all five page IDs are set properly.</p>
 
 <h3>Testing</h3>
 
@@ -106,6 +113,7 @@ Put this tag in the Resource Content field of the Manage Preferences Resource:</
     <li>Confirm Register</li>
     <li>Registration Confirmed</li>
     <li>Thank You for Registering pages</li>
+    <li>Manage Preferences</li>
 </ul>
 
 
@@ -146,20 +154,37 @@ assets/components/subscribe/css/subscribe.css
 You can specify your CSS file with the <fixedpre>&cssPath</fixedpre> and <fixedpre>&cssFile</fixedpre> properties. If your CSS file is in same directory as the original (see above), you only need the <fixedpre>&cssFile</fixedpre>property.
 </p>
 
-<p>The properties need to go in two places:
+<p>The properties need to go in three places:
 
 <ul>
-    <li>The SbsSubscribe snippet tag in your template(s).</li>
-    <li>The SbsLoadRegisterJS snippet tag in the SbsRefisterFormTpl chunk</li>
+    <li>The SubscribeRequest snippet tag in your template(s).</li>
+    <li>The SubscribeForm snippet tag in the SbsRegisterFormTpl chunk</li>
+    <li>The SubscribeForm snippet tag in the SbsManagePrefsFormTpl chunk</li>
 </ul>
-<p>If you want to add the CSS to your main CSS file, use <fixedpre>&cssFile=`none`</fixedpre> in both places and the CSS file will not be loaded.</p>
+<p>If you want to add the CSS to your main CSS file, use <fixedpre>&cssFile=`none`</fixedpre> in all three places and the CSS file will not be loaded.</p>
 
 <h3>Modifying the Tpl Chunks</h3>
 
 <p>
-If you want to modify the default Tpl chunks, duplicate them and change the name by adding &quot;My&quot; as a prefix.
+If you want to modify the default Tpl chunks, duplicate them and change the name by adding &quot;My&quot; as a prefix. For the chunks used in the sbsLoggedInDisplayTpl and sbsLoggedOutDisplay (Request to Subscribe), add the appropriate properties below to the SubscribeRequest snippet tag in the template:</p>
 
-</p>
+<pre><fixedpre>
+&loggedOutDisplayTpl
+&loggedInDisplayTpl
+&whyDialogTpl
+&whyDialogTextTpl
+&privacyDialogTpl
+&privacyDialogTextTpl
+</fixedpre></pre>
+
+<p>You'll almost certainly want to modify the sbsCheckboxTpl and the sbsPrefListTpl chunks. Before doing that, you'll need to duplicate the sbsRegisterFormTpl and sbsManagePrefsFormTpl chunks, adding &quot;My&quot; as a prefix to their names. In the duplicate chunks,  Add the following properties to the RequestForm snippet tag in both of the duplicate chunks:</p>
+
+<pre><fixedpre>
+&checkBoxTpl=`MySbsCheckboxTpl`
+&prefListTpl=`MySbsPrefListTpl`
+</fixedpre></pre>
+
+<p>Now duplicate the sbsCheckboxTpl and sbsPrefListTpl chunks and add &quot;My&quot; as a prefix to their names. Then modify them to suit your needs.</p>
 
 <p>&nbsp;</p>
 
