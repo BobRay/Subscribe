@@ -20,7 +20,7 @@ function emailCheck(emailStr) {
     var atom = validChars + '+';
     var word = "(" + atom + "|" + quotedUser + ")";
     var userPat = new RegExp("^" + word + "(\\." + word + ")*$");
-    var domainPat = new RegExp("^" + atom + "(\\." + atom + ")*$");
+    // var domainPat = new RegExp("^" + atom + "(\\." + atom + ")*$");
     var matchArray = emailStr.match(emailPat);
 
     if (matchArray == null) {
