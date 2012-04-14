@@ -87,27 +87,6 @@ if ($cssFile != 'none') {
     $modx->regClientCSS($cssPath . $cssFile);
 }
 
-/*if ($sp['cssPath'] == 'none' || $sp['cssFile'] == 'none') {
-    $css = false;
-} else {
-    $cssPath = $modx->getOption('cssPath', $sp, null);
-    $cssPath = empty($cssPath)
-        ? MODX_ASSETS_URL . 'components/subscribe/css/'
-        : $cssPath;
-
-    $cssFile = $modx->getOption('cssFile', $sp, null);
-    $cssFile = empty($cssFile)
-        ? 'subscribe.css'
-        : $cssFile;
-
-    $css = $cssPath . $cssFile;
-}*/
-//echo "Css: $css<br />";
-
-if ($css) {
-    $modx->regClientCSS($css);
-}
-
 /* load language strings */
 $language = !empty($scriptProperties['language'])
     ? $scriptProperties['language']
@@ -126,29 +105,15 @@ $jsFile = $modx->getOption('jsFile', $sp, null);
 $jsFile = empty($jsFile) ? 'subscribe.js' : $jsFile;
 $modx->regClientStartupScript($jsPath . $jsFile);
 
-/*$jsPath = $modx->getOption('jsPath', $sp, null);
-$jsPath = empty($jsPath)
-    ? MODX_ASSETS_URL . 'components/subscribe/js/'
-    : $jsPath;
-
-$jsFile = $modx->getOption('jsFile', $sp, null);
-$jsFile = empty($jsFile)
-    ? 'subscribe.js'
-    : $jsFile;*/
-
-//echo "JS: " . $jsPath . $jsFile . "<br />";
-//$modx->regClientStartupScript($jsPath . $jsFile);
-//return "Done with snippet\n";
 $corePath = $modx->getOption('subscribe.core_path',$sp,$modx->getOption('core_path',null,MODX_CORE_PATH).'components/subscribe/');
 require_once($corePath . 'model/subscribe/checkboxes.class.php');
-//require_once('c:/xampp/htdocs/addons/assets/mycomponents/subscribe/core/components/subscribe/model/subscribe/checkboxes.class.php');
+
 
 /* ToDo: Sanitize MODX tags in post */
-/* ToDo: Make sure admin and (anonymous) can't set prefs */
 /* ToDo: Make these system settings  */
-$sp['method'] = 'comment';
-$sp['fieldName'] = 'interests';
-$sp['extendedField'] = 'delights';
+$sp['method'] = $modx->getOption('sbs_method', $sp, 'comment');
+$sp['fieldName'] = $modx->getOption('sbs_field_name',$sp,'interests');
+$sp['extendedField'] = $modx->getOption('sbs_extended_field',$sp,'interests');
 $output = '';
 
 
@@ -202,6 +167,4 @@ if ($hook && ($sp['form'] == 'register')) {
         die('Unauthorized Access');
 }
 
-
-//$output = str_replace('[[+sbs_interest_list]]', $intsPh, $output);
 return $output;

@@ -79,10 +79,18 @@ if ($cssFile != 'none') {
 }
 
 /* by default, don't show on login, register, and manage prefs pages */
-$noShows = array($sp['loginPageId'], $sp['registerPageId'], $sp['managePrefsPageId']);
-/* add in other pages from &noShow property */
-$noShows = array_merge($noShows, explode(',', $sp['noShow']));
+$noShows = array();
+$noShows = array(
+    $modx->getOption('sbs_login_page_id',$sp,null),
+    $modx->getOption('sbs_register_page_id',$sp,null),
+    $modx->getOption('sbs_manage_prefs_page_id',$sp,null),
+    $modx->getOption('sbs_thank_you_page_id',$sp,null),
+    $modx->getOption('sbs_confirm_register_page_id',$sp,null),
+);
 
+/* add in other pages from &noShow property */
+$noShows = empty( $sp['noShows'])? $noShows : array_merge($noShows, explode(',', $sp['noShows']));
+echo '<pre>' . print_r($noShows,true) . '</pre>';
 /* load language strings */
 $language = !empty($scriptProperties['language'])
     ? $scriptProperties['language']
@@ -91,7 +99,7 @@ $language = empty($language) ? 'en' : $language;
 $modx->lexicon->load($language . ':subscribe:default');
 
 /* set Tpl chunks */
-
+/* ToDo: Make these System Settings (and the CSS and JS filenames)*/
 $loggedOutDisplayTpl = $modx->getOption('loggedOutDisplayTpl', $sp, null);
 $loggedOutDisplayTpl = empty($loggedOutDisplayTpl) ? 'sbsLoggedOutDisplayTpl' : $loggedOutDisplayTpl;
 
