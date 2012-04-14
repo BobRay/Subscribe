@@ -119,23 +119,15 @@ if (in_array($docId, $noShows)) {
     $output = '<br />';
 } else {
     if ($loggedIn) {
-        /* show logged in display */
-        //$ph = array();
-        //$ph['logout_page_id'] = $sp['loginPageId'];
-        //$ph['manage_prefs_page_id'] = $sp['managePrefsPageId'];
-        //$modx->toPlaceholders($ph,'sbs','_');
-        $output = $modx->getChunk('SbsLoggedInDisplayTpl');
+        $output = $modx->getChunk($loggedInDisplayTpl);
     } else {
         /* Show logged out display */
         /* all set as placeholders in case user wants to move them elsewhere in template */
         $ph = array();
-        //$ph['subscribe_message'] = $modx->lexicon('sbs_request_message');
         $ph['why_dialog_button'] = $modx->getChunk($whyDialogTpl);
         $ph['why_dialog_text'] = $modx->getChunk($whyTextTpl);
         $ph['privacy_dialog_button'] = $modx->getChunk($privacyDialogTpl);
         $ph['privacy_dialog_text'] = $modx->getChunk($privacyTextTpl);
-        //$ph['login_page_id'] = $sp['loginPageId'];
-        //$ph['register_page_id'] = $sp['registerPageId'];
 
         $modx->toPlaceholders($ph,'sbs', '_');
 
