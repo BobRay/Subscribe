@@ -228,3 +228,11 @@ sbs_registration_confirmed_page_id
 Thanks for Registering Page Id
 sbs_thank_you_page_id
 329
+
+Subscribe storage method
+sbs_method
+comment
+
+Subscribe Field Name
+sbs_field_name
+interests

@@ -82,12 +82,11 @@ $assetsUrl = $modx->getOption('subscribe.assets_url', $sp, MODX_ASSETS_URL);
 $cssPath = $modx->getOption('cssPath',$sp, $assetsUrl) . 'css/';
 $cssFile = $modx->getOption('cssFile', $sp, null);
 $cssFile = empty($cssFile) ? 'subscribe.css' : $cssFile;
-
+/* load CSS file unless &cssPath or &cssFile is set to 'none' */
 if ($cssFile != 'none') {
     $modx->regClientCSS($cssPath . $cssFile);
-
 }
-/* load CSS file unless &cssPath or &cssFile is set to 'none' */
+
 /*if ($sp['cssPath'] == 'none' || $sp['cssFile'] == 'none') {
     $css = false;
 } else {

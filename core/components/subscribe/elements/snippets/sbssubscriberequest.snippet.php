@@ -69,26 +69,13 @@
 $sp =& $scriptProperties;
 $docId = $modx->resource->get('id');
 
+$assetsUrl = $modx->getOption('subscribe.assets_url', $sp, MODX_ASSETS_URL);
+$cssPath = $modx->getOption('cssPath',$sp, $assetsUrl) . 'css/';
+$cssFile = $modx->getOption('cssFile', $sp, null);
+$cssFile = empty($cssFile) ? 'subscribe.css' : $cssFile;
 /* load CSS file unless &cssPath or &cssFile is set to 'none' */
-if ($sp['cssPath'] == 'none' || $sp['cssFile'] == 'none') {
-    $css = false;
-} else {
-    $cssPath = $modx->getOption('cssPath', $sp, null);
-    $cssPath = empty($cssPath)
-        ? MODX_ASSETS_URL . 'components/subscribe/css/'
-        : $cssPath;
-
-    $cssFile = $modx->getOption('cssFile', $sp, null);
-    $cssFile = empty($cssFile)
-        ? 'subscribe.css'
-        : $cssFile;
-
-    $css = $cssPath . $cssFile;
-}
-
-/* load CSS unless &cssFile property is set to 'none' */
-if ($css) {
-    $modx->regClientCSS($css);
+if ($cssFile != 'none') {
+    $modx->regClientCSS($cssPath . $cssFile);
 }
 
 /* by default, don't show on login, register, and manage prefs pages */
@@ -133,22 +120,22 @@ if (in_array($docId, $noShows)) {
 } else {
     if ($loggedIn) {
         /* show logged in display */
-        $ph = array();
-        $ph['logout_page_id'] = $sp['loginPageId'];
-        $ph['manage_prefs_page_id'] = $sp['managePrefsPageId'];
-        $modx->toPlaceholders($ph,'sbs','_');
+        //$ph = array();
+        //$ph['logout_page_id'] = $sp['loginPageId'];
+        //$ph['manage_prefs_page_id'] = $sp['managePrefsPageId'];
+        //$modx->toPlaceholders($ph,'sbs','_');
         $output = $modx->getChunk('SbsLoggedInDisplayTpl');
     } else {
         /* Show logged out display */
         /* all set as placeholders in case user wants to move them elsewhere in template */
         $ph = array();
-        $ph['subscribe_message'] = $modx->lexicon('sbs_request_message');
+        //$ph['subscribe_message'] = $modx->lexicon('sbs_request_message');
         $ph['why_dialog_button'] = $modx->getChunk($whyDialogTpl);
         $ph['why_dialog_text'] = $modx->getChunk($whyTextTpl);
         $ph['privacy_dialog_button'] = $modx->getChunk($privacyDialogTpl);
         $ph['privacy_dialog_text'] = $modx->getChunk($privacyTextTpl);
-        $ph['login_page_id'] = $sp['loginPageId'];
-        $ph['register_page_id'] = $sp['registerPageId'];
+        //$ph['login_page_id'] = $sp['loginPageId'];
+        //$ph['register_page_id'] = $sp['registerPageId'];
 
         $modx->toPlaceholders($ph,'sbs', '_');
 
