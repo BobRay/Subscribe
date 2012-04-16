@@ -5,81 +5,89 @@ $chunks = array();
 $chunks[1] = $modx->newObject('modChunk');
 $chunks[1] ->fromArray(array(
     'id' => 1,
-    'name' => 'SbsActivateEmailTpl',
-    'description' => 'Tpl chunk to use for Subscribe activation email',
-    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbsactivateemailtpl.chunk.html'),
+    'name' => 'sbswhyDialogTextTpl',
+    'description' => 'Text for Subscribe Why Dialog',
+    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbswhydialogtexttpl.chunk.html'),
     'properties' => '',
 ),'',true,true);
 $chunks[2] = $modx->newObject('modChunk');
 $chunks[2] ->fromArray(array(
     'id' => 2,
-    'name' => 'SbsRegisterFormTpl',
-    'description' => 'Chunk containing Subscribe register form',
-    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbsregisterformtpl.chunk.html'),
+    'name' => 'sbsPrivacyDialogTextTpl',
+    'description' => 'Text for Subscribe Privacy Policy dialog',
+    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbsprivacydialogtexttpl.chunk.html'),
     'properties' => '',
 ),'',true,true);
 $chunks[3] = $modx->newObject('modChunk');
 $chunks[3] ->fromArray(array(
     'id' => 3,
-    'name' => 'SbsSubscribeTpl',
-    'description' => 'Subscribe extra chunk containing request to subscribe',
-    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbssubscribetpl.chunk.html'),
+    'name' => 'sbsWhyDialogTpl',
+    'description' => '',
+    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbswhydialogtpl.chunk.html'),
     'properties' => '',
 ),'',true,true);
 $chunks[4] = $modx->newObject('modChunk');
 $chunks[4] ->fromArray(array(
     'id' => 4,
-    'name' => 'SbsRegisterJsTpl',
-    'description' => 'Subscribe extra chunk containing JS code to validate the Register form',
-    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbsregisterjstpl.chunk.html'),
+    'name' => 'sbsPrivacyDialogTpl',
+    'description' => 'Subscribe Tpl chunk for Privacy Policy dialog',
+    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbsprivacydialogtpl.chunk.html'),
     'properties' => '',
 ),'',true,true);
 $chunks[5] = $modx->newObject('modChunk');
 $chunks[5] ->fromArray(array(
     'id' => 5,
-    'name' => 'SbsLogoutLinkTpl',
-    'description' => 'Subscribe extra logout link',
-    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbslogoutlinktpl.chunk.html'),
+    'name' => 'sbsLoggedOutDisplayTpl',
+    'description' => 'Subscribe extra display for users who are not logged in',
+    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbsloggedoutdisplaytpl.chunk.html'),
     'properties' => '',
 ),'',true,true);
 $chunks[6] = $modx->newObject('modChunk');
 $chunks[6] ->fromArray(array(
     'id' => 6,
-    'name' => 'SbsManagePrefsLinkTpl',
-    'description' => 'Chunk containing request to subscribe',
-    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbsmanageprefslinktpl.chunk.html'),
+    'name' => 'sbsLoggedInDisplayTpl',
+    'description' => 'Displays Logout and Manage Preferences buttons for Subscribe extra',
+    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbsloggedindisplaytpl.chunk.html'),
     'properties' => '',
 ),'',true,true);
 $chunks[7] = $modx->newObject('modChunk');
 $chunks[7] ->fromArray(array(
     'id' => 7,
-    'name' => 'SbsManagePrefsFormTpl',
-    'description' => 'Subscribe extra Form for users to manage preferences',
-    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbsmanageprefsformtpl.chunk.html'),
+    'name' => 'sbsRegisterFormTpl',
+    'description' => '',
+    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbsregisterformtpl.chunk.html'),
     'properties' => '',
 ),'',true,true);
 $chunks[8] = $modx->newObject('modChunk');
 $chunks[8] ->fromArray(array(
     'id' => 8,
-    'name' => 'SbsUnsubscribeMessageTpl',
-    'description' => 'Subscribe extra chunk containing unsubscribe success message',
-    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbsunsubscribemessagetpl.chunk.html'),
+    'name' => 'sbsPrefListTpl',
+    'description' => '',
+    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbspreflisttpl.chunk.html'),
     'properties' => '',
 ),'',true,true);
 $chunks[9] = $modx->newObject('modChunk');
 $chunks[9] ->fromArray(array(
     'id' => 9,
-    'name' => 'SbsChangePrefsSuccessMessageTpl',
-    'description' => 'Success message for Subscribe change preferences form',
-    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbschangeprefssuccessmessagetpl.chunk.html'),
+    'name' => 'sbsCheckboxTpl',
+    'description' => '',
+    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbscheckboxtpl.chunk.html'),
     'properties' => '',
 ),'',true,true);
 $chunks[10] = $modx->newObject('modChunk');
 $chunks[10] ->fromArray(array(
     'id' => 10,
-    'name' => 'SbsInterestListTpl',
-    'description' => 'Interest list checkboxes for Subscribe Register and Manage Preferences forms.',
-    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbsinterestlisttpl.chunk.html'),
+    'name' => 'sbsManagePrefsFormTpl',
+    'description' => '',
+    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbsmanageprefsformtpl.chunk.html'),
+    'properties' => '',
+),'',true,true);
+$chunks[11] = $modx->newObject('modChunk');
+$chunks[11] ->fromArray(array(
+    'id' => 11,
+    'name' => 'sbsActivationEmailTpl',
+    'description' => '',
+    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbsactivationemailtpl.chunk.html'),
     'properties' => '',
 ),'',true,true);
 return $chunks;
