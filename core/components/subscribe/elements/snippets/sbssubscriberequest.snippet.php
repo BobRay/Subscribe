@@ -90,7 +90,7 @@ $noShows = array(
 
 /* add in other pages from &noShow property */
 $noShows = empty( $sp['noShows'])? $noShows : array_merge($noShows, explode(',', $sp['noShows']));
-echo '<pre>' . print_r($noShows,true) . '</pre>';
+//echo '<pre>' . print_r($noShows,true) . '</pre>';
 /* load language strings */
 $language = !empty($scriptProperties['language'])
     ? $scriptProperties['language']
