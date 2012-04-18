@@ -37,6 +37,13 @@ define('PKG_VERSION','1.1.1');
 define('PKG_RELEASE','rc');
 define('PKG_CATEGORY','Subscribe');
 
+function getSnippetContent($filename) {
+    $o = file_get_contents($filename);
+    $o = str_replace('<?php','',$o);
+    $o = str_replace('?>','',$o);
+    $o = trim($o);
+    return $o;
+}
 /* Set package options - you can turn these on one-by-one
  * as you create the transport package
  * */
