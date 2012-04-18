@@ -49,10 +49,10 @@
  * Typical snippet call (use your package name instead of MyComponent):
  *
     [[!ExportObjects?
-        &category=`MyCategory`
+        &category=`subscribe`
+        &packageName=`subscribe`
         &authorName=`Bob Ray`
         &authorEmail=`<bobray@softville.com>`
-        &packageName=`MyComponent`
         &dryRun=`1`
         &createTransportFiles=`1`
         &createObjectFiles=`1`
@@ -74,8 +74,8 @@
 $scriptProperties = array(
     'authorName' => 'Bob Ray',
     'authorEmail' => '<http://bobsguides.com>',
-    'category' => 'newspublisher',
-    'packageName' => 'Newspublisher',
+    'category' => 'subscribe',
+    'packageName' => 'subscribe',
     'dryRun' => '1',
     'createTransportFiles' => '1',
     'createObjectFiles' => '1',
