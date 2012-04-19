@@ -236,3 +236,12 @@ comment
 Subscribe Field Name
 sbs_field_name
 interests
+
+
+fix properties = 'Array'
+
+
+fix settings=array() versus systemSettings =   [no fix needed?  Check what build.transport.php wants.
+add snippet_get_contents for snippets and plugins and use it in transport get contents.
+
+check fields for transport.tvs.php
