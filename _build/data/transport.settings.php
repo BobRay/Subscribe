@@ -6,7 +6,7 @@ $systemSettings[1] = $modx->newObject('modSystemSetting');
 $systemSettings[1] ->fromArray(array(
     'id' => 1,
     'key' => 'sbs_register_page_id',
-    'value' => '326',
+    'value' => '999',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
     'area' => 'subscribe',
@@ -15,7 +15,7 @@ $systemSettings[2] = $modx->newObject('modSystemSetting');
 $systemSettings[2] ->fromArray(array(
     'id' => 2,
     'key' => 'sbs_login_page_id',
-    'value' => '108',
+    'value' => '999',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
     'area' => 'subscribe',
@@ -24,7 +24,7 @@ $systemSettings[3] = $modx->newObject('modSystemSetting');
 $systemSettings[3] ->fromArray(array(
     'id' => 3,
     'key' => 'sbs_confirm_register_page_id',
-    'value' => '331',
+    'value' => '999',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
     'area' => 'subscribe',
@@ -33,7 +33,7 @@ $systemSettings[4] = $modx->newObject('modSystemSetting');
 $systemSettings[4] ->fromArray(array(
     'id' => 4,
     'key' => 'sbs_manage_prefs_page_id',
-    'value' => '327',
+    'value' => '999',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
     'area' => 'subscribe',
@@ -42,7 +42,7 @@ $systemSettings[5] = $modx->newObject('modSystemSetting');
 $systemSettings[5] ->fromArray(array(
     'id' => 5,
     'key' => 'sbs_registration_confirmed_page_id',
-    'value' => '331',
+    'value' => '999',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
     'area' => 'subscribe',
@@ -51,7 +51,7 @@ $systemSettings[6] = $modx->newObject('modSystemSetting');
 $systemSettings[6] ->fromArray(array(
     'id' => 6,
     'key' => 'sbs_thank_you_page_id',
-    'value' => '329',
+    'value' => '999',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
     'area' => 'subscribe',
