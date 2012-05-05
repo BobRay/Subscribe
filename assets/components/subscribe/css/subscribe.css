@@ -23,9 +23,13 @@ div#sm_subscribe {
 div#sm_subscribe span {
     margin: 0 0px 0px 30px;
     padding: 0;
+    white-space: nowrap;
 
 }
-
+div#sm_subscribe span:hover {
+    color:teal;
+    text-shadow:none;
+}
 div#sm_subscribe a {
     color: #2c4545;
     text-decoration: none;
@@ -33,6 +37,10 @@ div#sm_subscribe a {
 }
 div#sm_subscribe a:hover {
     color:teal;
+    cursor:pointer;
+}
+span#sm_subscribe_link {
+    text-shadow: #9fffff 1px 1px 2px;
 }
 div#sm_subscribe h3 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -40,14 +48,6 @@ div#sm_subscribe h3 {
     font-weight: bold;
     padding: 0;
     margin: 0;
-}
-
-div#sm_subscribe div#sm_why_dialog_outer {
-    display: inline;
-}
-
-div#sm_subscribe div#sm_privacy_dialog_outer {
-    display: inline;
 }
 
 /* CSS for hidden div revealed on click */
@@ -106,14 +106,6 @@ div#privacy-dialog {
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=17, Direction=135, Color='#000000')";
     /* For IE 5.5 - 7 */
     filter: progid:DXImageTransform.Microsoft.Shadow(Strength = 17, Direction = 135, Color = '#000000');
-}
-
-div#sm_subscribe span#launch-why-dialog:hover {
-    color: teal;
-}
-
-div#sm_subscribe span#launch-privacy-dialog:hover {
-    color: teal;
 }
 
 /* Registration form styling */
