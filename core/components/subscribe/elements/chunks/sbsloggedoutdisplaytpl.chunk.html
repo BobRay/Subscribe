@@ -1,6 +1,27 @@
 <script type="text/javascript">
 /* <![CDATA[ */
-function toggle(id){var e=document.getElementById(id);if(e.style.display=='block')e.style.display='none';else e.style.display='block';}
+    function sbs_toggle(id) {
+       var e = document.getElementById(id);
+    /* close the other div */
+    if (id == 'why-dialog') {
+    var t = document.getElementById('privacy-dialog');
+    t.style.display = 'none';
+    }
+    if (id == 'privacy-dialog') {
+    var t = document.getElementById('why-dialog');
+    t.style.display = 'none';
+    }
+/* toggle selected div */
+    if(e.style.display == 'block')
+      e.style.display = 'none';
+    else
+      e.style.display = 'block';
+    }
+function sbs_close(id) {
+   t = document.getElementById(id);
+   t.style.display = 'none';
+
+}
 /* ]]> */
 </script>
 <div id="sbs_subscribe">
