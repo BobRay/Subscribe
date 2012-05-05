@@ -69,7 +69,7 @@
 $sp =& $scriptProperties;
 $docId = $modx->resource->get('id');
 
-$assetsUrl = $modx->getOption('subscribe.assets_url', $sp, MODX_ASSETS_URL);
+$assetsUrl = $modx->getOption('subscribe.assets_url', $sp, MODX_ASSETS_URL . 'components/subscribe/');
 $cssPath = $modx->getOption('cssPath',$sp, $assetsUrl) . 'css/';
 $cssFile = $modx->getOption('cssFile', $sp, null);
 $cssFile = empty($cssFile) ? 'subscribe.css' : $cssFile;

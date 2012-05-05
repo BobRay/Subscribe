@@ -1,11 +1,6 @@
-<div id="sbs_why_dialog_outer">
-    <span id="launch-why-dialog" onclick="sbs_toggle('why-dialog');">[[%sbs_why_button_text]]</span>
-
-    <div id="why-dialog">
-        [[+sbs_why_dialog_text]]
-        <div style="text-align:center">
-            <button onclick="sbs_close('why-dialog');">[[%sbs_close_button_text]]</button>
-        </div>
+<div id="why-dialog" style="display:none">
+    [[$sbsWhyDialogTextTpl]]
+    <div style="text-align:center">
+        <button onclick="sbs_close('why-dialog');">[[%sbs_close_button_text]]</button>
     </div>
-
 </div>

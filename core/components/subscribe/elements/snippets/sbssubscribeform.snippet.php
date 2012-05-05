@@ -100,7 +100,7 @@ $modx->setPlaceholder('sbs_lexicon_json', $sj);
 //echo "Loading JS\n";
 /* load JS file */
 
-$jsPath = $modx->getOption('jsPath',$sp, $assetsUrl) . 'js/';
+$jsPath = $modx->getOption('jsPath',$sp, $assetsUrl . 'components/subscribe/js/');
 $jsFile = $modx->getOption('jsFile', $sp, null);
 $jsFile = empty($jsFile) ? 'subscribe.js' : $jsFile;
 $modx->regClientStartupScript($jsPath . $jsFile);

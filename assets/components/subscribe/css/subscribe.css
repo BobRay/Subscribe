@@ -1,6 +1,6 @@
 /* request to subscribe div */
 
-div#sm_subscribe {
+div#sbs_subscribe {
     height:30px;
     line-height: 110%;
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -20,29 +20,29 @@ div#sm_subscribe {
     -moz-border-radius-topleft: 10px;
     border-top-left-radius: 10px;
 }
-div#sm_subscribe span {
+div#sbs_subscribe span {
     margin: 0 0px 0px 30px;
     padding: 0;
     white-space: nowrap;
 
 }
-div#sm_subscribe span:hover {
+div#sbs_subscribe span:hover {
     color:teal;
     text-shadow:none;
 }
-div#sm_subscribe a {
+div#sbs_subscribe a {
     color: #2c4545;
     text-decoration: none;
     white-space: nowrap;
 }
-div#sm_subscribe a:hover {
+div#sbs_subscribe a:hover {
     color:teal;
     cursor:pointer;
 }
-span#sm_subscribe_link {
+span#sbs_subscribe_link {
     text-shadow: #9fffff 1px 1px 2px;
 }
-div#sm_subscribe h3 {
+div#sbs_subscribe h3 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 20px;
     font-weight: bold;
@@ -110,7 +110,7 @@ div#privacy-dialog {
 
 /* Registration form styling */
 
-form.sm_register_form {
+form.sbs_register_form {
   
    width:30em;
    
@@ -119,19 +119,19 @@ form.sm_register_form {
 
 }
 
-form.sm_register_form fieldset {
+form.sbs_register_form fieldset {
     padding: 20px;
     background-color: #ddd;
     width: 450px;
     margin: 30px;
 }
 
-form.sm_register_form span.error {
+form.sbs_register_form span.error {
     color: red;
     width: 200px;
 }
 
-form.sm_register_form label {
+form.sbs_register_form label {
     width: 170px;
     display: inline-block;
     vertical-align: top;
@@ -140,7 +140,7 @@ form.sm_register_form label {
 
 }
 
-form.sm_register_form input {
+form.sbs_register_form input {
     width: 160px;
     display: inline-block;
     vertical-align: top;
