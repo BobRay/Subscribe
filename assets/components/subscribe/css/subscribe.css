@@ -1,6 +1,7 @@
 /* request to subscribe div */
 
 div#sbs_subscribe {
+    -moz-user-select:none;
     height:30px;
     line-height: 110%;
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -8,9 +9,9 @@ div#sbs_subscribe {
     display:block;
     float:right;
     color: #2c4545;
-
-    margin: 5px 0px 0px 0px;
-    padding: 0px 30px 0px 0px;
+    margin: 5px 0 0 0;
+    padding: 0 30px;
+    text-align:center;
     background-image: url(menubar-n.png);
     background-repeat: repeat-x;
     -webkit-border-top-right-radius: 10px;
@@ -20,27 +21,38 @@ div#sbs_subscribe {
     -moz-border-radius-topleft: 10px;
     border-top-left-radius: 10px;
 }
-div#sbs_subscribe span {
-    margin: 0 0px 0px 30px;
+div#sbs_subscribe > span {
+    margin: 0;
     padding: 0;
     white-space: nowrap;
+}
 
-}
-div#sbs_subscribe span:hover {
-    color:teal;
-    text-shadow:none;
-}
-div#sbs_subscribe a {
+div#sbs_subscribe > span > a {
     color: #2c4545;
+    margin:0;
+    padding:0 15px;
     text-decoration: none;
     white-space: nowrap;
 }
-div#sbs_subscribe a:hover {
-    color:teal;
+div#sbs_subscribe >span > a:hover {
+    text-shadow: none;
     cursor:pointer;
+    color: rgb(205, 230, 255);
+    background-color: #466b6b;
+    margin:0;
+    padding:0 15px;
+    -webkit-border-bottom-right-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    border-bottom-right-radius: 10px;
+    -webkit-border-top-left-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    border-top-left-radius: 10px;
 }
 span#sbs_subscribe_link {
     text-shadow: #9fffff 1px 1px 2px;
+}
+span#sbs_subscribe_link:hover {
+    text-shadow: none;;
 }
 div#sbs_subscribe h3 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -115,7 +127,7 @@ form.sbs_register_form {
    width:30em;
    
    margin-left:-20px;
-   padding-left:0px;
+   padding-left:0;
 
 }
 
