@@ -60,12 +60,12 @@ click on the link in the message to become an active subscriber.
 
 <p>Make a note of the ID of your Registration Confirmed page.</p>
 
-<p>Create a Resource called Confirm Register. This is the page that actually processes the user when they click on the link in the email message. The user will never see this page. The snippet on the page marks them as an active user, logs them in, and forwards them to the &quot;Registration Confirmed&quot; page. Make sure this resource is published but hidden from menus. Put only this code in the Resource Content field. Replace ## with the ID of your Registration Confirmed page (*not* the Confirm Register page).</p>
+<p>Create a Resource called Confirm Register. This is the page that actually processes the user when they click on the link in the email message. The user will never see this page. The snippet on the page marks them as an active user, logs them in, and forwards them to the &quot;Registration Confirmed&quot; page. Make sure this resource is published but hidden from menus. Put only this code in the Resource Content field.</p>
 
 <pre><fixedpre>
 [[!ConfirmRegister?
-    &redirectTo=`##`
-    &errorPage=`[[++site_start]]`
+    &redirectTo=`[[++sbs_registration_confirmed_page_id]]`
+    &error_page=`[[++site_start]]`
 ]]
 </fixedpre></pre>
 
