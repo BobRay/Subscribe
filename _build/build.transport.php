@@ -277,7 +277,25 @@ foreach ($resources as $resource) {
     }
     unset($resources,$resource,$attributes);
 }
-
+/* load system settings */
+if ($hasSettings) {
+    $settings = include $sources['data'].'transport.settings.php';
+    if (!is_array($settings)) {
+        $modx->log(modX::LOG_LEVEL_ERROR,'Could not package in settings.');
+    } else {
+        $attributes= array(
+            xPDOTransport::UNIQUE_KEY => 'key',
+            xPDOTransport::PRESERVE_KEYS => true,
+            xPDOTransport::UPDATE_OBJECT => false,
+        );
+        foreach ($settings as $setting) {
+            $vehicle = $builder->createVehicle($setting,$attributes);
+            $builder->putVehicle($vehicle);
+        }
+        $modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($settings).' System Settings.');
+        unset($settings,$setting,$attributes);
+    }
+}
 /* Next-to-last step - pack in the license file, readme.txt, changelog,
  * and setup options 
  */
