@@ -49,7 +49,7 @@
 
 $output = '
 <input type="checkbox" name="install_resources" id="install_resources" checked="checked" value="1" align="left" />&nbsp;&nbsp;
-<label for="install_resources">Install Resources (strongly recommended)</label>
+<label for="install_resources">Install Resources (strongly recommended, except on upgrade)</label>
 <p>&nbsp;</p>
 <p>The resources will be placed in a folder called &quot;Subscribe Folder&quot;.</p>
 ';
