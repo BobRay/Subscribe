@@ -47,7 +47,8 @@ class CheckBoxes{
     public function init($userObj, $profile, $saveOnly = false) {
         $this->userObj = $userObj;
         $this->userProfile = $profile;
-        $this->method = $this->modx->getOption('method', $this->props,'comment');
+        $useCommentField = $this->modx->getOption('sbs_use_comment_field', $this->props, true);
+        $this->method = $useCommentField? 'comment' : 'extended';
         $this->extendedField = $this->modx->getOption('extendedField',$this->props,'interests');
         if (! $saveOnly) {
             $this->getTpls();
@@ -183,5 +184,21 @@ protected function getTpls() {
             $this->modx->setPlaceholder('sbs_error_message', $this->modx->lexicon('sbs_change_prefs_failure_message'));
             return false;
         }
+    }
+
+    public function cleanse(&$post) {
+        if (is_array($post)) {
+            foreach($post as $p) {
+            $this->cleanse($p);
+            }
+        } else {
+            $post = preg_replace("/<script(.*)<\/script>/i",'',$post);
+            $post = preg_replace("/<iframe(.*)<\/iframe>/i",'',$post);
+            $post = preg_replace("/<iframe(.*)\/>/i",'',$post);
+            $post = strip_tags($post);
+            /* replace MODx tags with entities */
+            $post = str_replace(array('[',']'),array('&#91;','&#93;'),$post);
+        }
+
     }
 } /* end class */
