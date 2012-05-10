@@ -241,33 +241,8 @@ function getSettings(&$modx) {
             'namespace' => 'subscribe',
             'area' => 'subscribe',
         ),'',true,true);
-        $systemSettings[7] = $modx->newObject('modSystemSetting');
-        $systemSettings[7] ->fromArray(array(
-            'id' => 7,
-            'key' => 'sbs_method',
-            'value' => 'comment',
-            'xtype' => 'textfield',
-            'namespace' => 'subscribe',
-            'area' => 'subscribe',
-        ),'',true,true);
-        $systemSettings[8] = $modx->newObject('modSystemSetting');
-        $systemSettings[8] ->fromArray(array(
-            'id' => 8,
-            'key' => 'sbs_field_name',
-            'value' => 'interests',
-            'xtype' => 'textfield',
-            'namespace' => 'subscribe',
-            'area' => 'subscribe',
-        ),'',true,true);
-        $systemSettings[9] = $modx->newObject('modSystemSetting');
-        $systemSettings[9] ->fromArray(array(
-            'id' => 9,
-            'key' => 'sbs_extended_field',
-            'value' => 'interests',
-            'xtype' => 'textfield',
-            'namespace' => 'subscribe',
-            'area' => 'subscribe',
-        ),'',true,true);
+
+
 
         return $systemSettings;
 }

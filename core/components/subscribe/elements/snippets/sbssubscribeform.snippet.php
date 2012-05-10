@@ -35,7 +35,8 @@
 /* @var $modx modX */
 /* @var $scriptProperties array */
 
-/* Properties
+/* Properties (note these should be set as System Settings)
+ *
  *
  * &confirmRegisterPageId int (required) ID of ConfirmRegister resource
  *     default: empty
@@ -44,11 +45,16 @@
  *     default: empty
  *
  * &cssPath string
- *      default: MODX_ASSETS_PATH .components/subscribe/css/
+ *      default: {assets_url}components/subscribe/css/
  *
  *  &cssFile string
  *      default: subscribe.css
  *
+ *  &jsPath string
+ *      default:  {assets_url}components/subscribe/js/
+ *
+ *  &jsFile string
+ *      default: subscribe.js
  *  &activationEmailTpl string Name of activation email Tpl chunk
  *      default: activatEmailTpl
  *
@@ -109,20 +115,19 @@ $corePath = $modx->getOption('subscribe.core_path',$sp,$modx->getOption('core_pa
 require_once($corePath . 'model/subscribe/checkboxes.class.php');
 
 
-/* ToDo: Sanitize MODX tags in post */
-/* ToDo: Make these system settings  */
 $sp['method'] = $modx->getOption('sbs_method', $sp, 'comment');
 $sp['fieldName'] = $modx->getOption('sbs_field_name',$sp,'interests');
 $sp['extendedField'] = $modx->getOption('sbs_extended_field',$sp,'interests');
 $output = '';
-
+$prefs = new CheckBoxes($modx, $sp);
+if (isset($_POST) && !empty($_POST) ) {
+    $prefs->cleanse($_POST);  /* sanitize $_POST */
+}
 
 if (isset($hook) && ($sp['form'] == 'register')) {
     /* We're acting as a register postHook */
-    $prefs = new CheckBoxes($modx, $sp);
     $prefs->init($hook->getValue('register.user'), $hook->getValue('register.profile'), true);
     if (!$prefs->saveUserPrefs()) {
-        /* ToDo: move this to checkboxes class */
         die('Failed to save prefs');
     }
     $output = true;
@@ -130,7 +135,7 @@ if (isset($hook) && ($sp['form'] == 'register')) {
 } elseif ($sp['form'] == 'register') {
         $sp['markCurrent'] = false;
 
-        $prefs = new CheckBoxes($modx, $sp);
+
         $profile = $modx->user->getOne('Profile');
         $prefs->init($modx->user, $profile);
         $prefs->createDisplay('sbs_interest_list');

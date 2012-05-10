@@ -42,14 +42,56 @@ $_lang['sbs_logout_button_text'] = 'Logout';
 $_lang['sbs_manage_prefs_button_text'] = 'Manage Preferences';
 
 /* Setting names and descriptions */
-$_lang['setting_sbs_confirm_register_page_id'] = 'Subscribe Confirm Register page ID';
-$_lang['setting_sbs_confirm_register_page_id_desc'] = 'Resource ID of the Subscribe Confirm Register page';
+
+$_lang['setting_prefListTpl'] = 'prefListTpl';
+$_lang['setting_prefListTpl_desc'] = 'Tpl to use for the list of user preferences; default: sbsPrefListTpl';
+
+$_lang['setting_checkboxTpl'] = 'checkboxTpl';
+$_lang['setting_checkboxTpl_desc'] = 'Outer Tpl to use for the list of user preferences; default: sbsCheckboxTpl';
+
+$_lang['setting_loggedOutDisplayTpl'] = 'loggedOutDisplayTpl';
+$_lang['setting_loggedOutDisplayTpl_desc'] = 'Tpl to use for the Subscribe logged-out display; default: sbsLoggedOutDisplayTpl';
+
+$_lang['setting_loggedInDisplayTpl'] = 'loggedInDisplayTpl';
+$_lang['setting_loggedInDisplayTpl_desc'] = 'Tpl to use for the Subscribe logged-in display; default: sbsLoggedInDisplayTpl';
+
+$_lang['setting_whyDialogTpl'] = 'whyDialogTpl';
+$_lang['setting_whyDialogTpl_desc'] = 'Outer Tpl to use for the Why Subscribe popup dialog; default: sbsWhyDialogTpl';
+
+$_lang['setting_whyDialogTextTpl'] = 'whyDialogTextTpl';
+$_lang['setting_whyDialogTextTpl_desc'] = 'Tpl to use for the text in the Why Subscribe popup dialog; default: sbsWhyDialogTextTpl';
+
+$_lang['setting_privacyDialogTpl'] = 'privacyDialogTpl';
+$_lang['setting_privacyDialogTpl_desc'] = 'Outer Tpl to use for the privacy Subscribe popup dialog; default:sbsPrivacyDialogTpl';
+
+$_lang['setting_privacyDialogTextTpl'] = 'privacyDialogTextTpl';
+$_lang['setting_privacyDialogTextTpl_desc'] = 'Tpl to use for the text in the privacy Subscribe popup dialog; default: sbsPrivacyDialogTextTpl';
+
+$_lang['setting_cssPath'] = 'cssPath';
+$_lang['setting_cssPath_desc'] = 'Path to Subscribe CSS file; default :{assets_url}components/subscribe/css/';
+
+$_lang['setting_cssFile'] = 'cssFile';
+$_lang['setting_cssFile_desc'] = 'File name of Subscribe CSS file; default: subscribe.css';
+
+$_lang['setting_jsPath'] = 'jsPath';
+$_lang['setting_jsPath_desc'] = 'Path to Subscribe JS file; default :{assets_url}components/subscribe/js/';
+
+$_lang['setting_jsFile'] = 'jsFile';
+$_lang['setting_jsFile_desc'] = 'File name of Subscribe JS file; default: subscribe.js';
 
 $_lang['setting_sbs_extended_field'] = 'Subscribe extended field';
-$_lang['setting_sbs_extended_field_desc'] = "Name of field to store user prefs in user profile extended fields. Ignored unless sbs_method is set to 'extended'; default: interests";
+$_lang['setting_sbs_extended_field_desc'] = "Name of field to store user prefs in user profile extended fields. Ignored unless useCommentField is set to 'no'; default: interests";
 
 $_lang['setting_sbs_field_name'] = 'Subscribe field name';
 $_lang['setting_sbs_field_name_desc'] = "Name of field to use in Subscribe forms for preference checkboxes; default: interests";
+
+$_lang['setting_sbs_use_comment_field'] = 'Use Comment Field';
+$_lang['setting_sbs_use_comment_field_desc'] = "If set to 'Yes' user prefences are stored in the comment field of the User Profile. If set to 'No', prefs are stored as an extended field in the user profile in the field specified by the 'sbs_extended_field' setting. Default: 'comment'. The default setting ('Yes') is recommended unless you need the comment field for something else.";
+
+$_lang['setting_sbs_confirm_register_page_id'] = 'Subscribe Confirm Register page ID';
+$_lang['setting_sbs_confirm_register_page_id_desc'] = 'Resource ID of the Subscribe Confirm Register page';
+
+
 
 $_lang['setting_sbs_login_page_id'] = 'Login page ID';
 $_lang['setting_sbs_login_page_id_desc'] = "Resource ID of the Login page";
@@ -58,8 +100,6 @@ $_lang['setting_sbs_login_page_id_desc'] = "Resource ID of the Login page";
 $_lang['setting_sbs_manage_prefs_page_id'] = 'Manage Preferences page ID';
 $_lang['setting_sbs_manage_prefs_page_id_desc'] = "Resource ID of the Subscribe Manage Preferences page";
 
-$_lang['setting_sbs_method'] = 'Subscribe Method';
-$_lang['setting_sbs_method_desc'] = "Method Subscribe uses to store user prefences (must be comment or extended). If set to 'comment', prefs are stored in the 'comment' field of the user profile. If set to 'extended', prefs are stored as an extended field in the user profile in the field specified by the 'sbs_extended_field' setting. Default: 'comment'. Comment is recommended unless you need the comment field for something else.";
 
 $_lang['setting_sbs_register_page_id'] = 'Register page ID';
 $_lang['setting_sbs_register_page_id_desc'] = "Resource ID of the Subscribe Register page (with the registration form).";
@@ -69,6 +109,10 @@ $_lang['setting_sbs_registration_confirmed_page_id_desc'] = "Resource ID of the 
 
 $_lang['setting_sbs_thank_you_page_id'] = 'Thanks for Registering page ID';
 $_lang['setting_sbs_thank_you_page_id_desc'] = "Resource ID of the Subscribe Thanks for Registering page (the page the user is sent to immediately after submitting the registration form).";
+
+$_lang['setting_language'] = 'Language';
+$_lang['setting_language_desc'] = "Language to use for Subscribe' default: en";
+
 
 
 

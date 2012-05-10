@@ -39,7 +39,7 @@ $_lang['sbs_js_interests_required'] = 'Please check at least one checkbox';
 $_lang['sbs_submit_button_text'] = 'Submit';
 $_lang['sbs_unsubscribe'] = 'UNSUBSCRIBE';
 $_lang['sbs_unsubscribe_success_message'] = '<h3>Unsubscription Successful</h3>
-<p>Your preferences, username, and password, have been saved and you are welcome to resubscribe at any time.</p>';
+<p>Your preferences, username, and password, have been saved and you are welcome to resubscribe at any time. Just send an email requesting reactivation.</p>';
 $_lang['sbs_unsubscribe_failure_message'] = '<h3>Sorry, unsubscription failed</h3>';
 $_lang['sbs_anon_admin_error'] = '<h3>Unable to unsubscribe (anonymous) user or admin</h3>';
 $_lang['sbs_change_prefs_success_message'] = '<h3>Preferences changed</h3>';

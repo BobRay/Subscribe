@@ -111,7 +111,7 @@ $sp =& $scriptProperties;
 $docId = $modx->resource->get('id');
 
 $assetsUrl = $modx->getOption('subscribe.assets_url', $sp, MODX_ASSETS_URL . 'components/subscribe/');
-$cssPath = $modx->getOption('cssPath',$sp, $assetsUrl) . 'css/';
+$cssPath = $modx->getOption('cssPath',$sp, $assetsUrl . 'css/' ) ;
 $cssFile = $modx->getOption('cssFile', $sp, null);
 $cssFile = empty($cssFile) ? 'subscribe.css' : $cssFile;
 /* load CSS file unless &cssPath or &cssFile is set to 'none' */
@@ -141,12 +141,12 @@ $language = empty($language) ? 'en' : $language;
 $modx->lexicon->load($language . ':subscribe:default');
 
 /* set Tpl chunks */
-/* ToDo: Make these System Settings (and the CSS and JS filenames)*/
+
 $loggedOutDisplayTpl = $modx->getOption('loggedOutDisplayTpl', $sp, null);
 $loggedOutDisplayTpl = empty($loggedOutDisplayTpl) ? 'sbsLoggedOutDisplayTpl' : $loggedOutDisplayTpl;
 
 $loggedInDisplayTpl = $modx->getOption('loggedInDisplayTpl', $sp, null);
-$loggedInDisplayTpl = empty($loggedInDisplayTpl) ? 'sbsloggedInDisplayTpl' : $loggedInDisplayTpl;
+$loggedInDisplayTpl = empty($loggedInDisplayTpl) ? 'sbsLoggedInDisplayTpl' : $loggedInDisplayTpl;
 
 $whyDialogTpl = $modx->getOption('whyDialogTpl', $sp, null);
 $whyDialogTpl = empty($whyDialogTpl) ? 'sbsWhyDialogTpl' : $whyDialogTpl;
