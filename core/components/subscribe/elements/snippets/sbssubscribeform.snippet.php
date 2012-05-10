@@ -117,7 +117,7 @@ $sp['extendedField'] = $modx->getOption('sbs_extended_field',$sp,'interests');
 $output = '';
 
 
-if ($hook && ($sp['form'] == 'register')) {
+if (isset($hook) && ($sp['form'] == 'register')) {
     /* We're acting as a register postHook */
     $prefs = new CheckBoxes($modx, $sp);
     $prefs->init($hook->getValue('register.user'), $hook->getValue('register.profile'), true);

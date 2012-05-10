@@ -1,5 +1,5 @@
 <?php
-/**
+/** 
  * Subscribe
  * Copyright 2012 Bob Ray <http://bobsguides/com>
  *
@@ -66,6 +66,47 @@
  *
  * */
 
+function setSystemSettings(&$modx) {
+    /* @var $modx modX */
+    /* @var $parent modResource */
+    $parent = $modx->getObject('modResource', array('alias' => 'subscribe-folder'));
+    if ($parent) {
+        $parentId = $parent->get('id');
+    } else {
+        $modx->log(MODX::LOG_LEVEL_ERROR, 'Failed to retrieve Parent with alias: subscribe-folder');
+    }
+    $settings = array(
+        'sbs_login_page_id' =>'login',
+        'sbs_confirm_register_page_id' => 'confirm-register',
+        'sbs_manage_prefs_page_id' => 'manage-preferences',
+        'sbs_register_page_id' => 'subscribe',
+        'sbs_registration_confirmed_page_id' => 'registration-confirmed',
+        'sbs_thank_you_page_id' => 'thanks-for-registering',
+    );
+    foreach ($settings as $key => $value) {
+        /* @var $resObj modResource */
+        /* @var $setting modSystemSetting */
+        $resObj = $modx->getObject('modResource', array('alias' => $value));
+        $setting = $modx->getObject('modSystemSetting', array('key' => $key));
+        if (! $resObj) {
+            $modx->log(MODX::LOG_LEVEL_ERROR, 'Failed to retrieve Resource with alias: ' . $value);
+        }
+        if (! $setting) {
+            $modx->log(MODX::LOG_LEVEL_ERROR, 'Failed to retrieve System Setting with key: ' . $key);
+        }
+        if ($resObj && $setting) {
+            $resObj->set('parent',$parentId);
+            $resObj->save();
+            $setting->set('value', $resObj->get('id'));
+            $setting->save();
+        }
+    }
+}
+$ss = $modx->getOption('sbs_login_page_id',null);
+
+if ($ss == '999') {
+    setSystemSettings($modx);
+}
 $sp =& $scriptProperties;
 $docId = $modx->resource->get('id');
 
@@ -77,6 +118,7 @@ $cssFile = empty($cssFile) ? 'subscribe.css' : $cssFile;
 if ($cssFile != 'none') {
     $modx->regClientCSS($cssPath . $cssFile);
 }
+
 
 /* by default, don't show on login, register, and manage prefs pages */
 $noShows = array();

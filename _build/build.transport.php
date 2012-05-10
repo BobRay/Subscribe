@@ -33,7 +33,7 @@
 /* Set package info be sure to set all of these */
 define('PKG_NAME','Subscribe');
 define('PKG_NAME_LOWER','subscribe');
-define('PKG_VERSION','1.1.1');
+define('PKG_VERSION','1.1.2');
 define('PKG_RELEASE','rc');
 define('PKG_CATEGORY','Subscribe');
 
@@ -54,10 +54,10 @@ $hasChunks = true;
 $hasTemplates = false;
 $hasResources = false;
 $hasValidator = false; /* Run a validator before installing anything */
-$hasResolver = false; /* Run a resolver after installing everything */
-$hasSetupOptions = false; /* HTML/PHP script to interact with user */
+$hasResolver = true; /* Run a resolver after installing everything */
+$hasSetupOptions = true; /* HTML/PHP script to interact with user */
 $hasMenu = false; /* Add items to the MODx Top Menu */
-$hasSettings = true; /* Add new MODx System Settings */
+$hasSettings = false; /* Add new MODx System Settings */
 
 /* Note: TVs are connected to their templates in the script resolver
  * (see _build/data/resolvers/install.script.php)
@@ -131,7 +131,7 @@ $builder->registerNamespace(PKG_NAME_LOWER,false,true,'{core_path}components/'.P
 /* create category  The category is required and will automatically
  * have the name of your package
  */
-
+/* @var $category modCategory */
 $category= $modx->newObject('modCategory');
 $category->set('id',1);
 $category->set('category',PKG_CATEGORY);
@@ -303,7 +303,9 @@ $builder->setPackageAttributes(array(
     'license' => file_get_contents($sources['docs'] . 'license.txt'),
     'readme' => file_get_contents($sources['docs'] . 'readme.txt'),
     'changelog' => file_get_contents($sources['docs'] . 'changelog.txt'),
-    'setup-options' => array(),
+    'setup-options' => array(
+            'source' => $sources['install_options'].'user.input.php',
+        ),
 ));
 
 /* Last step - zip up the package */
