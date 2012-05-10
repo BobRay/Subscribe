@@ -509,7 +509,7 @@ function getResources(&$modx) {
         'properties' => '',
         'content' => '
     [[!ConfirmRegister?
-        &redirectTo=`[[++registration_confirmed_page_id]]`
+        &redirectTo=`[[++sbs_registration_confirmed_page_id]]`
         &errorPage=`[[++site_start]]`
     ]]',
 
