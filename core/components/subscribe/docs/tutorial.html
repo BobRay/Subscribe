@@ -18,7 +18,7 @@
 <p>In the new version, your login page should be outside of the Subscribe package and should have an alias of &quot;login&quot; or &quot;Login&quot;. Be sure the page exists before installing Subscribe so that the package can set the Login Page ID System Setting correctly. If you forget, or your Login page has a different alias, set that System Setting manually in System | System Settings (namespace: subscribe). 
 </p>
   
-    
+<p>Users now get added to the Subscriber User Group with a Role of Subscriber. Be sure that both the User Group and the Role exist.</p>   
 
 </div>
 <h3>About Subscribe</h3>
@@ -54,7 +54,13 @@ or
 ]]
 </fixedpre></pre>
 
-<p>Replace &quot;##&quot; with the Resource IDs of any pages where you don't want to show the Subscribe Request.</p>        
+<p>Replace &quot;##&quot; with the Resource IDs of any pages where you don't want to show the Subscribe Request.</p>  
+        
+<h3>Creating the User Group and Role</h3>
+        
+<p>Subscribe (via the Register snippet) adds new users to the Subscribers User Group with a Role of Subscriber. <b>IMPORTANT:</b> Both must exist before the first user registers. The current version of the Register snippet will not register the Group or Role if they don't exist. The user will be created, but won't be a member of any group.</p>
+
+<p>To create the User Group, go to Security | Access Controls | User Groups tag. Click on the &quot;New User Group&quot; button. Enter <fixedpre>Subscribers</fixedpre> for the name. Add a description if you want one. Then, click on the &quot;Save&quot; button. To create the Role, click on the &quot;Roles&quot; tab, then on the &quot;Create New&quot; button. Enter <fixedpre>Subscriber</fixedpre> for the role, add a description (optional), and enter a number between 0 and 9999 (I use 50) for the &quot;Authority&quot; level. Then click on the &quot;Save&quot; button.</p>
         
 <h3>Subscribe System Settings</h3>
         
@@ -104,6 +110,8 @@ Option1==Caption one||Option2==Caption two||Option3==Caption three
 <h3>Styling the forms</h3>
 
 <p>The &quot;request-to-subscribe&quot; message is styled to be appear on a single horizontal line, but you can restyle it with CSS to appear in another form since the message and all buttons are contained in identifiable <fixedpre><span></fixedpre> tags with the text inside them in <fixedpre><a></fixedpre> tags.</p>
+        
+<p>The default styling for the message is <fixedpre>float:right</fixedpre>, but you can change the CSS file. Be sure to change both the loggedInDisplay and the loggedOutDisplay. You may want to leave the float, but keep other elements from wrapping around the message. If so, you can add <fixedpre><div style="clear:both"></div></fixedpre> above, and/or below the message in your template.</p>
 
 <p>Both the Register form and the &quot;request-to-subscribe&quot; message are styled with the /assets/components/subscribe/css/subscribe.css file, as are the two popup windows. See the section below on modifying the CSS.</p>
 
