@@ -3,24 +3,26 @@
 <div class="box">
 <p><b>Important Upgrade Note!</b></p>
 
+<p>If this is a new install or you are upgrading from Subscribe 1.1.2 or newer, you can skip down to the next section, &quot;About Subscribe&quot;.</p>
+    
 <p>A number of element and directory names have changed and quite a few internal changes were made to make Subscribe easier to configure and to avoid conflicts with other extras. All of the default chunks and snippets have been renamed.</p>
 
 <p>Since everything was changing, I took the opportunity to refactor Subscribe from the ground up to streamline the code and, hopefully, to make it much easier to use and configure.</p>
     
-<p>The good news is that the new version installs everything you need except the login page and automatically configures everything (with the exception of the System Setting for the login page if your login page has an alias other than &quot;login&quot;). Be sure to read this whole section carefully before upgrading from version 1.1.0 or earlier. The upgrade is easier than it sounds. The simplest method, by far, is to completely uninstall and remove the old version, including any Resources except the Login page.</p>
+<p>The good news is that the new version installs everything you need except the login page and automatically configures everything (with the exception of the System Setting for the login page if your login page has an alias other than &quot;login&quot;). Be sure to read this whole section carefully before upgrading from versions below 1.1.2. The upgrade is easier than it sounds. The simplest method, by far, is to completely uninstall and remove the old version, including any Resources except the Login page.</p>
     
 <p>All &quot;sm&quot; and &quot;Sm&quot; prefixes have been changed to &quot;sbs&quot; and &quot;Sbs&quot; to avoid conflicts with other extras. If you've created a custom CSS file be sure to back it up outside the subscribe directory, though it will be of limited use because many of the classes and IDs have changed.</p>
     
-<p><b>IMPORTANT!</b>You must either delete the Subscribe Resources (except the Login page) or change their aliases. If you don't, the install will be corrupted. You may want them for reference, but it's not necessary. If you do keep them, be sure to change the aliases on all but the Login Resource. Subscribe will create new Resources for you in a folder called &quot;Subscribe Folder&quot;. These are the resources that will be used by Subscribe. You can alter them, since future installs will have the option not to install them. You can delete your old resources once you are satisfied with the new ones. Be sure not to copy the contents of your old resources in to the new ones since the tags have changed. I apologize for the inconvenience. Future upgrades should go much more smoothly.</p>
+<p><b>IMPORTANT!</b>You must either delete the Subscribe Resources (except the Login page) or change their aliases. If you don't, the install will be corrupted. You may want them for reference, but it's not necessary. If you do keep them, be sure to change the aliases on all but the Login Resource. Subscribe will create new Resources for you in a folder called &quot;Subscribe Folder&quot;. These are the resources that will be used by Subscribe. You can alter them, since future installs will not overwrite them. You can delete your old resources once you are satisfied with the new ones. Be sure not to copy the contents of your old resources into the new ones since the tags have changed. If you delete the resources, be sure to empty the trash (click on the trashcan icon above the Resource tree) to remove them from the database.</p>
+    
+<p>I apologize for the inconvenience. Future upgrades should go much more smoothly.</p>
     
 <p>If you have created any new Tpl chunks for Subscribe, they will survive the upgrade, but they may not be in the Subscribe category after the install and they really won't be of any use because all the Tpl chunks have changed.</p>    
     
-<p>If you are upgrading from version 1.1.0 and have made changes to the default Tpl chunks (generally a bad practice), you may want to back them up by duplicating them so you'll have them for reference, then uninstall and remove the Subscribe package before downloading and installing the new version. You can delete your backup chunks once you have the new ones the way you want them.</p> 
-
-<p>In the new version, your login page should be outside of the Subscribe package and should have an alias of &quot;login&quot; or &quot;Login&quot;. Be sure the page exists before installing Subscribe so that the package can set the Login Page ID System Setting correctly. If you forget, or your Login page has a different alias, set that System Setting manually in System | System Settings (namespace: subscribe). 
+<p>In the new version, your login page should have an alias of &quot;login&quot; or &quot;Login&quot;. Be sure the page exists before installing Subscribe so that the package can set the Login Page ID System Setting correctly. If you forget, or your Login page has a different alias, set that System Setting manually in System | System Settings (namespace: subscribe) after the install is finished. 
 </p>
   
-<p>Users now get added to the Subscriber User Group with a Role of Subscriber. Be sure that both the User Group and the Role exist.</p>   
+<p>Subscribe Version 1.1.2 (and later versions) add new users to the Subscribers User Group with a Role of Subscriber. <b>Be sure that both the User Group and the Role exist before anyone registers.</b> See the section later in the tutorial for instructions on creating the group and role.</p>
 
 </div>
 <h3>About Subscribe</h3>
@@ -45,7 +47,7 @@ Go to System | Package Management on the main menu in the MODX Manager and click
 
 <h3>Displaying the Request to Subscribe Message</h3>        
 
-<p>Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request-to-subscribe. In the <fixedpre>&noShows</fixedpre> property, put a comma-separated list containing the IDs of other pages where the request should not be shown. By default, the request is not shown on the Login, Registration, Thanks for Registering, and Confirm Registration pages. Add the IDs of any other pages it should not be shown on to the <fixedpre>&noShows</fixedpre> property in the snippet tag in the template. The tag will be replaced by the &quot;Request to Subscribe&quot; message (which, by default, appears horizontally on a single line) for users who are not logged in and by the &quot;Logout&quot; link for users who are logged in.</p>
+<p>Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request-to-subscribe. In the <fixedpre>&noShows</fixedpre> property, put a comma-separated list containing the IDs of other pages where the request should not be shown. By default, the request is not shown on the Login, Registration, Thanks for Registering, Manage Preferences, Registration Confirmed and Confirm Register pages. Add the IDs of any other pages it should not be shown on to the <fixedpre>&noShows</fixedpre> property in the snippet tag in the template. The tag will be replaced by the &quot;Request to Subscribe&quot; message (which, by default, appears horizontally on a single line) for users who are not logged in and by the &quot;Logout&quot; link for users who are logged in. The <fixedpre>SubscribeRequest</fixedpre> snippet must be called uncached because it needs to evaluate the user's login status.</p>
 <pre><fixedpre>
 [[!SubscribeRequest]]
 
@@ -62,7 +64,9 @@ or
         
 <p>Subscribe (via the Register snippet) adds new users to the Subscribers User Group with a Role of Subscriber. <b>IMPORTANT:</b> Both must exist before the first user registers. The current version of the Register snippet will not register the Group or Role if they don't exist. The user will be created, but won't be a member of any group.</p>
 
-<p>To create the User Group, go to Security | Access Controls | User Groups tag. Click on the &quot;New User Group&quot; button. Enter <fixedpre>Subscribers</fixedpre> for the name. Add a description if you want one. Then, click on the &quot;Save&quot; button. To create the Role, click on the &quot;Roles&quot; tab, then on the &quot;Create New&quot; button. Enter <fixedpre>Subscriber</fixedpre> for the role, add a description (optional), and enter a number between 0 and 9999 (I use 50) for the &quot;Authority&quot; level. Then click on the &quot;Save&quot; button.</p>
+<p>To create the User Group, go to Security | Access Controls | User Groups tag. Click on the &quot;New User Group&quot; button. Enter <fixedpre>Subscribers</fixedpre> for the name. Add a description if you want one. Then, click on the &quot;Save&quot; button.</p>
+
+<p>To create the Role, click on the &quot;Roles&quot; tab, then on the &quot;Create New&quot; button. Enter <fixedpre>Subscriber</fixedpre> for the role, add a description (optional), and enter a number between 0 and 9999 (I use 50) for the &quot;Authority&quot; level. Then click on the &quot;Save&quot; button.</p>
         
 <h3>Subscribe System Settings</h3>
         
@@ -113,30 +117,32 @@ Option1==Caption one||Option2==Caption two||Option3==Caption three
 
 <p>The &quot;request-to-subscribe&quot; message is styled to be appear on a single horizontal line, but you can restyle it with CSS to appear in another form since the message and all buttons are contained in identifiable <fixedpre><span></fixedpre> tags with the text inside them in <fixedpre><a></fixedpre> tags.</p>
         
-<p>The default styling for the message is <fixedpre>float:right</fixedpre>, but you can change the CSS file. Be sure to change both the loggedInDisplay and the loggedOutDisplay. You may want to leave the float, but keep other elements from wrapping around the message. If so, you can add <fixedpre><div style="clear:both"></div></fixedpre> above, and/or below the message in your template.</p>
+<p>The default styling for the message is <fixedpre>float:right</fixedpre>, but you can change the CSS file. Be sure to change both the loggedInDisplay and the loggedOutDisplay sections. You may want to leave the float, but keep other elements from wrapping around the message. If so, you can add <fixedpre><div style="clear:both"></div></fixedpre> above, and/or below the message in your template. See the section below on modifying the CSS file. If you modify the existing file, your changes will be overwritten when you upgrade Subscribe.</p>
 
-<p>Both the Register form and the &quot;request-to-subscribe&quot; message are styled with the /assets/components/subscribe/css/subscribe.css file, as are the two popup windows. See the section below on modifying the CSS.</p>
+<p>Both the Register form and the &quot;request-to-subscribe&quot; message are styled with the <fixedpre>/assets/components/subscribe/css/subscribe.css</fixedpre> file, as are the two popup windows. See the section below on modifying the CSS.</p>
 
 <p>I originally had a nice JQuery slider for the two popups, but since they might be loaded for every page on a site, I decided that the speed penalty involved in loading the JQuery core, UI, and CSS files was just not worth it. The popups are now done with CSS and a tiny bit of embedded JavaScript to toggle their visibility. You can modify their position and appearance in the subscribe.css file.</p>
 
-<p>To change the message in the popups, duplicate the <fixedpre>sbsPrivacyDialogTextTpl</fixedpre> and <fixedpre>sbsWhyDialogTextTpl</fixedpre>chunks. Add &quot;My&quot; as a prefix to their names and modify the follwoing two Subscribe System settings to match: <fixedpre>whyDialogTextTpl</fixedpre> and <fixedpre>&privacyDialogTextTpl</fixedpre>.</p>
+<p>To change the message in the popups, duplicate the <fixedpre>sbsPrivacyDialogTextTpl</fixedpre> and <fixedpre>sbsWhyDialogTextTpl</fixedpre>chunks. Add &quot;My&quot; as a prefix to their names and modify the follwoing two Subscribe System settings to match: <fixedpre>whyDialogTextTpl</fixedpre> and <fixedpre>privacyDialogTextTpl</fixedpre>.</p>
 
 <p>As currently styled, the popups will automatically expand to match the content length.</p>
 
 <h3>Modfying the CSS</h3>
 
 <p>
-If you want to modify the CSS of JS used for Subscribe, it's best to duplicate the subscribe.css and/or subscribe.js file so they won't be overwritten by upgrades:</p>
+If you want to modify the CSS of JS used for Subscribe, it's best to duplicate the <fixedpre>subscribe.css</fixedpre> and/or <fixedpre>subscribe.js</fixedpre> file so they won't be overwritten by upgrades:</p>
 <pre><fixedpre>
 assets/components/subscribe/css/subscribe.css
 assets/components/subscribe/js/subscribe.js
 </fixedpre></pre>
 
 <p>
-You can specify the files to be used with the your CSS file with the <fixedpre>cssPath</fixedpre>, <fixedpre>cssFile</fixedpre>, <fixedpre>jsPath</fixedpre>, and <fixedpre>jsFile</fixedpre> System Settings. If your files are in the same directory as the originals, you only need to modify the <fixedpre>cssFile</fixedpre> and/or <fixedpre>jsFile</fixedpre> settings.
+You can specify the files to be used with the your CSS file with the <fixedpre>cssPath</fixedpre>, <fixedpre>cssFile</fixedpre>, <fixedpre>jsPath</fixedpre>, and <fixedpre>jsFile</fixedpre> System Settings. If your files are in the same directory as the originals, you only need to modify the <fixedpre>cssFile</fixedpre> and/or <fixedpre>jsFile</fixedpre> settings, but note that your files will be deleted if you uninstall Subscribe.
 </p>
 
-<p>If you want to add the CSS to your main CSS file, set the <fixedpre>cssFile</fixedpre> seting to <fixedpre>none</fixedpre> and the CSS file will not be loaded.</p>
+<p>If you want to add the CSS to your main CSS file, set the <fixedpre>cssFile</fixedpre> System Setting to <fixedpre>none</fixedpre> and the CSS file will not be loaded.</p>
+
+<p>The <fixedpre>subscribe.js</fixedpre> file is used only by the registration form and is loaded automatically by the snippet that presents the form, based on the <fixedpre>jsPath</fixedpre> and <fixedpre>jsFile</fixedpre> System Settings. The JavaScript used to display the two popup windows in the subscribe request is in the <fixedpre>sbsLoggedOutDisplayTpl chunk</fixedpre>. If you need to change it, see the following section.</p>
 
 <h3>Modifying the Tpl Chunks</h3>
         

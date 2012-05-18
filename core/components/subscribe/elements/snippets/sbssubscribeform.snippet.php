@@ -109,6 +109,7 @@ $modx->setPlaceholder('sbs_lexicon_json', $sj);
 $jsPath = $modx->getOption('jsPath',$sp, $assetsUrl . 'components/subscribe/js/');
 $jsFile = $modx->getOption('jsFile', $sp, null);
 $jsFile = empty($jsFile) ? 'subscribe.js' : $jsFile;
+
 $modx->regClientStartupScript($jsPath . $jsFile);
 
 $corePath = $modx->getOption('subscribe.core_path',$sp,$modx->getOption('core_path',null,MODX_CORE_PATH).'components/subscribe/');

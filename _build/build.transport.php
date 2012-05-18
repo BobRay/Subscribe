@@ -37,6 +37,11 @@ define('PKG_VERSION','1.1.2');
 define('PKG_RELEASE','rc');
 define('PKG_CATEGORY','Subscribe');
 
+define('MODX_BASE_URL','http://localhost/addons/');
+define('MODX_MANAGER_URL','http://localhost/addons/manager/');
+define('MODX_ASSETS_URL','http://localhost/addons/assets/');
+define('MODX_CONNECTORS_URL','http://localhost/addons/connectors/');
+
 function getSnippetContent($filename) {
     $o = file_get_contents($filename);
     $o = str_replace('<?php','',$o);
@@ -52,10 +57,10 @@ $hasCore = true;   /* Transfer the files in the core dir. */
 $hasSnippets = true;
 $hasChunks = true;
 $hasTemplates = false;
-$hasResources = false;
+$hasResources = true;
 $hasValidator = false; /* Run a validator before installing anything */
 $hasResolver = true; /* Run a resolver after installing everything */
-$hasSetupOptions = true; /* HTML/PHP script to interact with user */
+$hasSetupOptions = false; /* HTML/PHP script to interact with user */
 $hasMenu = false; /* Add items to the MODx Top Menu */
 $hasSettings = true; /* Add new MODx System Settings */
 
@@ -119,13 +124,62 @@ require_once MODX_CORE_PATH . 'model/modx/modx.class.php';
 $modx= new modX();
 $modx->initialize('mgr');
 $modx->setLogLevel(xPDO::LOG_LEVEL_INFO);
-$modx->setLogTarget(XPDO_CLI_MODE ? 'ECHO' : 'HTML');
+$modx->setLogTarget('ECHO'); echo '<pre>'; flush();
 
 /* load builder */
 $modx->loadClass('transport.modPackageBuilder','',false, true);
 $builder = new modPackageBuilder($modx);
 $builder->createPackage(PKG_NAME_LOWER, PKG_VERSION, PKG_RELEASE);
 $builder->registerNamespace(PKG_NAME_LOWER,false,true,'{core_path}components/'.PKG_NAME_LOWER.'/');
+
+
+/* Transport Resources */
+
+if ($hasResources) {
+    $resources = include $sources['data'] . 'transport.resources.php';
+    if (!is_array($resources)) {
+        $modx->log(modX::LOG_LEVEL_ERROR, 'Could not package in resources.');
+    } else {
+        $attributes = array(
+            xPDOTransport::PRESERVE_KEYS => false,
+            xPDOTransport::UPDATE_OBJECT => false,
+            xPDOTransport::UNIQUE_KEY => 'pagetitle',
+            xPDOTransport::RELATED_OBJECTS => true,
+            xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array(
+                'ContentType' => array(
+                    xPDOTransport::PRESERVE_KEYS => false,
+                    xPDOTransport::UPDATE_OBJECT => true,
+                    xPDOTransport::UNIQUE_KEY => 'name',
+                ),
+            ),
+        );
+        foreach ($resources as $resource) {
+            $vehicle = $builder->createVehicle($resource, $attributes);
+            $builder->putVehicle($vehicle);
+        }
+        $modx->log(modX::LOG_LEVEL_INFO, 'Packaged in ' . count($resources) . ' resources.');
+    }
+    unset($resources, $resource, $attributes);
+}
+/* transport system settings */
+if ($hasSettings) {
+    $settings = include $sources['data'].'transport.settings.php';
+    if (!is_array($settings)) {
+        $modx->log(modX::LOG_LEVEL_ERROR,'Could not package in settings.');
+    } else {
+        $attributes= array(
+            xPDOTransport::UNIQUE_KEY => 'key',
+            xPDOTransport::PRESERVE_KEYS => true,
+            xPDOTransport::UPDATE_OBJECT => false,
+        );
+        foreach ($settings as $setting) {
+            $vehicle = $builder->createVehicle($setting,$attributes);
+            $builder->putVehicle($vehicle);
+        }
+        $modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($settings).' System Settings.');
+        unset($settings,$setting,$attributes);
+    }
+}
 
 
 /* create category  The category is required and will automatically
@@ -143,7 +197,9 @@ if ($hasSnippets) {
     /* note: Snippets' default properties are set in transport.snippets.php */
     if (is_array($snippets)) {
         $category->addMany($snippets, 'Snippets');
-    } else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding snippets failed.'); }
+    } else {
+        $modx->log(modX::LOG_LEVEL_FATAL,'Adding snippets failed.');
+    }
 }
 
 
@@ -153,7 +209,9 @@ if ($hasChunks) { /* add chunks  */
     $chunks = include $sources['data'].'transport.chunks.php';
     if (is_array($chunks)) {
         $category->addMany($chunks, 'Chunks');
-    } else { $modx->log(modX::LOG_LEVEL_FATAL,'Adding chunks failed.'); }
+    } else {
+        $modx->log(modX::LOG_LEVEL_FATAL,'Adding chunks failed.');
+    }
 }
 
 
@@ -176,16 +234,15 @@ if ($hasSnippets) {
             xPDOTransport::PRESERVE_KEYS => false,
             xPDOTransport::UPDATE_OBJECT => true,
             xPDOTransport::UNIQUE_KEY => 'name',
-        );
+    );
 }
-
 
 if ($hasChunks) {
     $attr[xPDOTransport::RELATED_OBJECT_ATTRIBUTES]['Chunks'] = array(
             xPDOTransport::PRESERVE_KEYS => false,
             xPDOTransport::UPDATE_OBJECT => true,
             xPDOTransport::UNIQUE_KEY => 'name',
-        );
+    );
 }
 
 
@@ -194,20 +251,7 @@ if ($hasChunks) {
  */
 $vehicle = $builder->createVehicle($category,$attr);
 
-if ($hasValidator) {
-    $modx->log(modX::LOG_LEVEL_INFO,'Adding in Script Validator.');
-    $vehicle->validate('php',array(
-        'source' => $sources['validators'] . 'preinstall.script.php',
-    ));
-}
 
-/* package in script resolver if any */
-if ($hasResolver) {
-    $modx->log(modX::LOG_LEVEL_INFO,'Adding in Script Resolver.');
-    $vehicle->resolve('php',array(
-        'source' => $sources['resolvers'] . 'install.script.php',
-    ));
-}
 /* This section transfers every file in the local
  subscribes/subscribe/assets directory to the
  target site's assets/subscribe directory on install.
@@ -229,83 +273,41 @@ if ($hasCore) {
  go to the right place.
  */
 
-    if ($hasAssets) {
-        $vehicle->resolve('file',array(
-            'source' => $sources['source_assets'],
-            'target' => "return MODX_ASSETS_PATH . 'components/';",
-        ));
-    }
+if ($hasAssets) {
+    $vehicle->resolve('file',array(
+        'source' => $sources['source_assets'],
+        'target' => "return MODX_ASSETS_PATH . 'components/';",
+    ));
+}
 
-/* Add subpackages */
-/* The transport.zip files will be copied to core/packages
- * but will have to be installed manually with "Add New Package and
- *  "Search Locally for Packages" in Package Manager
- */
+/* package in script resolver if any */
+if ($hasResolver) {
+    $modx->log(modX::LOG_LEVEL_INFO,'Adding in Script Resolver.');
+    $vehicle->resolve('php',array(
+        'source' => $sources['resolvers'] . 'install.script.php',
+    ));
+}
+
+
 
 /* Put the category vehicle (with all the stuff we added to the
  * category) into the package 
  */
 $builder->putVehicle($vehicle);
 
-
-
-/* Transport Resources */
-
-if ($hasResources) {
-    $resources = include $sources['data'].'transport.resources.php';
-    if (!is_array($resources)) {
-        $modx->log(modX::LOG_LEVEL_ERROR,'Could not package in resources.');
-    } else {
-        $attributes= array(
-    xPDOTransport::PRESERVE_KEYS => false,
-    xPDOTransport::UPDATE_OBJECT => true,
-    xPDOTransport::UNIQUE_KEY => 'pagetitle',
-    xPDOTransport::RELATED_OBJECTS => true,
-    xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
-        'ContentType' => array(
-            xPDOTransport::PRESERVE_KEYS => false,
-            xPDOTransport::UPDATE_OBJECT => true,
-            xPDOTransport::UNIQUE_KEY => 'name',
-        ),
-    ),
-);
-foreach ($resources as $resource) {
-    $vehicle = $builder->createVehicle($resource,$attributes);
-    $builder->putVehicle($vehicle);
-}
-        $modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($resources).' resources.');
-    }
-    unset($resources,$resource,$attributes);
-}
-/* load system settings */
-if ($hasSettings) {
-    $settings = include $sources['data'].'transport.settings.php';
-    if (!is_array($settings)) {
-        $modx->log(modX::LOG_LEVEL_ERROR,'Could not package in settings.');
-    } else {
-        $attributes= array(
-            xPDOTransport::UNIQUE_KEY => 'key',
-            xPDOTransport::PRESERVE_KEYS => true,
-            xPDOTransport::UPDATE_OBJECT => false,
-        );
-        foreach ($settings as $setting) {
-            $vehicle = $builder->createVehicle($setting,$attributes);
-            $builder->putVehicle($vehicle);
-        }
-        $modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($settings).' System Settings.');
-        unset($settings,$setting,$attributes);
-    }
-}
 /* Next-to-last step - pack in the license file, readme.txt, changelog,
  * and setup options 
  */
+
+$setupOptions = $hasSetupOptions
+    ? array('source' => $sources['install_options'].'user.input.php')
+    : array();
+
 $builder->setPackageAttributes(array(
     'license' => file_get_contents($sources['docs'] . 'license.txt'),
     'readme' => file_get_contents($sources['docs'] . 'readme.txt'),
     'changelog' => file_get_contents($sources['docs'] . 'changelog.txt'),
-    'setup-options' => array(
-            'source' => $sources['install_options'].'user.input.php',
-        ),
+    'setup-options' => $setupOptions,
 ));
 
 /* Last step - zip up the package */

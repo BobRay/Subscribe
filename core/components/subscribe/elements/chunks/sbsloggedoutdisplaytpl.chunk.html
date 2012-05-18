@@ -3,22 +3,22 @@
     function sbs_toggle(id) {
        var e = document.getElementById(id);
     /* close the other div */
+    var t;
     if (id == 'why-dialog') {
-    var t = document.getElementById('privacy-dialog');
-    t.style.display = 'none';
+        t = document.getElementById('privacy-dialog');
+        t.style.display = 'none';
+    } else if (id == 'privacy-dialog') {
+        t = document.getElementById('why-dialog');
+        t.style.display = 'none';
     }
-    if (id == 'privacy-dialog') {
-    var t = document.getElementById('why-dialog');
-    t.style.display = 'none';
-    }
-/* toggle selected div */
+    /* toggle selected div */
     if(e.style.display == 'block')
       e.style.display = 'none';
     else
       e.style.display = 'block';
     }
 function sbs_close(id) {
-   t = document.getElementById(id);
+   var t = document.getElementById(id);
    t.style.display = 'none';
 
 }

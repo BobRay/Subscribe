@@ -120,19 +120,19 @@ if ($cssFile != 'none') {
 }
 
 
-/* by default, don't show on login, register, and manage prefs pages */
-$noShows = array();
+/* by default, don't show on these pages */
 $noShows = array(
     $modx->getOption('sbs_login_page_id',$sp,null),
     $modx->getOption('sbs_register_page_id',$sp,null),
     $modx->getOption('sbs_manage_prefs_page_id',$sp,null),
     $modx->getOption('sbs_thank_you_page_id',$sp,null),
     $modx->getOption('sbs_confirm_register_page_id',$sp,null),
+    $modx->getOption('sbs_registration_confirmed_page_id',$sp,null),
 );
 
-/* add in other pages from &noShow property */
+/* add in other pages from &noShows property */
 $noShows = empty( $sp['noShows'])? $noShows : array_merge($noShows, explode(',', $sp['noShows']));
-//echo '<pre>' . print_r($noShows,true) . '</pre>';
+
 /* load language strings */
 $language = !empty($scriptProperties['language'])
     ? $scriptProperties['language']
