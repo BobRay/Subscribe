@@ -56,16 +56,19 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
     /* @var $setting modSystemSetting */
 
     $parent = null;
-
+    $defaultTemplate = $modx->getOption('default_template',null);
 
     /* get subscribe folder */
-
+    /* @var $folder modResource */
     $folder = $modx->getObject('modResource', array ('alias' => 'subscribe-folder'));
+
     if (!$folder) {
         $modx->log(xPDO::LOG_LEVEL_ERROR,'Could not find subscribe-folder resource');
         $folderId = null;
     } else {
         $folderId = $folder->get('id');
+        $folder->set('template', $defaultTemplate);
+        $folder->save();
     }
 
     /* look for a login page and set the System Setting for it. */
@@ -112,6 +115,7 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
                 $modx->log(xPDO::LOG_LEVEL_INFO, 'set ' . $value . 'System Setting to ID of ' . $key . ' page');
             }
             if ($folderId) {
+                $resource->set('template', $defaultTemplate);
                 $resource->set('parent', $folderId);
                 $resource->save();
             }
