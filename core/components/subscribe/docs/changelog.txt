@@ -3,6 +3,8 @@ Changelog for Subscribe
 Subscribe 1.1.2
 ---------------
  Refactored to use System Settings
+ All System Settings set on install
+ Works with no user configuration
  New Users now get role of Subscriber
  Numerous bug fixes
 

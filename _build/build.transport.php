@@ -63,7 +63,7 @@ $hasResolver = true; /* Run a resolver after installing everything */
 $hasSetupOptions = false; /* HTML/PHP script to interact with user */
 $hasMenu = false; /* Add items to the MODx Top Menu */
 $hasSettings = true; /* Add new MODx System Settings */
-
+$minifyJs = true;
 /* Note: TVs are connected to their templates in the script resolver
  * (see _build/data/resolvers/install.script.php)
  */
@@ -131,6 +131,37 @@ $modx->loadClass('transport.modPackageBuilder','',false, true);
 $builder = new modPackageBuilder($modx);
 $builder->createPackage(PKG_NAME_LOWER, PKG_VERSION, PKG_RELEASE);
 $builder->registerNamespace(PKG_NAME_LOWER,false,true,'{core_path}components/'.PKG_NAME_LOWER.'/');
+
+/* minify JS */
+
+if ($minifyJs) {
+    $modx->log(modX::LOG_LEVEL_INFO, 'Creating js-min file(s)');
+    require $sources['build'] . 'utilities/jsmin.class.php';
+
+    $jsDir = $sources['source_assets'] . '/js';
+
+    if (is_dir($jsDir)) {
+        $files = scandir($jsDir);
+        foreach ($files as $file) {
+            if ($file != '.' && $file != '..') {
+                $jsmin = JSMin::minify(file_get_contents($sources['source_assets'] . '/js/' . $file));
+                if (!empty($jsmin)) {
+                    $outFile = $jsDir . '/' . str_ireplace('.js', '-min.js', $file);
+                    $fp = fopen($outFile, 'w');
+                    if ($fp) {
+                        fwrite($fp, $jsmin);
+                        fclose($fp);
+                        $modx->log(modX::LOG_LEVEL_INFO, 'Created: ' . $outFile);
+                    } else {
+                        $modx->log(modX::LOG_LEVEL_ERROR, 'Could not open min.js outfile: ' . $outFile);
+                    }
+                }
+            }
+        }
+    } else {
+        $modx->log(modX::LOG_LEVEL_ERROR, 'Could not open JS directory.');
+    }
+}
 
 
 /* Transport Resources */
