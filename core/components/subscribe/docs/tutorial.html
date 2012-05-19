@@ -87,7 +87,23 @@ or
     <li>Manage Preferences</li>
 </ul>
 
-
+<div class="box">
+    <p>Due to a bug in the Login snippet (Version 1.7.3), users responding to the registration email are logged in as the (anonymous) User rather than as themselves. The fix is simple and involves changing line 164 of the file <fixedpre>core/components/login/controllers/web/ConfirmRegister.php</fixedpre>. In that line <fixedpre>$user</fixedpre> should be changed to <fixedpre>$this->user</fixedpre>. The fixed function will look like this:</p>
+    <pre><fixedpre>
+public function addSessionContexts() {
+    if ($this->getProperty('authenticate',true,'isset')) {
+        $this->modx->user =& $this->user;
+        $this->modx->getUser();
+        $contexts = $this->getProperty('authenticateContexts',$this->modx->context->get('key'));
+        $contexts = explode(',',$contexts);
+        foreach ($contexts as $ctx) {
+            $this->modx->user->addSessionContext($ctx);
+        }
+    }
+}
+    </fixedpre></pre>
+</div>
+        
 <p>Test your system by visiting the site from another browser where you are not logged in to the Manager. When you are logged in to the Manager and are previewing the site, your login status is ambiguous. You're logged in, but not to the 'web' context, so Subscribe's login status checks can give odd results.</p>
 
 <p>It's recommended that you test the Subscribe system as installed before modifying it to meet your needs (but check the Login Page ID System Setting to make sure it is set correctly).</p>
