@@ -143,21 +143,25 @@ if ($minifyJs) {
     if (is_dir($jsDir)) {
         $files = scandir($jsDir);
         foreach ($files as $file) {
-            if ($file != '.' && $file != '..') {
-                $jsmin = JSMin::minify(file_get_contents($sources['source_assets'] . '/js/' . $file));
-                if (!empty($jsmin)) {
-                    $outFile = $jsDir . '/' . str_ireplace('.js', '-min.js', $file);
-                    $fp = fopen($outFile, 'w');
-                    if ($fp) {
-                        fwrite($fp, $jsmin);
-                        fclose($fp);
-                        $modx->log(modX::LOG_LEVEL_INFO, 'Created: ' . $outFile);
-                    } else {
-                        $modx->log(modX::LOG_LEVEL_ERROR, 'Could not open min.js outfile: ' . $outFile);
-                    }
+            /* skip non-js and already minified files */
+            if ( (!stristr($file, '.js') || strstr($file,'min'))) {
+                continue;
+            }
+
+            $jsmin = JSMin::minify(file_get_contents($sources['source_assets'] . '/js/' . $file));
+            if (!empty($jsmin)) {
+                $outFile = $jsDir . '/' . str_ireplace('.js', '-min.js', $file);
+                $fp = fopen($outFile, 'w');
+                if ($fp) {
+                    fwrite($fp, $jsmin);
+                    fclose($fp);
+                    $modx->log(modX::LOG_LEVEL_INFO, 'Created: ' . $outFile);
+                } else {
+                    $modx->log(modX::LOG_LEVEL_ERROR, 'Could not open min.js outfile: ' . $outFile);
                 }
             }
         }
+
     } else {
         $modx->log(modX::LOG_LEVEL_ERROR, 'Could not open JS directory.');
     }
