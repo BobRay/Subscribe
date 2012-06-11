@@ -118,6 +118,7 @@ protected function getTpls() {
             foreach($tempArray as $k => $v) {
                 $this->userPrefsArray[trim($k)] = trim($v);
             }
+
         }
         unset ($tempArray);
         // echo 'DB: ' . print_r($this->userPrefsArray,true) . "\n";
@@ -139,10 +140,10 @@ protected function getTpls() {
         foreach($ints as $s) {
             $couple = explode ('==', $s);
             $result[trim($couple[0])] = trim($couple[1]);
-            $line = str_replace('[[+sbs_value]]', trim($couple[0]),$this->tpls['checkboxTpl']);
-            $line = str_replace('[[+sbs_caption]]', trim($couple[1]),$line);
+            $line = str_replace('[[+sbs_value]]', trim($couple[1]),$this->tpls['checkboxTpl']);
+            $line = str_replace('[[+sbs_caption]]', trim($couple[0]),$line);
             $line = str_replace('[[+fieldName]]',$this->props['fieldName'], $line);
-            $checked = $this->markCurrent? in_array($couple[0],array_values($this->userPrefsArray))? 'checked="checked"': '' : '';
+            $checked = $this->markCurrent? in_array($couple[1],array_values($this->userPrefsArray))? 'checked="checked"': '' : '';
 
             $line = str_replace('[[+sbs_checked]]',$checked, $line);
 
