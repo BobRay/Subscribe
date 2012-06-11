@@ -65,7 +65,7 @@
  *      default: en
  *
  * */
-
+if (! function_exists('setSystemSettings')) {
 function setSystemSettings(&$modx) {
     /* @var $modx modX */
     /* @var $parent modResource */
@@ -101,6 +101,7 @@ function setSystemSettings(&$modx) {
             $setting->save();
         }
     }
+}
 }
 $ss = $modx->getOption('sbs_login_page_id',null);
 
