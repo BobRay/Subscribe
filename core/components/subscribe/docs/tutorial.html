@@ -88,7 +88,9 @@ or
 </ul>
 
 <div class="box">
-    <p>Due to a bug in the Login snippet (Version 1.7.3), users responding to the registration email are logged in as the (anonymous) User rather than as themselves. The fix is simple and involves changing line 164 of the file <fixedpre>core/components/login/controllers/web/ConfirmRegister.php</fixedpre>. In that line <fixedpre>$user</fixedpre> should be changed to <fixedpre>$this->user</fixedpre>. The fixed function will look like this:</p>
+    <p>Due to a bug in the Login snippet (Version 1.7.3), users responding to the registration email are logged in as the (anonymous) User rather than as themselves. Be sure you have Version 1.8.0 of the Login package (or newer).</p>
+
+    <p>The fix for earlier versions is simple and involves changing line 164 of the file <fixedpre>core/components/login/controllers/web/ConfirmRegister.php</fixedpre>. In that line <fixedpre>$user</fixedpre> should be changed to <fixedpre>$this->user</fixedpre>. The fixed function will look like this:</p>
     <pre><fixedpre>
 public function addSessionContexts() {
     if ($this->getProperty('authenticate',true,'isset')) {
