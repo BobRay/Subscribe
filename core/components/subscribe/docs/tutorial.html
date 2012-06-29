@@ -58,7 +58,9 @@ or
 ]]
 </fixedpre></pre>
 
-<p>Replace &quot;##&quot; with the Resource IDs of any pages where you don't want to show the Subscribe Request.</p>  
+<p>Replace &quot;##&quot; with the Resource IDs of any pages where you don't want to show the Subscribe Request.</p>
+
+<p>Of course you're free to create your own subscribe request or link and your own login/logout link and leave the tag above out of your template, but it's usually easier to create your own Tpl chunks to use in place of of the built-in ones used by the Subscribe Request snippet (<fixedpre>sbsLoggedOutDisplayTpl</fixedpre> and <fixedpre>sbsLoggedInDisplayTpl</fixedpre>). Change the <fixedpre>loggedOutDisplayTpl</fixedpre> and <fixedpre>loggedInDisplay</fixedpre> System Settings to point to your own Tpl chunks.</p>
         
 <h3>Creating the User Group and Role</h3>
         
@@ -173,5 +175,115 @@ You can specify the files to be used with the your CSS file with the <fixedpre>c
 <p>
 If you want to modify any of the default Tpl chunks, duplicate them and change the name by adding &quot;My&quot; as a prefix. Then, modify the value of the appropriate Subscribe System Setting by adding &quot;My&quot; as a prefix. Go to System | System Settings and select the &quot;subscribe&quot; namespace in the drop-down list at the top of the grid. You can click in the plus sign to see a description of each setting. Double-click on the value of the setting you want to change, change it, and click somewhere else in the grid. Be careful &mdash; the names are case-sensitive, and if you misspell them in the System Settings grid, Subscribe will continue to use the default Tpl chunks, CSS, and JS files.</p>
 
+<h3>Subscribe System Settings</h3>
+<table class="properties">
+    <tr><th>Setting</th><th>Description</th><th>Default</th></tr>
+
+    <tr>
+        <td>sbs_register_page_id</td>
+        <td>Resource ID of the Subscribe Register page (with the registration form)</td>
+        <td>(set automatically)</td>
+    </tr>
+    <tr>
+        <td>sbs_login_page_id</td>
+        <td>Resource ID of the Login page</td>
+        <td>(set automatically)</td>
+    </tr>
+    <tr>
+        <td>sbs_confirm_register_page_id</td>
+        <td>Resource ID of the Subscribe Confirm Register page</td>
+        <td>(set automatically)</td>
+    </tr>
+    <tr>
+        <td>sbs_manage_prefs_page_id</td>
+        <td>Resource ID of the Subscribe Manage Preferences page</td>
+        <td>(set automatically)</td>
+    </tr>
+    <tr>
+        <td>sbs_registration_confirmed_page_id</td>
+        <td>Resource ID of the Subscribe Registration Confirmed page (the page the user is sent to after clicking on the link in the registration email)</td>
+        <td>(set automatically)</td>
+    </tr>
+    <tr>
+        <td>sbs_thank_you_page_id</td>
+        <td>Resource ID of the Subscribe Thanks for Registering page (the page the user is sent to immediately after submitting the registration form)</td>
+        <td>(set automatically)</td>
+    </tr>
+    <tr>
+        <td>prefListTpl</td>
+        <td>Tpl to use for the list of user preferences</td>
+        <td>sbsPrefListTpl</td>
+    </tr>
+    <tr>
+        <td>checkboxTpl</td>
+        <td>Outer Tpl to use for the list of user preferences</td>
+        <td>sbsCheckboxTpl</td>
+    </tr>
+    <tr>
+        <td>loggedOutDisplayTpl</td>
+        <td>Tpl to use for the Subscribe logged-out display</td>
+        <td>sbsLoggedOutDisplayTpl</td>
+    </tr>
+    <tr>
+        <td>loggedInDisplayTpl</td>
+        <td>Tpl to use for the Subscribe logged-in display</td>
+        <td>sbsLoggedInDisplayTpl</td>
+    </tr>
+    <tr>
+        <td>whyDialogTpl</td>
+        <td>Outer Tpl to use for the Why Subscribe popup dialog</td>
+        <td>sbsWhyDialogTpl</td>
+    </tr>
+    <tr>
+        <td>whyDialogTextTpl</td>
+        <td>Tpl to use for the text in the Why Subscribe popup dialog</td>
+        <td>sbsWhyDialogTextTpl</td>
+    </tr>
+    <tr>
+        <td>privacyDialogTpl</td>
+        <td>Outer Tpl to use for the privacy Subscribe popup dialog</td>
+        <td>sbsPrivacyDialogTpl</td>
+    </tr>
+    <tr>
+        <td>privacyDialogTextTpl</td>
+        <td>Tpl to use for the text in the privacy Subscribe popup dialog</td>
+        <td>sbsPrivacyDialogTextTpl</td>
+    </tr>
+    <tr>
+        <td>cssPath</td>
+        <td>Path to Subscribe CSS file</td>
+        <td>{assets_url}components/subscribe/css/</td>
+    </tr>
+    <tr>
+        <td>cssFile</td>
+        <td>File name of Subscribe CSS file</td>
+        <td>subscribe.css</td>
+    </tr>
+    <tr>
+        <td>jsPath</td>
+        <td>Path to Subscribe JS file</td>
+        <td>{assets_url}components/subscribe/js/</td>
+    </tr>
+    <tr>
+        <td>jsFile</td>
+        <td>File name of Subscribe JS file</td>
+        <td>subscribe.js</td>
+    </tr>
+    <tr>
+        <td>sbs_use_comment_field</td>
+        <td>If set to 'Yes' user prefences are stored in the comment field of the User Profile. If set to 'No', prefs are stored as an extended field in the user profile in the field specified by the 'sbs_extended_field' setting. Default: 'comment'. The</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>sbs_extended_field</td>
+        <td>Name of field to store user prefs in user profile extended fields. Ignored unless useCommentField is set to 'no</td>
+        <td>interests</td>
+    </tr>
+    <tr>
+        <td>language</td>
+        <td>Language to use for Subscribe</td>
+        <td>en</td>
+    </tr>
+</table>
 <p>&nbsp;</p>
 
