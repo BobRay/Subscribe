@@ -118,7 +118,7 @@ public function addSessionContexts() {
 
 <h3>Customizing Subscribe</h3>
 
-<p>You will definitely want to change the preferences list used in the Registration form and the Manage Preferences form. To set the availble preferences, duplicate the <fixedpre>sbsPrefListTpl</fixedpre> chunk (call it MysbsPrefListTpl) and edit the entries. Then set the <fixedpre>prefListTpl</fixedpre> System Setting to &quot;MysbsPreflistTpl&quot;.</p>
+<p>You will definitely want to change the preferences list used in the Registration form and the Manage Preferences form. To set the available preferences, duplicate the <fixedpre>sbsPrefListTpl</fixedpre> chunk (call it MysbsPrefListTpl) and edit the entries. Then set the <fixedpre>prefListTpl</fixedpre> System Setting to &quot;MysbsPreflistTpl&quot;.</p>
 
 <p>The format for the Preferences List Tpl chunk is a series of <fixedpre>Caption==value</fixedpre> pairs separated by <fixedpre>||</fixedpre>:</p>
         
@@ -143,11 +143,11 @@ Caption One==Option1||Caption Two==option2||Caption Three==option3
 
 <p>I originally had a nice JQuery slider for the two popups, but since they might be loaded for every page on a site, I decided that the speed penalty involved in loading the JQuery core, UI, and CSS files was just not worth it. The popups are now done with CSS and a tiny bit of embedded JavaScript to toggle their visibility. You can modify their position and appearance in the subscribe.css file.</p>
 
-<p>To change the message in the popups, duplicate the <fixedpre>sbsPrivacyDialogTextTpl</fixedpre> and <fixedpre>sbsWhyDialogTextTpl</fixedpre>chunks. Add &quot;My&quot; as a prefix to their names and modify the follwoing two Subscribe System settings to match: <fixedpre>whyDialogTextTpl</fixedpre> and <fixedpre>privacyDialogTextTpl</fixedpre>.</p>
+<p>To change the message in the popups, duplicate the <fixedpre>sbsPrivacyDialogTextTpl</fixedpre> and <fixedpre>sbsWhyDialogTextTpl</fixedpre>chunks. Add &quot;My&quot; as a prefix to their names and modify the following two Subscribe System settings to match: <fixedpre>whyDialogTextTpl</fixedpre> and <fixedpre>privacyDialogTextTpl</fixedpre>.</p>
 
 <p>As currently styled, the popups will automatically expand to match the content length.</p>
 
-<h3>Modfying the CSS</h3>
+<h3>Modifying the CSS</h3>
 
 <p>
 If you want to modify the CSS of JS used for Subscribe, it's best to duplicate the <fixedpre>subscribe.css</fixedpre> and/or <fixedpre>subscribe.js</fixedpre> file so they won't be overwritten by upgrades:</p>
@@ -271,7 +271,7 @@ If you want to modify any of the default Tpl chunks, duplicate them and change t
     </tr>
     <tr>
         <td>sbs_use_comment_field</td>
-        <td>If set to 'Yes' user prefences are stored in the comment field of the User Profile. If set to 'No', prefs are stored as an extended field in the user profile in the field specified by the 'sbs_extended_field' setting. Default: 'comment'. The</td>
+        <td>If set to 'Yes' user preferences are stored in the comment field of the User Profile. If set to 'No', prefs are stored as an extended field in the user profile in the field specified by the 'sbs_extended_field' setting. Default: 'comment'. The</td>
         <td>1</td>
     </tr>
     <tr>
