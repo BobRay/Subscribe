@@ -89,26 +89,26 @@ $_lang['setting_sbs_use_comment_field'] = 'Use Comment Field';
 $_lang['setting_sbs_use_comment_field_desc'] = "If set to 'Yes' user prefences are stored in the comment field of the User Profile. If set to 'No', prefs are stored as an extended field in the user profile in the field specified by the 'sbs_extended_field' setting. Default: 'comment'. The default setting ('Yes') is recommended unless you need the comment field for something else.";
 
 $_lang['setting_sbs_confirm_register_page_id'] = 'Subscribe Confirm Register page ID';
-$_lang['setting_sbs_confirm_register_page_id_desc'] = 'Resource ID of the Subscribe Confirm Register page';
+$_lang['setting_sbs_confirm_register_page_id_desc'] = 'Resource ID of the Subscribe Confirm Register page; default (set automatically)';
 
 
 
 $_lang['setting_sbs_login_page_id'] = 'Login page ID';
-$_lang['setting_sbs_login_page_id_desc'] = "Resource ID of the Login page";
+$_lang['setting_sbs_login_page_id_desc'] = "Resource ID of the Login page; default: (set automatically)";
 
 
 $_lang['setting_sbs_manage_prefs_page_id'] = 'Manage Preferences page ID';
-$_lang['setting_sbs_manage_prefs_page_id_desc'] = "Resource ID of the Subscribe Manage Preferences page";
+$_lang['setting_sbs_manage_prefs_page_id_desc'] = "Resource ID of the Subscribe Manage Preferences page; default: (set automatically)";
 
 
 $_lang['setting_sbs_register_page_id'] = 'Register page ID';
-$_lang['setting_sbs_register_page_id_desc'] = "Resource ID of the Subscribe Register page (with the registration form).";
+$_lang['setting_sbs_register_page_id_desc'] = "Resource ID of the Subscribe Register page (with the registration form); default: (set automatically)";
 
 $_lang['setting_sbs_registration_confirmed_page_id'] = 'Registration Confirmed page ID';
-$_lang['setting_sbs_registration_confirmed_page_id_desc'] = "Resource ID of the Subscribe Registration Confirmed page (the page the user is sent to after clicking on the link in the registration email).";
+$_lang['setting_sbs_registration_confirmed_page_id_desc'] = "Resource ID of the Subscribe Registration Confirmed page (the page the user is sent to after clicking on the link in the registration email); default: (set automatically)";
 
 $_lang['setting_sbs_thank_you_page_id'] = 'Thanks for Registering page ID';
-$_lang['setting_sbs_thank_you_page_id_desc'] = "Resource ID of the Subscribe Thanks for Registering page (the page the user is sent to immediately after submitting the registration form).";
+$_lang['setting_sbs_thank_you_page_id_desc'] = "Resource ID of the Subscribe Thanks for Registering page (the page the user is sent to immediately after submitting the registration form); default: (set automatically)";
 
 $_lang['setting_language'] = 'Language';
 $_lang['setting_language_desc'] = "Language to use for Subscribe' default: en";
