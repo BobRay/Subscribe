@@ -67,17 +67,17 @@ $_lang['setting_privacyDialogTpl_desc'] = 'Outer Tpl to use for the privacy Subs
 $_lang['setting_privacyDialogTextTpl'] = 'privacyDialogTextTpl';
 $_lang['setting_privacyDialogTextTpl_desc'] = 'Tpl to use for the text in the privacy Subscribe popup dialog; default: sbsPrivacyDialogTextTpl';
 
-$_lang['setting_cssPath'] = 'cssPath';
-$_lang['setting_cssPath_desc'] = 'Path to Subscribe CSS file; default :{assets_url}components/subscribe/css/';
+$_lang['setting_sbsCssPath'] = 'sbsCssPath';
+$_lang['setting_sbsCssPath_desc'] = 'Path to Subscribe CSS file; default :{assets_url}components/subscribe/css/';
 
-$_lang['setting_cssFile'] = 'cssFile';
-$_lang['setting_cssFile_desc'] = 'File name of Subscribe CSS file; default: subscribe.css';
+$_lang['setting_sbsCssFile'] = 'sbsCssFile';
+$_lang['setting_sbsCssFile_desc'] = 'File name of Subscribe CSS file; default: subscribe.css';
 
-$_lang['setting_jsPath'] = 'jsPath';
-$_lang['setting_jsPath_desc'] = 'Path to Subscribe JS file; default :{assets_url}components/subscribe/js/';
+$_lang['setting_sbsJsPath'] = 'sbsJsPath';
+$_lang['setting_sbsJsPath_desc'] = 'Path to Subscribe JS file; default :{assets_url}components/subscribe/js/';
 
-$_lang['setting_jsFile'] = 'jsFile';
-$_lang['setting_jsFile_desc'] = 'File name of Subscribe JS file; default: subscribe.js';
+$_lang['setting_sbsJsFile'] = 'sbsJsFile';
+$_lang['setting_sbsJsFile_desc'] = 'File name of Subscribe JS file; default: subscribe.js';
 
 $_lang['setting_sbs_extended_field'] = 'Subscribe extended field';
 $_lang['setting_sbs_extended_field_desc'] = "Name of field to store user prefs in user profile extended fields. Ignored unless useCommentField is set to 'no'; default: interests";
@@ -86,7 +86,7 @@ $_lang['setting_sbs_field_name'] = 'Subscribe field name';
 $_lang['setting_sbs_field_name_desc'] = "Name of field to use in Subscribe forms for preference checkboxes; default: interests";
 
 $_lang['setting_sbs_use_comment_field'] = 'Use Comment Field';
-$_lang['setting_sbs_use_comment_field_desc'] = "If set to 'Yes' user prefences are stored in the comment field of the User Profile. If set to 'No', prefs are stored as an extended field in the user profile in the field specified by the 'sbs_extended_field' setting. Default: 'comment'. The default setting ('Yes') is recommended unless you need the comment field for something else.";
+$_lang['setting_sbs_use_comment_field_desc'] = "If set to 'Yes' user preferences are stored in the comment field of the User Profile. If set to 'No', prefs are stored as an extended field in the user profile in the field specified by the 'sbs_extended_field' setting. Default: 'comment'. The default setting ('Yes') is recommended unless you need the comment field for something else.";
 
 $_lang['setting_sbs_confirm_register_page_id'] = 'Subscribe Confirm Register page ID';
 $_lang['setting_sbs_confirm_register_page_id_desc'] = 'Resource ID of the Subscribe Confirm Register page; default (set automatically)';

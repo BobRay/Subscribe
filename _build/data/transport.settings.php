@@ -172,7 +172,7 @@ $systemSettings[14] ->fromArray(array(
 $systemSettings[15] = $modx->newObject('modSystemSetting');
 $systemSettings[15] ->fromArray(array(
     'id' => 15,
-    'key' => 'cssPath',
+    'key' => 'sbsCssPath',
     'value' => '{assets_url}components/subscribe/css/',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
@@ -182,7 +182,7 @@ $systemSettings[15] ->fromArray(array(
 $systemSettings[16] = $modx->newObject('modSystemSetting');
 $systemSettings[16] ->fromArray(array(
     'id' => 16,
-    'key' => 'cssFile',
+    'key' => 'sbsCssFile',
     'value' => 'subscribe.css',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
@@ -192,7 +192,7 @@ $systemSettings[16] ->fromArray(array(
 $systemSettings[17] = $modx->newObject('modSystemSetting');
 $systemSettings[17] ->fromArray(array(
     'id' => 17,
-    'key' => 'jsPath',
+    'key' => 'sbsJsPath',
     'value' => '{assets_url}components/subscribe/js/',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
@@ -202,7 +202,7 @@ $systemSettings[17] ->fromArray(array(
 $systemSettings[18] = $modx->newObject('modSystemSetting');
 $systemSettings[18] ->fromArray(array(
     'id' => 18,
-    'key' => 'jsFile',
+    'key' => 'sbsJsFile',
     'value' => 'subscribe.js',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',

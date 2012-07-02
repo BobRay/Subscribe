@@ -44,16 +44,16 @@
  * &thankYouPageId int (required) ID of Thank You for Registering page
  *     default: empty
  *
- * &cssPath string
+ * &sbsCssPath string
  *      default: {assets_url}components/subscribe/css/
  *
- *  &cssFile string
+ *  &sbsCssFile string
  *      default: subscribe.css
  *
- *  &jsPath string
+ *  &sbsJsPath string
  *      default:  {assets_url}components/subscribe/js/
  *
- *  &jsFile string
+ *  &sbsJsFile string
  *      default: subscribe.js
  *  &activationEmailTpl string Name of activation email Tpl chunk
  *      default: activatEmailTpl
@@ -85,10 +85,10 @@ if ($sp['form'] == 'managePrefs') {
     }
 }
 $assetsUrl = $modx->getOption('subscribe.assets_url', $sp, MODX_ASSETS_URL);
-$cssPath = $modx->getOption('cssPath',$sp, $assetsUrl) . 'css/';
-$cssFile = $modx->getOption('cssFile', $sp, null);
+$cssPath = $modx->getOption('sbsCssPath',$sp, $assetsUrl) . 'css/';
+$cssFile = $modx->getOption('sbsCssFile', $sp, null);
 $cssFile = empty($cssFile) ? 'subscribe.css' : $cssFile;
-/* load CSS file unless &cssPath or &cssFile is set to 'none' */
+/* load CSS file unless &sbsCssPath or &sbsCssFile is set to 'none' */
 if ($cssFile != 'none') {
     $modx->regClientCSS($cssPath . $cssFile);
 }
@@ -106,8 +106,8 @@ $modx->setPlaceholder('sbs_lexicon_json', $sj);
 //echo "Loading JS\n";
 /* load JS file */
 
-$jsPath = $modx->getOption('jsPath',$sp, $assetsUrl . 'components/subscribe/js/');
-$jsFile = $modx->getOption('jsFile', $sp, null);
+$jsPath = $modx->getOption('sbsJsPath',$sp, $assetsUrl . 'components/subscribe/js/');
+$jsFile = $modx->getOption('sbsJsFile', $sp, null);
 $jsFile = empty($jsFile) ? 'subscribe-min.js' : $jsFile;
 
 $modx->regClientStartupScript($jsPath . $jsFile);

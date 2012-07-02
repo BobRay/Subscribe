@@ -43,10 +43,10 @@
  *
  * &login page ID int (required) ID of Login page
  *
- * &cssPath string
+ * &sbsCssPath string
  *      default: MODX_ASSETS_PATH .components/subscribe/css/
  *
- *  &cssFile string
+ *  &sbsCssFile string
  *      default: subscribe.css
  *
  * &whyDialogTpl string Tpl chunk for Why Subscribe dialog
@@ -112,10 +112,10 @@ $sp =& $scriptProperties;
 $docId = $modx->resource->get('id');
 
 $assetsUrl = $modx->getOption('subscribe.assets_url', $sp, MODX_ASSETS_URL . 'components/subscribe/');
-$cssPath = $modx->getOption('cssPath',$sp, $assetsUrl . 'css/' ) ;
-$cssFile = $modx->getOption('cssFile', $sp, null);
+$cssPath = $modx->getOption('sbsCssPath',$sp, $assetsUrl . 'css/' ) ;
+$cssFile = $modx->getOption('sbsCssFile', $sp, null);
 $cssFile = empty($cssFile) ? 'subscribe.css' : $cssFile;
-/* load CSS file unless &cssPath or &cssFile is set to 'none' */
+/* load CSS file unless &sbsCssPath or &sbsCssFile is set to 'none' */
 if ($cssFile != 'none') {
     $modx->regClientCSS($cssPath . $cssFile);
 }
