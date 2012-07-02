@@ -112,7 +112,7 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
         if ($resource && $systemSetting) {
             $systemSetting->set('value', $resource->get('id'));
             if ($systemSetting->save()) {
-                $modx->log(xPDO::LOG_LEVEL_INFO, 'set ' . $value . 'System Setting to ID of ' . $key . ' page');
+                $modx->log(xPDO::LOG_LEVEL_INFO, 'set ' . $value . ' System Setting to ID of ' . $key . ' page');
             }
             if ($folderId) {
                 $resource->set('template', $defaultTemplate);
