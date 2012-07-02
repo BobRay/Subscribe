@@ -1,5 +1,11 @@
 Changelog for Subscribe
 
+Subscribe 1.1.4
+---------------
+Reversed captions and values in PrefList Tpl chunk
+Renamed JS and CSS file and path System Settings
+Miscellaneous bug fixes and improvements
+
 Subscribe 1.1.3
 ---------------
  Refactored to use System Settings

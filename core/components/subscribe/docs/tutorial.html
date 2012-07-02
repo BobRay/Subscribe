@@ -3,13 +3,31 @@
 <div class="box">
 <p><b>Important Upgrade Note!</b></p>
 
-<p>If this is a new install or you are upgrading from Subscribe 1.1.2 or newer, you can skip down to the next section, &quot;About Subscribe&quot;.</p>
-    
-<p>A number of element and directory names have changed and quite a few internal changes were made to make Subscribe easier to configure and to avoid conflicts with other extras. All of the default chunks and snippets have been renamed.</p>
+<p>If this is a new install or you are upgrading from Subscribe 1.1.4 or newer, you can skip down to the next section, &quot;About Subscribe&quot;.</p>
+
+<p>Important: For Newer Versions, the captions and values in the PrefList Tpl chunk have been reversed from the order in earlier versions to conform to the standard for MODX TV Input Values. The correct order now is:</p>
+
+<pre><fixedpre>
+Caption One==Option1||Caption Two==option2||Caption Three==option3
+</fixedpre></pre>
+
+<p>Be sure to put them all on one line.</p>
+
+<p>In version 1.1.4, these System Settings have new names to avoid conflicts with other components:</p>
+    <ul>
+        <li>cssPath -&gt; sbsCssPath</li>
+        <li>cssFile -&gt; sbsCssFile</li>
+        <li>jsPath -&gt; sbsJsPath</li>
+        <li>jsFile -&gt; sbsJsFile</li>
+    </ul>
+
+<p>The installed CSS has changed in Version 1.1.4 to make the Logged-in and Logged-out displays larger and easier to read. If you are using the default CSS file, you may have to make adjustments to your site's CSS file to compensate for the larger size.</p>
+
+<p>As of version 1.1.3, a number of element, setting, and directory names have changed and quite a few internal changes were made to make Subscribe easier to configure and to avoid conflicts with other extras. All of the default chunks and snippets have been renamed.</p>
 
 <p>Since everything was changing, I took the opportunity to refactor Subscribe from the ground up to streamline the code and, hopefully, to make it much easier to use and configure.</p>
     
-<p>The good news is that the new version installs everything you need except the login page and automatically configures everything (with the exception of the System Setting for the login page if your login page has an alias other than &quot;login&quot;). Be sure to read this whole section carefully before upgrading from versions below 1.1.2. The upgrade is easier than it sounds. The simplest method, by far, is to completely uninstall and remove the old version, including any Resources except the Login page.</p>
+<p>The good news is that the new version installs everything you need except the login page and automatically configures everything (with the exception of the System Setting for the login page if your login page has an alias other than &quot;login&quot;). Be sure to read this whole section carefully before upgrading from versions 1.1.2 and earlier. The upgrade is easier than it sounds. The simplest method, by far, is to completely uninstall and remove the old version, including any Resources except the Login page. <b>It is strongly recommended that you uninstall and remove Subscribe before upgrading</b>.</p>
     
 <p>All &quot;sm&quot; and &quot;Sm&quot; prefixes have been changed to &quot;sbs&quot; and &quot;Sbs&quot; to avoid conflicts with other extras. If you've created a custom CSS file be sure to back it up outside the subscribe directory, though it will be of limited use because many of the classes and IDs have changed.</p>
     
@@ -17,12 +35,15 @@
     
 <p>I apologize for the inconvenience. Future upgrades should go much more smoothly.</p>
     
-<p>If you have created any new Tpl chunks for Subscribe, they will survive the upgrade, but they may not be in the Subscribe category after the install and they really won't be of any use because all the Tpl chunks have changed.</p>    
+<p>If you have created any new Tpl chunks for Subscribe, they will survive the upgrade, but they may not be in the Subscribe category after the install and they really won't be of any use, because all the Tpl chunks have changed.</p>
     
-<p>In the new version, your login page should have an alias of &quot;login&quot; or &quot;Login&quot;. Be sure the page exists before installing Subscribe so that the package can set the Login Page ID System Setting correctly. If you forget, or your Login page has a different alias, set that System Setting manually in System | System Settings (namespace: subscribe) after the install is finished. 
+<p>In the new version, your login page should have an alias of &quot;login&quot; or &quot;Login&quot;. Be sure the page exists before installing Subscribe so that the package can set the <fixedpre>sbs_login_page_id</fixedpre> System Setting correctly. If you forget, or your Login page has a different alias, set that System Setting manually in System | System Settings (namespace: subscribe) after the install is finished.
 </p>
   
-<p>Subscribe Version 1.1.2 (and later versions) add new users to the Subscribers User Group with a Role of Subscriber. <b>Be sure that both the User Group and the Role exist before anyone registers.</b> See the section later in the tutorial for instructions on creating the group and role.</p>
+<p>Subscribe Version 1.1.3 (and later versions) add new users to the Subscribers User Group with a Role of Subscriber. <b>Be sure that both the User Group and the Role exist before anyone registers.</b> See the section later in the tutorial for instructions on creating the group and role.</p>
+
+
+
 
 </div>
 <h3>About Subscribe</h3>
@@ -126,7 +147,7 @@ public function addSessionContexts() {
 Caption One==Option1||Caption Two==option2||Caption Three==option3
 </fixedpre></pre>
         
-<p>The caption (to the left of the <fixedpre>==</fixedpre> signs) is what will be shown in the form. The value (to the right of the <fixedpre>==</fixedpre> signs) is what will be stored in the database. Make sure there are no spaces except in between the words of the caption and the preferences list is all on one line.</p>
+<p>The caption (to the left of the <fixedpre>==</fixedpre> signs) is what will be shown in the form. The value (to the right of the <fixedpre>==</fixedpre> signs) is what will be stored in the database. Make sure that there are no spaces except in between the words of the caption and that the preferences list is all on one line.</p>
 
 <p>There is JavaScript validation for all fields in the Register form. All fields are required. The Username and Password fields are required to be at least 6 characters long and the two Password fields must match. The Email field is also checked to make sure it's a valid address. The User must also check at least one of the &quot;Interests&quot; checkboxes.</p>
 
@@ -157,14 +178,14 @@ assets/components/subscribe/js/subscribe.js
 </fixedpre></pre>
 
 <p>
-You can specify the files to be used with the your CSS file with the <fixedpre>cssPath</fixedpre>, <fixedpre>cssFile</fixedpre>, <fixedpre>jsPath</fixedpre>, and <fixedpre>jsFile</fixedpre> System Settings. If your files are in the same directory as the originals, you only need to modify the <fixedpre>cssFile</fixedpre> and/or <fixedpre>jsFile</fixedpre> settings, but note that your files will be deleted if you uninstall Subscribe.
+You can specify the files to be used with the your CSS file with the <fixedpre>sbsCssPath</fixedpre>, <fixedpre>sbsCssFile</fixedpre>, <fixedpre>sbsJsPath</fixedpre>, and <fixedpre>sbsJsFile</fixedpre> System Settings. If your files are in the same directory as the originals, you only need to modify the <fixedpre>sbsCssFile</fixedpre> and/or <fixedpre>sbsJsFile</fixedpre> settings, but note that your files will be deleted if you uninstall Subscribe.
 </p>
 
-<p>If you want to add the CSS to your main CSS file, set the <fixedpre>cssFile</fixedpre> System Setting to <fixedpre>none</fixedpre> and the CSS file will not be loaded.</p>
+<p>If you want to add the CSS to your main CSS file, set the <fixedpre>sbsCssFile</fixedpre> System Setting to <fixedpre>none</fixedpre> and the CSS file will not be loaded.</p>
 
-<p>The <fixedpre>subscribe-min.js</fixedpre> file is used only by the registration form and is loaded automatically by the snippet that presents the form, based on the <fixedpre>jsPath</fixedpre> and <fixedpre>jsFile</fixedpre> System Settings. The JavaScript used to display the two popup windows in the subscribe request is in the <fixedpre>sbsLoggedOutDisplayTpl chunk</fixedpre>. If you need to change it, see the following section.</p>
+<p>The <fixedpre>subscribe-min.js</fixedpre> file is used only by the registration form and is loaded automatically by the snippet that presents the form, based on the <fixedpre>sbsJsPath</fixedpre> and <fixedpre>sbsJsFile</fixedpre> System Settings. The JavaScript used to display the two popup windows in the subscribe request is in the <fixedpre>sbsLoggedOutDisplayTpl chunk</fixedpre>. If you need to change it, see the following section.</p>
 
-<p>By default, The registration form uses <fixedpre>subscribe-min.js</fixedpre>. You can change that by setting the <fixedpre>jsFile</fixedpre> System Setting.</p>
+<p>By default, The registration form uses <fixedpre>subscribe-min.js</fixedpre>. You can change that by setting the <fixedpre>sbsJsFile</fixedpre> System Setting.</p>
 <p>
 
 
@@ -250,22 +271,22 @@ If you want to modify any of the default Tpl chunks, duplicate them and change t
         <td>sbsPrivacyDialogTextTpl</td>
     </tr>
     <tr>
-        <td>cssPath</td>
+        <td>sbsCssPath</td>
         <td>Path to Subscribe CSS file</td>
         <td>{assets_url}components/subscribe/css/</td>
     </tr>
     <tr>
-        <td>cssFile</td>
+        <td>sbsCssFile</td>
         <td>File name of Subscribe CSS file</td>
         <td>subscribe.css</td>
     </tr>
     <tr>
-        <td>jsPath</td>
+        <td>sbsJsPath</td>
         <td>Path to Subscribe JS file</td>
         <td>{assets_url}components/subscribe/js/</td>
     </tr>
     <tr>
-        <td>jsFile</td>
+        <td>sbsJsFile</td>
         <td>File name of Subscribe JS file</td>
         <td>subscribe.js</td>
     </tr>
