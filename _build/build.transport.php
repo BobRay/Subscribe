@@ -33,8 +33,8 @@
 /* Set package info be sure to set all of these */
 define('PKG_NAME','Subscribe');
 define('PKG_NAME_LOWER','subscribe');
-define('PKG_VERSION','1.1.3');
-define('PKG_RELEASE','rc');
+define('PKG_VERSION','1.1.4');
+define('PKG_RELEASE','pl');
 define('PKG_CATEGORY','Subscribe');
 
 define('MODX_BASE_URL','http://localhost/addons/');
