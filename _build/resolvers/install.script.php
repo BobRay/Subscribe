@@ -89,7 +89,6 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
             if ($ss->save()) {
                 $modx->log(xPDO::LOG_LEVEL_INFO, 'set sbs_login_page_id System Setting to ID of Login page');
             }
-
         }
     }
    /* set other System Setting values to resource IDs of the subscribe resources
@@ -102,6 +101,7 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
          'subscribe' => 'sbs_register_page_id',
          'registration-confirmed' => 'sbs_registration_confirmed_page_id',
          'thanks-for-registering' => 'sbs_thank_you_page_id',
+         'unsubscribe' => 'sbs_unsubscribe_page_id',
     );
 
     foreach($settingNames as $key => $value) {
@@ -115,7 +115,12 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
                 $modx->log(xPDO::LOG_LEVEL_INFO, 'set ' . $value . ' System Setting to ID of ' . $key . ' page');
             }
             if ($folderId) {
-                $resource->set('template', $defaultTemplate);
+                if ($key == 'unsubscribe') {
+                    $resource->set('template', 0);
+
+                } else {
+                    $resource->set('template', $defaultTemplate);
+                }
                 $resource->set('parent', $folderId);
                 $resource->save();
             }

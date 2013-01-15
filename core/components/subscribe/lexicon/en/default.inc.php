@@ -91,15 +91,14 @@ $_lang['setting_sbs_use_comment_field_desc'] = "If set to 'Yes' user preferences
 $_lang['setting_sbs_confirm_register_page_id'] = 'Subscribe Confirm Register page ID';
 $_lang['setting_sbs_confirm_register_page_id_desc'] = 'Resource ID of the Subscribe Confirm Register page; default (set automatically)';
 
-
-
 $_lang['setting_sbs_login_page_id'] = 'Login page ID';
 $_lang['setting_sbs_login_page_id_desc'] = "Resource ID of the Login page; default: (set automatically)";
-
 
 $_lang['setting_sbs_manage_prefs_page_id'] = 'Manage Preferences page ID';
 $_lang['setting_sbs_manage_prefs_page_id_desc'] = "Resource ID of the Subscribe Manage Preferences page; default: (set automatically)";
 
+$_lang['setting_sbs_unsubscribe_page_id'] = 'Subscribe Unsubscribe page ID';
+$_lang['setting_sbs_unsubscribe_page_id_desc'] = 'Resource ID of the Subscribe Unsubscribe page; default (set automatically)';
 
 $_lang['setting_sbs_register_page_id'] = 'Register page ID';
 $_lang['setting_sbs_register_page_id_desc'] = "Resource ID of the Subscribe Register page (with the registration form); default: (set automatically)";

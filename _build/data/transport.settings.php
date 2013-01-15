@@ -250,5 +250,14 @@ $systemSettings[22]->fromArray(array(
     'namespace' => 'subscribe',
     'area' => 'subscribe',
 ), '', true, true);
+$systemSettings[23] = $modx->newObject('modSystemSetting');
+$systemSettings[23]->fromArray(array(
+   'id' => 23,
+   'key' => 'sbs_unsubscribe_page_id',
+   'value' => '999',
+   'xtype' => 'textfield',
+   'namespace' => 'subscribe',
+   'area' => 'subscribe',
+), '', true, true);
 
 return $systemSettings;
