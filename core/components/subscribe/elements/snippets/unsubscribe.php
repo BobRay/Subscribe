@@ -49,7 +49,7 @@
 
 $sp =& $scriptProperties;
 
-$corePath = $modx->getOption('subscribe.core_path', $sp, $modx->getOption('core_path', null, MODX_CORE_PATH) . 'components/subscribe/');
+$corePath = $modx->getOption('subscribe.core_path', null, $modx->getOption('core_path', null, MODX_CORE_PATH) . 'components/subscribe/');
 require_once($corePath . 'model/subscribe/unsubscribe.class.php');
 
 $tpl = $modx->getOption('sbsUserNotFoundTpl', $sp, 'sbsusernotfoundtpl');
