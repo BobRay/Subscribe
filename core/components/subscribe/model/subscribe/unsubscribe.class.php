@@ -109,7 +109,10 @@ class Unsubscribe {
      * @param $key string - key created by encodeKey()
      * @return string - full unsubscribe/manage prefs URL for email message
      */
-    public function createUrl($url, $encodedEmail, $key) {
+    public function createUrl($url, $profile) {
+        /* @var $profile modUserProfile */
+        $encodedEmail = $this->encodeEmail($profile->get('email'));
+        $key = $this->encodeKey($profile);
         return $url . '?ue=' . $encodedEmail . '&uk=' . $key;
     }
 
