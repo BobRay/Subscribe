@@ -79,6 +79,7 @@ if (!empty ($userData)) {
     foreach ($contexts as $ctx) {
         $modx->user->addSessionContext($ctx);
     }
+    $modx->sendRedirect($url);
 } else {
     return $modx->getChunk($tpl);
 }
