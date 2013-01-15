@@ -113,8 +113,8 @@ $_lang['setting_sbs_thank_you_page_id_desc'] = "Resource ID of the Subscribe Tha
 $_lang['setting_language'] = 'Language';
 $_lang['setting_language_desc'] = "Language to use for Subscribe' default: en";
 
-
-
+$_lang['setting_sbs_secret_key'] = 'Subscribe Secret Key (DO NOT CHANGE)';
+$_lang['setting_sbs_secret_key_desc'] = 'Subscribe Secret Key for unsubscribe link (DO NOT CHANGE)';
 
 
 

@@ -131,6 +131,19 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
         }
     }
 
+    /* set Secret Key */
+
+    $ss = $modx->getObject('modSystemSetting', array ('key' => 'sbs_secret_key'));
+
+    if ($ss) {
+        $val = $ss->get('value');
+        if (empty($val)) {
+            $k = uniqid('SBS');
+            $ss->set('value', $k);
+            $ss->save();
+        }
+    }
+
 
     $success = true;
     break;

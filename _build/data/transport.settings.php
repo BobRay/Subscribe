@@ -241,5 +241,14 @@ $systemSettings[21] ->fromArray(array(
     'area' => 'subscribe',
 ),'',true,true);
 
+$systemSettings[22] = $modx->newObject('modSystemSetting');
+$systemSettings[22]->fromArray(array(
+    'id' => 22,
+    'key' => 'sbs_secret_key',
+    'value' => '',
+    'xtype' => 'textfield',
+    'namespace' => 'subscribe',
+    'area' => 'subscribe',
+), '', true, true);
 
 return $systemSettings;
