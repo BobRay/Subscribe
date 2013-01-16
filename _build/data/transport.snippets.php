@@ -26,4 +26,16 @@ $snippets[2] ->fromArray(array(
     'snippet' => getSnippetContent($sources['source_core'].'/elements/snippets/sbssubscribeform.snippet.php'),
     'properties' => '',
 ),'',true,true);
+
+$snippets[3] = $modx->newObject('modSnippet');
+$snippets[3]->fromArray(array(
+     'id' => 3,
+     'name' => 'Unsubscribe',
+     'description' => "",
+     'snippet' => getSnippetContent($sources['source_core'] . '/elements/snippets/sbsunsubscribe.snippet.php'),
+     'properties' => '',
+), '', true, true);
+
+
+
 return $snippets;
