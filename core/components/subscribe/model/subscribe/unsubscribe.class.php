@@ -123,7 +123,7 @@ class Unsubscribe {
      */
     public function userMatch($profile, $key) {
         /* @var $profile modUserProfile */
-        echo '<br /> EncKey: ' . $this->encodeKey($profile) . ' --- Received Key: ' . $key;
+        // echo '<br /> EncKey: ' . $this->encodeKey($profile) . ' --- Received Key: ' . $key;
         return $this->encodeKey($profile) === $key;
     }
 
@@ -154,25 +154,18 @@ class Unsubscribe {
     public function getUserData($encodedEmail, $key) {
         $userData = array();
         $email = $this->decodeEmail($encodedEmail);
-        echo ('<br /> EMAIL: ' . $email);
         $profiles = $this->modx->getCollection('modUserProfile', array('email' => $email));
 
         /* Find the actual user from among those with matching
            email addresses */
-        echo ('<br /> COUNT: ' . count($profiles));
-        echo "<br /><br />";
         foreach ($profiles as $profile) {
             /* @var $profile modUserProfile */
             if ($this->userMatch($profile, $key)) {
-                echo '<br /> MATCH';
                 $user = $this->modx->getObject('modUser', $profile->get('internalKey'));
                 $userData['user'] =& $user;
                 $userData['profile'] =& $profile;
                 break;
             }
-            echo '<br />Fullname: ' . $profile->get('fullname');
-            echo '<br />email: ' . $profile->get('email');
-            echo '<br />ID: ' . $profile->get('id');
         }
         return $userData;
     }
@@ -190,6 +183,9 @@ class Unsubscribe {
         $options['salt'] = $salt;
         $modx->getService('hashing', 'hashing.modHashing');
         $hash = $modx->hashing->getHash('', $this->method)->hash($key, $options);
+        /* $_GET would mangle these if we didn't replace them */
+        $hash = $data = str_replace(array('+','/','='),
+            array('-','_',), $hash);
         return rawurlencode($hash);
     }
 }
