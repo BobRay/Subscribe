@@ -52,6 +52,25 @@ class Unsubscribe {
 
     }
 
+    public function my_debug($message, $clear = false) {
+        /* @var $chunk modChunk */
+        $chunk = $this->modx->getObject('modChunk', array('name' => 'debug'));
+
+        if (!$chunk) {
+            $chunk = $this->modx->newObject('modChunk', array('name' => 'debug'));
+            $chunk->save();
+            $chunk = $this->modx->getObject('modChunk', array('name' => 'debug'));
+        }
+        if ($clear) {
+            $content = '';
+        } else {
+            $content = $chunk->getContent();
+        }
+        $content .= $message;
+        $chunk->setContent($content);
+        $chunk->save();
+    }
+
     /**
      * @param $email string - actual user email address
      * @return string - encoded email address
@@ -84,8 +103,14 @@ class Unsubscribe {
             /* use truncated email if fullname is empty */
             $fullName = substr($email, 0, -1);
         }
+        $this->my_debug('In EncodeKey');
+        $this->my_debug('Email: ' . $email);
+        $this->my_debug('Full Name: ' . $fullName);
         /* ID of the profile, not the user - useless if cracked */
         $ik = $profile->get('id');
+        $this->my_debug('IK: ' . $ik);
+        $hash = $this->getHash($this->modx, $ik . $this->secretKey . $email . $fullName, $email);
+        $this->my_debug('KEY: ' . $hash);
         return $this->getHash($this->modx, $ik . $this->secretKey . $email . $fullName, $email);
     }
 
@@ -98,6 +123,7 @@ class Unsubscribe {
      */
     public function userMatch($profile, $key) {
         /* @var $profile modUserProfile */
+        echo '<br /> EncKey: ' . $this->encodeKey($profile) . ' --- Received Key: ' . $key;
         return $this->encodeKey($profile) === $key;
     }
 
@@ -128,17 +154,25 @@ class Unsubscribe {
     public function getUserData($encodedEmail, $key) {
         $userData = array();
         $email = $this->decodeEmail($encodedEmail);
+        echo ('<br /> EMAIL: ' . $email);
         $profiles = $this->modx->getCollection('modUserProfile', array('email' => $email));
 
         /* Find the actual user from among those with matching
            email addresses */
+        echo ('<br /> COUNT: ' . count($profiles));
+        echo "<br /><br />";
         foreach ($profiles as $profile) {
             /* @var $profile modUserProfile */
             if ($this->userMatch($profile, $key)) {
+                echo '<br /> MATCH';
                 $user = $this->modx->getObject('modUser', $profile->get('internalKey'));
                 $userData['user'] =& $user;
                 $userData['profile'] =& $profile;
+                break;
             }
+            echo '<br />Fullname: ' . $profile->get('fullname');
+            echo '<br />email: ' . $profile->get('email');
+            echo '<br />ID: ' . $profile->get('id');
         }
         return $userData;
     }
@@ -156,6 +190,6 @@ class Unsubscribe {
         $options['salt'] = $salt;
         $modx->getService('hashing', 'hashing.modHashing');
         $hash = $modx->hashing->getHash('', $this->method)->hash($key, $options);
-        return urlencode($hash);
+        return rawurlencode($hash);
     }
 }
