@@ -167,6 +167,7 @@ class Unsubscribe {
                 break;
             }
         }
+        unset($profiles);
         return $userData;
     }
 
