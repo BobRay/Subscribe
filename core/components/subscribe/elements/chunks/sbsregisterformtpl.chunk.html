@@ -50,12 +50,18 @@
             
         </label>
         <input type="text" name="email" id="email" value="[[!+reg.email]]" /><span class="error">[[+error.email]]</span><br />
-        <br />
-        <p>Pleased keep me informed about new content in the following areas:</p>
 
-         [[!+sbs_interest_list]]
+            <br class="clear"/>
 
-        <br class="clear" />
+            [[+sbs_interests_caption]]
+            [[+sbs_interests]]
+
+            <br class="clear"/>
+
+            [[+sbs_groups_caption]]
+            [[+sbs_groups]]
+
+            <br class="clear"/>
 
         [[+register.recaptcha_html]]
         [[+error.recaptcha]]
