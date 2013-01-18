@@ -39,6 +39,12 @@ $_lang['sbs_js_interests_required'] = 'Please check at least one checkbox';
 $_lang['sbs_js_groups_required'] = 'Please check at least one group';
 
 
+$_lang['sbs_interest_list_caption'] = '<p>Please keep me informed about new content in the following areas:</p>';
+$_lang['sbs_groups_list_caption'] = '<p>Please subscribe me to the following groups:</p>';
+
+$_lang['sbs_current_interests_caption'] = '<p>Your current interests</p>';
+$_lang['sbs_current_groups_caption'] = '<p>Your current groups</p>';
+
 $_lang['sbs_submit_button_text'] = 'Submit';
 $_lang['sbs_unsubscribe'] = 'UNSUBSCRIBE';
 $_lang['sbs_unsubscribe_success_message'] = '<h3>Unsubscription Successful</h3>
