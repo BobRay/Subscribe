@@ -66,34 +66,45 @@ $chunks[8] ->fromArray(array(
     'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbspreflisttpl.chunk.html'),
     'properties' => '',
 ),'',true,true);
+
 $chunks[9] = $modx->newObject('modChunk');
-$chunks[9] ->fromArray(array(
+$chunks[9]->fromArray(array(
     'id' => 9,
+    'name' => 'sbsGroupListTpl',
+    'description' => '',
+    'snippet' => file_get_contents($sources['source_core'] . '/elements/chunks/sbsgrouplisttpl.chunk.html'),
+    'properties' => '',
+    ), '', true, true);
+
+
+$chunks[10] = $modx->newObject('modChunk');
+$chunks[10] ->fromArray(array(
+    'id' => 10,
     'name' => 'sbsCheckboxTpl',
     'description' => '',
     'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbscheckboxtpl.chunk.html'),
     'properties' => '',
 ),'',true,true);
-$chunks[10] = $modx->newObject('modChunk');
-$chunks[10] ->fromArray(array(
-    'id' => 10,
+$chunks[11] = $modx->newObject('modChunk');
+$chunks[11] ->fromArray(array(
+    'id' => 11,
     'name' => 'sbsManagePrefsFormTpl',
     'description' => '',
     'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbsmanageprefsformtpl.chunk.html'),
     'properties' => '',
 ),'',true,true);
-$chunks[11] = $modx->newObject('modChunk');
-$chunks[11] ->fromArray(array(
-    'id' => 11,
+$chunks[12] = $modx->newObject('modChunk');
+$chunks[12] ->fromArray(array(
+    'id' => 12,
     'name' => 'sbsActivationEmailTpl',
     'description' => '',
     'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/sbsactivationemailtpl.chunk.html'),
     'properties' => '',
 ),'',true,true);
 
-$chunks[12] = $modx->newObject('modChunk');
-$chunks[12]->fromArray(array(
-    'id' => 12,
+$chunks[13] = $modx->newObject('modChunk');
+$chunks[13]->fromArray(array(
+    'id' => 13,
     'name' => 'sbsUserNotFoundTpl',
     'description' => '',
     'snippet' => file_get_contents($sources['source_core'] . '/elements/chunks/sbsusernotfoundtpl.chunk.html'),
