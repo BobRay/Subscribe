@@ -73,6 +73,7 @@ function emailCheck(emailStr) {
 }
 function checkform(form) {
     var a = form['interests[]'];
+    var g = form['groups[]'];
     var u = form['unsubscribe'];
     var lex = document.getElementById('sbs_js_lexicon').innerHTML;
 
@@ -129,17 +130,34 @@ function checkform(form) {
     }
 
     //alert('Length:'+a.length);
-    var p = 0;
-    for (i = 0; i < a.length; i++) {
-        if (a[i].checked) {
-            //alert(a[i].value);
-            p = 1;
+    if (a) {
+        var p = 0;
+        for (i = 0; i < a.length; i++) {
+            if (a[i].checked) {
+                //alert(a[i].value);
+                p = 1;
+            }
+        }
+        if (p == 0) {
+            alert(lexArray.sbs_js_interests_required);
+            return false;
         }
     }
-    if (p == 0) {
-        alert(lexArray.sbs_js_interests_required);
-        return false;
+
+    if (g) {
+        var p = 0;
+        for (i = 0; i < g.length; i++) {
+            if (g[i].checked) {
+                //alert(a[i].value);
+                p = 1;
+            }
+        }
+        if (p == 0) {
+            alert(lexArray.sbs_js_groups_required);
+            return false;
+        }
     }
+
     return true;
 }
 //]]>
