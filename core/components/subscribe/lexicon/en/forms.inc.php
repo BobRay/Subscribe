@@ -36,6 +36,9 @@ $_lang['sbs_js_email_required'] = 'Please enter an email address';
 $_lang['sbs_js_bad_email'] = "That doesn't look like a valid email address";
 $_lang['sbs_js_fullname_required'] = 'Please enter a full name';
 $_lang['sbs_js_interests_required'] = 'Please check at least one checkbox';
+$_lang['sbs_js_groups_required'] = 'Please check at least one group';
+
+
 $_lang['sbs_submit_button_text'] = 'Submit';
 $_lang['sbs_unsubscribe'] = 'UNSUBSCRIBE';
 $_lang['sbs_unsubscribe_success_message'] = '<h3>Unsubscription Successful</h3>
