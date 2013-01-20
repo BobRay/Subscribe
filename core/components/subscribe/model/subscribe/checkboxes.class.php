@@ -332,7 +332,7 @@ class CheckBoxes{
         $ints = isset($_POST[$this->props['fieldName']])
             ? implode(',', $_POST[$this->props['fieldName']])
             : '';
-        echo '<br />SELECTED INTERESTS: ' . $ints;
+
         switch($this->method) {
             case 'comment':
                 $this->userProfile->set('comment', $ints);
@@ -358,8 +358,7 @@ class CheckBoxes{
             : array();
 
         $possibleGroups = $this->possibleGroups;
-        $this->modx->log(MODX::LOG_LEVEL_ERROR, "<br />SelectedGroups: " . print_r($selectedGroups, true));
-        $this->modx->log(MODX::LOG_LEVEL_ERROR, "<br /><br>PossibleGroups: " . print_r($possibleGroups, true));
+
         foreach($possibleGroups as $group) {
             if (in_array($group, $selectedGroups)) {
 
