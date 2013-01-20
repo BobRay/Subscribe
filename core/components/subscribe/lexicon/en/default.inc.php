@@ -115,6 +115,8 @@ $_lang['setting_language_desc'] = "Language to use for Subscribe' default: en";
 $_lang['setting_sbs_secret_key'] = 'Subscribe Secret Key (DO NOT CHANGE)';
 $_lang['setting_sbs_secret_key_desc'] = 'Subscribe Secret Key for unsubscribe link (DO NOT CHANGE)';
 
+$_lang['setting_sbs_user_roles'] = 'Subscribe User Roles';
+$_lang['setting_sbs_user_roles_desc'] = 'User Roles for groups in the form: group1:Editor,group2:Publisher';
 
 
 

@@ -1,5 +1,12 @@
 Changelog for Subscribe
 
+Subscribe 1.2.0
+---------------
+Added option to manage user group membership
+Register/Manage prefs form captions converted to lex strings
+Code cleanup
+
+
 Subscribe 1.1.4
 ---------------
 Reversed captions and values in PrefList Tpl chunk
