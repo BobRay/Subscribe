@@ -103,7 +103,7 @@ $modx->lexicon->load($language . ':subscribe:forms');
 $s = $modx->lexicon->fetch($prefix = 'sbs_js_', $removePrefix = false);
 $sj = $modx->toJSON($s);
 $modx->setPlaceholder('sbs_lexicon_json', $sj);
-//echo "Loading JS\n";
+
 /* load JS file */
 
 $jsPath = $modx->getOption('sbsJsPath',$sp, $assetsUrl . 'components/subscribe/js/');
