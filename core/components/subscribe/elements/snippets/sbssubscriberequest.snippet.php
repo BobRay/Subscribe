@@ -80,7 +80,6 @@ function setSystemSettings(&$modx) {
         'sbs_confirm_register_page_id' => 'confirm-register',
         'sbs_manage_prefs_page_id' => 'manage-preferences',
         'sbs_register_page_id' => 'subscribe',
-        'sbs_registration_confirmed_page_id' => 'registration-confirmed',
         'sbs_thank_you_page_id' => 'thanks-for-registering',
     );
     foreach ($settings as $key => $value) {
@@ -128,7 +127,6 @@ $noShows = array(
     $modx->getOption('sbs_manage_prefs_page_id',$sp,null),
     $modx->getOption('sbs_thank_you_page_id',$sp,null),
     $modx->getOption('sbs_confirm_register_page_id',$sp,null),
-    $modx->getOption('sbs_registration_confirmed_page_id',$sp,null),
 );
 
 /* add in other pages from &noShows property */

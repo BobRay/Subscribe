@@ -1,6 +1,8 @@
 <p>Submit the following form to change your preferences.</p>
 [[!SubscribeForm?
-   &form=`managePrefs`
+    &form=`managePrefs`
+    &showInterests=`1`
+    &showGroups=`0`
 ]]
 [[!+sbs_error_message:notempty=`<div class="sbs_error">[[!+sbs_error_message]]</div>`]]
 [[!+sbs_success_message:notempty=`<div class="sbs_success">[[+sbs_success_message]]</div>` ]]
@@ -8,28 +10,29 @@
 <div class="register">
     <div class="registerMessage">[[+error.message]]</div>
 
-    <form class="sbs_register_form" action="[[~[[*id]]]]" method="post" onsubmit="return checkform(this); return false;" >
+    <form class="sbs_register_form" action="[[~[[*id]]]]" method="post" onsubmit="return checkform(this); return false;">
         <fieldset>
-        <input type="hidden" name="nospam:blank" value="" />
-        <p>Username: [[+sbs_username]]</p>
+            <input type="hidden" name="nospam:blank" value=""/>
+            <p>Username: [[+sbs_username]]</p>
 
-        <br class="clear"/>
+            <br class="clear"/>
 
-        [[+sbs_interests_caption]]
-        [[+sbs_interest_list]]
+            [[+sbs_interests_caption]]
+            [[+sbs_interest_list]]
 
-        <br class="clear"/>
+            <br class="clear"/>
 
-        [[+sbs_groups_caption]]
-        [[+sbs_groups_list]]
+            [[+sbs_groups_caption]]
+            [[+sbs_groups_list]]
 
-        <br class="clear" />
-         <input type="checkbox" id="unsubscribe" name="unsubscribe" value="sbs_unsubscribe" />[[!%sbs_unsubscribe]]<br />
-        <br class="clear" />
-        <div class="form-buttons">
-            <input type="submit" name="change_prefs_btn" value="[[!%sbs_submit_button_text]]" />
-        </div>
-    </fieldset>
+            <br class="clear"/>
+            <input type="checkbox" id="unsubscribe" name="unsubscribe" value="sbs_unsubscribe"/>[[!%sbs_unsubscribe]]<br/>
+            <br class="clear"/>
+
+            <div class="form-buttons">
+                <input type="submit" name="change_prefs_btn" value="[[!%sbs_submit_button_text]]"/>
+            </div>
+        </fieldset>
     </form>
     <span id="sbs_js_lexicon" style="display:none">[[+sbs_lexicon_json]]</span>
 </div>
