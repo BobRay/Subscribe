@@ -240,29 +240,34 @@ class CheckBoxes{
                 : $this->modx->lexicon('sbs_current_interests_caption');
 
             $this->modx->setPlaceholder($lexKey, $msg);
+
             $output = $this->createSectionDisplay('interests',$this->possibleInterests,
                 $this->userPrefsArray);
-            $this->modx->setPlaceholder('sbs_interests',$output);
+            $this->modx->setPlaceholder('sbs_interest_list', $output);
+            /* Next line for backward compatibility */
+            $this->modx->setPlaceholder('sbs_current_prefs', $output);
 
         } else {
             $this->modx->setPlaceholder('sbs_interests_caption', '');
-            $this->modx->setPlaceholder('sbs_interests', '');
+            $this->modx->setPlaceholder('sbs_interest_list', '');
+            /* Next line for backward compatibility */
+            $this->modx->setPlaceholder('sbs_current_prefs', '');
         }
 
         /* Do Groups section */
         if ($this->showGroups) {
-            $lexKey = 'sbs_groups_caption';
+            $placeHolder = 'sbs_groups_caption';
             $msg = $action == 'register'
                 ? $this->modx->lexicon('sbs_groups_list_caption')
                 : $this->modx->lexicon('sbs_current_groups_caption');
 
-            $this->modx->setPlaceholder($lexKey, $msg);
+            $this->modx->setPlaceholder($placeHolder, $msg);
             $output = $this->createSectionDisplay('groups', $this->possibleGroups,
                 $this->userGroupsArray);
-            $this->modx->setPlaceholder('sbs_groups', $output);
+            $this->modx->setPlaceholder('sbs_groups_list', $output);
         } else {
             $this->modx->setPlaceholder('sbs_groups_caption', '');
-            $this->modx->setPlaceholder('sbs_groups', '');
+            $this->modx->setPlaceholder('sbs_groups_list', '');
         }
     }
 
@@ -374,7 +379,7 @@ class CheckBoxes{
             }
         }
 
-        /* set success of failure message */
+        /* set success or failure message */
         if ($success) {
             $this->modx->setPlaceholder('sbs_success_message',
                 $this->modx->lexicon('sbs_change_prefs_success_message'));
