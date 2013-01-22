@@ -132,9 +132,6 @@ if (isset($hook) && ($sp['form'] == 'register')) {
 
 } elseif ($sp['form'] == 'register') {
         /* Acting as Register form - not a repost */
-        $sp['markCurrent'] = false;
-
-
         $profile = $modx->user->getOne('Profile');
         $prefs->init($modx->user, $profile);
         $prefs->createDisplay('register');
@@ -146,7 +143,7 @@ if (isset($hook) && ($sp['form'] == 'register')) {
     if (!$modx->user->hasSessionContext($modx->context->get('key'))) {
         return $modx->lexicon('sbs_not_logged_in_error_message');
     }
-    // $sp['markCurrent'] = true;
+
     $prefs = new CheckBoxes($modx, $sp);
     $profile = $modx->user->getOne('Profile');
     $prefs->init($modx->user, $profile, false, true);
