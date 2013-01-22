@@ -46,6 +46,9 @@ $_lang['sbs_manage_prefs_button_text'] = 'Manage Preferences';
 $_lang['setting_prefListTpl'] = 'prefListTpl';
 $_lang['setting_prefListTpl_desc'] = 'Tpl to use for the list of user preferences; default: sbsPrefListTpl';
 
+$_lang['setting_groupListTpl'] = 'groupListTpl';
+$_lang['setting_groupListTpl_desc'] = 'Tpl to use for the list of user groups; default: sbsGroupListTpl';
+
 $_lang['setting_checkboxTpl'] = 'checkboxTpl';
 $_lang['setting_checkboxTpl_desc'] = 'Outer Tpl to use for the list of user preferences; default: sbsCheckboxTpl';
 
@@ -123,6 +126,13 @@ $_lang['setting_sbs_show_interests_desc'] = 'If true, the Manage Preferences and
 
 $_lang['setting_sbs_show_groups'] = 'Show Groups Section';
 $_lang['setting_sbs_show_groups_desc'] = 'If true, the Manage Preferences and Register forms will show the User Groups section; default: false';
+
+$_lang['setting_field_name'] = 'Interests field name';
+$_lang['setting_sbs_show_groups_desc'] = 'Field name to use for interests checkboxes; no need to change this unless there is a conflict with something else on the page; default: interests';
+
+$_lang['setting_groups_field_name'] = 'Groups field name';
+$_lang['setting_sbs_show_groups_desc'] = 'Field name to use for User Groups checkboxes; no need to change this unless there is a conflict with something else on the page; default: groups';
+
 
 
 

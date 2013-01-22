@@ -101,10 +101,20 @@ $systemSettings[7] ->fromArray(array(
     'area' => 'subscribe',
 ),'',true,true);
 
-
 $systemSettings[8] = $modx->newObject('modSystemSetting');
-$systemSettings[8] ->fromArray(array(
-    'id' => 8,
+$systemSettings[8]->fromArray(array(
+   'id' => 8,
+   'key' => 'groupListTpl',
+   'value' => 'sbsGroupListTpl',
+   'xtype' => 'textfield',
+   'namespace' => 'subscribe',
+   'area' => 'subscribe',
+), '', true, true);
+
+
+$systemSettings[9] = $modx->newObject('modSystemSetting');
+$systemSettings[9] ->fromArray(array(
+    'id' => 9,
     'key' => 'checkboxTpl',
     'value' => 'sbsCheckboxTpl',
     'xtype' => 'textfield',
@@ -113,9 +123,9 @@ $systemSettings[8] ->fromArray(array(
 ),'',true,true);
 
 
-$systemSettings[9] = $modx->newObject('modSystemSetting');
-$systemSettings[9] ->fromArray(array(
-    'id' => 9,
+$systemSettings[10] = $modx->newObject('modSystemSetting');
+$systemSettings[10] ->fromArray(array(
+    'id' => 10,
     'key' => 'loggedOutDisplayTpl',
     'value' => 'sbsLoggedOutDisplayTpl',
     'xtype' => 'textfield',
@@ -123,29 +133,21 @@ $systemSettings[9] ->fromArray(array(
     'area' => 'subscribe',
 ),'',true,true);
 
-$systemSettings[10] = $modx->newObject('modSystemSetting');
-$systemSettings[10] ->fromArray(array(
-    'id' => 10,
+$systemSettings[11] = $modx->newObject('modSystemSetting');
+$systemSettings[11] ->fromArray(array(
+    'id' => 11,
     'key' => 'loggedInDisplayTpl',
     'value' => 'sbsLoggedInDisplayTpl',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
     'area' => 'subscribe',
 ),'',true,true);
-$systemSettings[11] = $modx->newObject('modSystemSetting');
-$systemSettings[11] ->fromArray(array(
-    'id' => 11,
-    'key' => 'whyDialogTpl',
-    'value' => 'sbsWhyDialogTpl',
-    'xtype' => 'textfield',
-    'namespace' => 'subscribe',
-    'area' => 'subscribe',
-),'',true,true);
+
 $systemSettings[12] = $modx->newObject('modSystemSetting');
 $systemSettings[12] ->fromArray(array(
     'id' => 12,
-    'key' => 'whyDialogTextTpl',
-    'value' => 'sbsWhyDialogTextTpl',
+    'key' => 'whyDialogTpl',
+    'value' => 'sbsWhyDialogTpl',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
     'area' => 'subscribe',
@@ -153,8 +155,8 @@ $systemSettings[12] ->fromArray(array(
 $systemSettings[13] = $modx->newObject('modSystemSetting');
 $systemSettings[13] ->fromArray(array(
     'id' => 13,
-    'key' => 'privacyDialogTpl',
-    'value' => 'sbsPrivacyDialogTpl',
+    'key' => 'whyDialogTextTpl',
+    'value' => 'sbsWhyDialogTextTpl',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
     'area' => 'subscribe',
@@ -162,18 +164,17 @@ $systemSettings[13] ->fromArray(array(
 $systemSettings[14] = $modx->newObject('modSystemSetting');
 $systemSettings[14] ->fromArray(array(
     'id' => 14,
-    'key' => 'privacyDialogTextTpl',
-    'value' => 'sbsPrivacyDialogTextTpl',
+    'key' => 'privacyDialogTpl',
+    'value' => 'sbsPrivacyDialogTpl',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
     'area' => 'subscribe',
 ),'',true,true);
-
 $systemSettings[15] = $modx->newObject('modSystemSetting');
 $systemSettings[15] ->fromArray(array(
     'id' => 15,
-    'key' => 'sbsCssPath',
-    'value' => '{assets_url}components/subscribe/css/',
+    'key' => 'privacyDialogTextTpl',
+    'value' => 'sbsPrivacyDialogTextTpl',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
     'area' => 'subscribe',
@@ -182,8 +183,8 @@ $systemSettings[15] ->fromArray(array(
 $systemSettings[16] = $modx->newObject('modSystemSetting');
 $systemSettings[16] ->fromArray(array(
     'id' => 16,
-    'key' => 'sbsCssFile',
-    'value' => 'subscribe.css',
+    'key' => 'sbsCssPath',
+    'value' => '{assets_url}components/subscribe/css/',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
     'area' => 'subscribe',
@@ -192,8 +193,8 @@ $systemSettings[16] ->fromArray(array(
 $systemSettings[17] = $modx->newObject('modSystemSetting');
 $systemSettings[17] ->fromArray(array(
     'id' => 17,
-    'key' => 'sbsJsPath',
-    'value' => '{assets_url}components/subscribe/js/',
+    'key' => 'sbsCssFile',
+    'value' => 'subscribe.css',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
     'area' => 'subscribe',
@@ -202,6 +203,16 @@ $systemSettings[17] ->fromArray(array(
 $systemSettings[18] = $modx->newObject('modSystemSetting');
 $systemSettings[18] ->fromArray(array(
     'id' => 18,
+    'key' => 'sbsJsPath',
+    'value' => '{assets_url}components/subscribe/js/',
+    'xtype' => 'textfield',
+    'namespace' => 'subscribe',
+    'area' => 'subscribe',
+),'',true,true);
+
+$systemSettings[19] = $modx->newObject('modSystemSetting');
+$systemSettings[19] ->fromArray(array(
+    'id' => 19,
     'key' => 'sbsJsFile',
     'value' => 'subscribe.js',
     'xtype' => 'textfield',
@@ -210,10 +221,9 @@ $systemSettings[18] ->fromArray(array(
 ),'',true,true);
 
 
-
-$systemSettings[19] = $modx->newObject('modSystemSetting');
-$systemSettings[19] ->fromArray(array(
-    'id' => 19,
+$systemSettings[20] = $modx->newObject('modSystemSetting');
+$systemSettings[20] ->fromArray(array(
+    'id' => 20,
     'key' => 'sbs_use_comment_field',
     'value' => '1',
     'xtype' => 'combo-boolean',
@@ -221,9 +231,9 @@ $systemSettings[19] ->fromArray(array(
     'area' => 'subscribe',
 ),'',true,true);
 
-$systemSettings[20] = $modx->newObject('modSystemSetting');
-$systemSettings[20] ->fromArray(array(
-    'id' => 20,
+$systemSettings[21] = $modx->newObject('modSystemSetting');
+$systemSettings[21] ->fromArray(array(
+    'id' => 21,
     'key' => 'sbs_extended_field',
     'value' => 'interests',
     'xtype' => 'textfield',
@@ -231,9 +241,9 @@ $systemSettings[20] ->fromArray(array(
     'area' => 'subscribe',
 ),'',true,true);
 
-$systemSettings[21] = $modx->newObject('modSystemSetting');
-$systemSettings[21] ->fromArray(array(
-    'id' => 21,
+$systemSettings[22] = $modx->newObject('modSystemSetting');
+$systemSettings[22] ->fromArray(array(
+    'id' => 22,
     'key' => 'language',
     'value' => 'en',
     'xtype' => 'textfield',
@@ -241,18 +251,18 @@ $systemSettings[21] ->fromArray(array(
     'area' => 'subscribe',
 ),'',true,true);
 
-$systemSettings[22] = $modx->newObject('modSystemSetting');
-$systemSettings[22]->fromArray(array(
-    'id' => 22,
+$systemSettings[23] = $modx->newObject('modSystemSetting');
+$systemSettings[23]->fromArray(array(
+    'id' => 23,
     'key' => 'sbs_secret_key',
     'value' => '',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
     'area' => 'subscribe',
 ), '', true, true);
-$systemSettings[23] = $modx->newObject('modSystemSetting');
-$systemSettings[23]->fromArray(array(
-   'id' => 23,
+$systemSettings[24] = $modx->newObject('modSystemSetting');
+$systemSettings[24]->fromArray(array(
+   'id' => 24,
    'key' => 'sbs_unsubscribe_page_id',
    'value' => '999',
    'xtype' => 'textfield',
@@ -260,9 +270,9 @@ $systemSettings[23]->fromArray(array(
    'area' => 'subscribe',
 ), '', true, true);
 
-$systemSettings[24] = $modx->newObject('modSystemSetting');
-$systemSettings[24]->fromArray(array(
-    'id' => 24,
+$systemSettings[25] = $modx->newObject('modSystemSetting');
+$systemSettings[25]->fromArray(array(
+    'id' => 25,
     'key' => 'sbs_user_roles',
     'value' => '',
     'xtype' => 'textfield',
@@ -270,9 +280,9 @@ $systemSettings[24]->fromArray(array(
     'area' => 'subscribe',
 ), '', true, true);
 
-$systemSettings[25] = $modx->newObject('modSystemSetting');
-$systemSettings[25]->fromArray(array(
-    'id' => 25,
+$systemSettings[26] = $modx->newObject('modSystemSetting');
+$systemSettings[26]->fromArray(array(
+    'id' => 26,
     'key' => 'sbs_show_interests',
     'value' => true,
     'xtype' => 'combo-boolean',
@@ -280,14 +290,35 @@ $systemSettings[25]->fromArray(array(
     'area' => 'subscribe',
 ), '', true, true);
 
-$systemSettings[26] = $modx->newObject('modSystemSetting');
-$systemSettings[26]->fromArray(array(
-    'id' => 26,
+$systemSettings[27] = $modx->newObject('modSystemSetting');
+$systemSettings[27]->fromArray(array(
+    'id' => 27,
     'key' => 'sbs_show_groups',
     'value' => false,
     'xtype' => 'combo-boolean',
     'namespace' => 'subscribe',
     'area' => 'subscribe',
 ), '', true, true);
+
+$systemSettings[28] = $modx->newObject('modSystemSetting');
+$systemSettings[28]->fromArray(array(
+    'id' => 28,
+    'key' => 'sbs_field_name',
+    'value' => '',
+    'xtype' => 'textfield',
+    'namespace' => 'subscribe',
+    'area' => 'subscribe',
+), '', true, true);
+
+$systemSettings[29] = $modx->newObject('modSystemSetting');
+$systemSettings[29]->fromArray(array(
+    'id' => 29,
+    'key' => 'sbs_groups_field_name',
+    'value' => '',
+    'xtype' => 'textfield',
+    'namespace' => 'subscribe',
+    'area' => 'subscribe',
+), '', true, true);
+
 
 return $systemSettings;
