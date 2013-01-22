@@ -51,9 +51,6 @@ class CheckBoxes{
     /** @var $userGroupsArray array - Group selections for current user */
     protected $userGroupsArray;
 
-    /** @var $markCurrent bool - flag for whether to check current selections */
-    protected $markCurrent;
-
     /* @var $userObj modUser -  current user object */
     protected $userObj;
 
@@ -68,6 +65,12 @@ class CheckBoxes{
 
     /* @var $possibleGroups array - All possible User Groups to show on form */
     protected $possibleGroups;
+
+    /* @var $fieldName string - name to user for interests checkboxes */
+    protected $fieldName;
+
+    /* @var $groupsFieldName string - name to user for groups checkboxes */
+    protected $groupsFieldName;
 
 
     /**
@@ -85,14 +88,18 @@ class CheckBoxes{
      * @param $profile modUserProfile - current user profile object
      * @param bool $saveOnly - If set, no display is created since page will reload
      */
-    public function init($userObj, $profile, $saveOnly = false) {
+    public function init($userObj, $profile, $saveOnly = false, $markCurrent = false) {
         $this->userObj = $userObj;
         $this->userProfile = $profile;
-        $useCommentField = $this->modx->getOption('sbs_use_comment_field', $this->props, true);
-        $this->method = $useCommentField? 'comment' : 'extended';
-        $this->extendedField = $this->modx->getOption('extendedField',$this->props,'interests');
         $this->showInterests = $this->modx->getOption('showInterests', $this->props, true);
         $this->showGroups = $this->modx->getOption('showGroups', $this->props, false);
+        $useCommentField = $this->modx->getOption('sbs_use_comment_field', $this->props, true);
+        $this->method = $useCommentField
+            ? 'comment'
+            : 'extended';
+        $this->fieldName = $this->modx->getOption('sbs_field_name', $this->props, 'interests');
+        $this->groupsFieldName = $this->modx->getOption('sbs_groups_field_name', $this->props, 'groups');
+        $this->extendedField = $this->modx->getOption('sbs_extended_field', $this->props, 'interests');
 
 
         $chunkName = $this->modx->getOption('prefListTpl', $this->props, 'sbsPrefListTpl');
@@ -109,7 +116,6 @@ class CheckBoxes{
         if (empty($tpl)) {
             $this->setError('No group list chunk');
         } else {
-            // $this->tpls['groupListTpl'] = $tpl;
             $this->possibleGroups = $this->parseOptions($tpl);
         }
         $roles = $this->modx->getOption('sbs_user_roles', null, '');
@@ -123,10 +129,9 @@ class CheckBoxes{
 
         if (! $saveOnly) {
             $this->getTpls();
-            $this->markCurrent = $this->modx->getOption('markCurrent',$this->props,false);
 
             /* Get the users current prefs and/or groups */
-            if ($this->markCurrent) {
+            if ($markCurrent) {
                 if ($this->showInterests) {
                     $this->getUserPrefs();
                 }
@@ -179,8 +184,8 @@ class CheckBoxes{
 
         $this->userPrefsArray = array();
         $tempArray = array();
-        if (isset($_POST[$this->props['fieldName']]) && !empty($_POST[$this->props['fieldName']])) {
-            $this->userPrefsArray = $_POST[$this->props['fieldName']];
+        if (isset($_POST[$this->fieldName]) && !empty($_POST[$this->fieldName])) {
+            $this->userPrefsArray = $_POST[$this->fieldName];
         } else {
 
             switch($this->method) {
@@ -210,8 +215,8 @@ class CheckBoxes{
      */
     protected function getUserGroups() {
         $this->userGroupsArray = array();
-        if (isset($_POST[$this->props['groupsFieldName']]) && !empty($_POST[$this->props['groupsFieldName']])) {
-            $this->userGroupsArray = $_POST[$this->props['groupsFieldName']];
+        if (isset($_POST[$this->groupsFieldName]) && !empty($_POST[$this->groupsFieldName])) {
+            $this->userGroupsArray = $_POST[$this->groupsFieldName];
         } else {
             /* Get user groups from DB */
             $this->userGroupsArray = array();
@@ -324,18 +329,18 @@ class CheckBoxes{
      */
     public function saveUserPrefs(){
 
-        if ( ((!isset($_POST[$this->props['fieldName']]))
-                || empty($_POST[$this->props['fieldName']]))
-            && ((!isset($_POST[$this->props['groupsFieldName']]))
-                || empty($_POST[$this->props['groupsFieldName']]))) {
+        if ( ((!isset($_POST[$this->fieldName]))
+                || empty($_POST[$this->fieldName]))
+            && ((!isset($_POST[$this->groupsFieldName]))
+                || empty($_POST[$this->groupsFieldName]))) {
             return false; /* Nothing to save */
         }
         /* now it's a genuine repost */
         $success = true;
 
         /* Save interests */
-        $ints = isset($_POST[$this->props['fieldName']])
-            ? implode(',', $_POST[$this->props['fieldName']])
+        $ints = isset($_POST[$this->fieldName])
+            ? implode(',', $_POST[$this->fieldName])
             : '';
 
         switch($this->method) {
@@ -358,8 +363,8 @@ class CheckBoxes{
 
         /* Save User Groups */
 
-        $selectedGroups = isset($_POST[$this->props['groupsFieldName']])
-            ? $_POST[$this->props['groupsFieldName']]
+        $selectedGroups = isset($_POST[$this->groupsFieldName])
+            ? $_POST[$this->groupsFieldName]
             : array();
 
         $possibleGroups = $this->possibleGroups;

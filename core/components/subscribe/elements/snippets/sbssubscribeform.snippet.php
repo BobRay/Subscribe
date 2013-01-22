@@ -116,10 +116,6 @@ $corePath = $modx->getOption('subscribe.core_path',$sp,$modx->getOption('core_pa
 require_once($corePath . 'model/subscribe/checkboxes.class.php');
 
 
-$sp['method'] = $modx->getOption('sbs_method', $sp, 'comment');
-$sp['fieldName'] = $modx->getOption('sbs_field_name',$sp,'interests');
-$sp['groupsFieldName'] = $modx->getOption('sbs_groups_field_name', $sp, 'groups');
-$sp['extendedField'] = $modx->getOption('sbs_extended_field',$sp,'interests');
 $output = '';
 $prefs = new CheckBoxes($modx, $sp);
 if (isset($_POST) && !empty($_POST) ) {
@@ -150,10 +146,10 @@ if (isset($hook) && ($sp['form'] == 'register')) {
     if (!$modx->user->hasSessionContext($modx->context->get('key'))) {
         return $modx->lexicon('sbs_not_logged_in_error_message');
     }
-    $sp['markCurrent'] = true;
+    // $sp['markCurrent'] = true;
     $prefs = new CheckBoxes($modx, $sp);
     $profile = $modx->user->getOne('Profile');
-    $prefs->init($modx->user, $profile);
+    $prefs->init($modx->user, $profile, false, true);
     $modx->setPlaceholder('sbs_username', $modx->user->get('username'));
     $prefs->saveUserPrefs();
 
