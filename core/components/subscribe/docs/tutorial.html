@@ -1,9 +1,9 @@
-<p>Subscribe provides a double-opt-in User registration system. It uses some parts of the Login package, so be sure the Login package is installed before using Subscribe.</p>
+<p xmlns="http://www.w3.org/1999/html">Subscribe provides a double-opt-in User registration system. It uses some parts of the Login package, so be sure the Login package is installed before using Subscribe.</p>
 
 <div class="box">
-<p><b>Important Upgrade Note!</b></p>
+<p><b>Upgrading from Version 1.1.3 or earlier</b></p>
 
-<p>If this is a new install or you are upgrading from Subscribe 1.1.4 or newer, you can skip down to the next section, &quot;About Subscribe&quot;.</p>
+<p>If this is a new install or you are upgrading from Subscribe 1.1.4 or newer, you can skip down to the next section.</p>
 
 <p>Important: For Newer Versions, the captions and values in the PrefList Tpl chunk have been reversed from the order in earlier versions to conform to the standard for MODX TV Input Values. The correct order now is:</p>
 
@@ -23,11 +23,11 @@ Caption One==Option1||Caption Two==option2||Caption Three==option3
 
 <p>The installed CSS has changed in Version 1.1.4 to make the Logged-in and Logged-out displays larger and easier to read. If you are using the default CSS file, you may have to make adjustments to your site's CSS file to compensate for the larger size.</p>
 
-<p>As of version 1.1.3, a number of element, setting, and directory names have changed and quite a few internal changes were made to make Subscribe easier to configure and to avoid conflicts with other extras. All of the default chunks and snippets have been renamed.</p>
+<p>As of version 1.1.4, a number of element, setting, and directory names have changed and quite a few internal changes were made to make Subscribe easier to configure and to avoid conflicts with other extras. All of the default chunks and snippets have been renamed.</p>
 
 <p>Since everything was changing, I took the opportunity to refactor Subscribe from the ground up to streamline the code and, hopefully, to make it much easier to use and configure.</p>
     
-<p>The good news is that the new version installs everything you need except the login page and automatically configures everything (with the exception of the System Setting for the login page if your login page has an alias other than &quot;login&quot;). Be sure to read this whole section carefully before upgrading from versions 1.1.2 and earlier. The upgrade is easier than it sounds. The simplest method, by far, is to completely uninstall and remove the old version, including any Resources except the Login page. <b>It is strongly recommended that you uninstall and remove Subscribe before upgrading</b>.</p>
+<p>The good news is that the new version installs everything you need except the login page and automatically configures everything (with the exception of the System Setting for the login page if your login page has an alias other than &quot;login&quot;). Be sure to read this whole section carefully before upgrading from versions 1.1.3 and earlier. The upgrade is easier than it sounds. The simplest method, by far, is to completely uninstall and remove the old version, including any Resources except the Login page. <b>It is strongly recommended that you uninstall and remove Subscribe before upgrading</b>.</p>
     
 <p>All &quot;sm&quot; and &quot;Sm&quot; prefixes have been changed to &quot;sbs&quot; and &quot;Sbs&quot; to avoid conflicts with other extras. If you've created a custom CSS file be sure to back it up outside the subscribe directory, though it will be of limited use because many of the classes and IDs have changed.</p>
     
@@ -39,13 +39,28 @@ Caption One==Option1||Caption Two==option2||Caption Three==option3
     
 <p>In the new version, your login page should have an alias of &quot;login&quot; or &quot;Login&quot;. Be sure the page exists before installing Subscribe so that the package can set the <fixedpre>sbs_login_page_id</fixedpre> System Setting correctly. If you forget, or your Login page has a different alias, set that System Setting manually in System | System Settings (namespace: subscribe) after the install is finished.
 </p>
-  
-<p>Subscribe Version 1.1.3 (and later versions) add new users to the Subscribers User Group with a Role of Subscriber. <b>Be sure that both the User Group and the Role exist before anyone registers.</b> See the section later in the tutorial for instructions on creating the group and role.</p>
-
-
-
-
 </div>
+
+<div class="box">Upgrade Notes:
+<p>Subscribe Version 1.1.3 added new users to the Subscribers User Group with a Role of Subscriber. As of Version 1.2.0, Users can be assigned to multiple groups with multiple roles and can (optionally) control their own user group membership on the Manage Preferences page. See the sections below on managing groups and creating the groups and roles.</p>
+
+<p><b>Be sure that all User Groups and Roles exist before anyone registers.</b></p>
+
+<p>In Version 1.2.0, the placeholders in the Register and Manage Preferences chunks (<fixedpre>sbsRegisterFormTpl</fixedpre> and <fixedpre>
+    sbsManagePrefsFormTpl</fixedpre>) have changed. For backward compatibility, the old placeholders will still work, but if you want to let users manage their User Group memberships, you'll need to use the new ones. The new placeholders are:</p>
+<pre><fixedpre>
+[[+sbs_interests_caption]]
+[[+sbs_interest_list]]
+
+<br class="clear"/>
+
+[[+sbs_groups_caption]]
+[[+sbs_groups_list]]
+</fixedpre></pre>
+
+<p>There are also two new properties: <fixedpre>&showInterests</fixedpre> and <fixedpre>&showGroups</fixedpre>. For backward compatibility the first is true by default and the second is false. In Version 1.2.0 and newer versions you can use these properties to show either section or both. See the section below on Controlling the Forms.</p>
+</div>
+
 <h3>About Subscribe</h3>
 <p>Subscribe provides a request-to-subscribe message that will appear on pages at your site. When Users choose to subscribe and submit the registration form, they receive an email message with a link to confirm their registration. The request-to-subscribe message will not be shown to Users who are logged in (they will see a logout link). You can also hide the request-to-subscribe message on selected pages with the <fixedpre>&noShows</fixedpre> property in the SubscribeRequest snippet tag.</p>
         
@@ -53,7 +68,7 @@ Caption One==Option1||Caption Two==option2||Caption Three==option3
         
 <p>The default registration form also includes the option of checkboxes for the User to indicate interests. The User's interests will be saved as a comma-separated list in the <fixedpre>comment</fixedpre> field of the User's Profile (or, optionally, in an extended field of your choice). This allows you to send email messages to Users based on their interests (an upcoming version of EmailResource will do this automatically as will an upcoming extra called &quot;Notify&quot;). You can also design systems that respond to User interests by customizing menus, forwarding Users to particular parts of the site on login, etc.</p>
 
-<p>There is also a Manage Preferences form that lets the user change their interests at any time. It also allows the user to unsubscribe.</p>
+<p>There is also a Manage Preferences form that lets the user change their interests and/or group memberships at any time. It also allows the user to unsubscribe.</p>
 
 <h3>Installing Subscribe</h3>
 
@@ -68,7 +83,10 @@ Go to System | Package Management on the main menu in the MODX Manager and click
 
 <h3>Displaying the Request to Subscribe Message</h3>        
 
-<p>Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request-to-subscribe. In the <fixedpre>&noShows</fixedpre> property, put a comma-separated list containing the IDs of other pages where the request should not be shown. By default, the request is not shown on the Login, Registration, Thanks for Registering, Manage Preferences, Registration Confirmed and Confirm Register pages. Add the IDs of any other pages it should not be shown on to the <fixedpre>&noShows</fixedpre> property in the snippet tag in the template. The tag will be replaced by the &quot;Request to Subscribe&quot; message (which, by default, appears horizontally on a single line) for users who are not logged in and by the &quot;Logout&quot; link for users who are logged in. The <fixedpre>SubscribeRequest</fixedpre> snippet must be called uncached because it needs to evaluate the user's login status.</p>
+<p>Put the following tag in the <fixedpre><body></fixedpre> section of any templates for pages that should show the request-to-subscribe. In the <fixedpre>&noShows</fixedpre> property, put a comma-separated list containing the IDs of other pages where the request should not be shown. By default, the request is not shown on the Login, Registration, Thanks for Registering, Manage Preferences, and Confirm Register pages. Add the IDs of any other pages it should not be shown on to the <fixedpre>&noShows</fixedpre> property in the snippet tag in the template. The tag will be replaced by the &quot;Request to Subscribe&quot; message (which, by default, appears horizontally on a single line) for users who are not logged in and by the &quot;Logout&quot; link for users who are logged in.</p>
+<div class="box"><p>Upgrade note: As of Subscribe 1.2.0, the registration confirmed page is no longer in the noShows list by default so that when users follow the registration email link they will see the "Manage Preferences/Unsubscribe" option. I strongly recommend that you leave this alone, but if you don't want to show it there, you can send the ID in the <fixedpre>&noShows</fixedpre> property in the <fixedpre>SubscribeRequest</fixedpre> snippet tag in your template(s).</p></div>
+
+<p>The <fixedpre>SubscribeRequest</fixedpre> snippet must be called uncached because it needs to evaluate the user's login status.</p>
 <pre><fixedpre>
 [[!SubscribeRequest]]
 
@@ -85,11 +103,39 @@ or
         
 <h3>Creating the User Group and Role</h3>
         
-<p>Subscribe (via the Register snippet) adds new users to the Subscribers User Group with a Role of Subscriber. <b>IMPORTANT:</b> Both must exist before the first user registers. The current version of the Register snippet will not register the Group or Role if they don't exist. The user will be created, but won't be a member of any group.</p>
+<p>Version 1.1.4 of Subscribe adds new users to the Subscribers User Group with a Role of Subscriber (via the Register snippet). <b>IMPORTANT:</b> Both must the group and the role must exist before the first user registers. This is still the default option in Version 1.2.0, but it also allows you much finer control and (optionally) lets users manage their own group memberships (see below).</p>
+
 
 <p>To create the User Group, go to Security | Access Controls | User Groups tag. Click on the &quot;New User Group&quot; button. Enter <fixedpre>Subscribers</fixedpre> for the name. Add a description if you want one. Then, click on the &quot;Save&quot; button.</p>
 
 <p>To create the Role, click on the &quot;Roles&quot; tab, then on the &quot;Create New&quot; button. Enter <fixedpre>Subscriber</fixedpre> for the role, add a description (optional), and enter a number between 0 and 9999 (I use 50) for the &quot;Authority&quot; level. Then click on the &quot;Save&quot; button.</p>
+
+<h3>Managing the Forms</h3>
+
+<p>As of Version 1.2.0, you have multiple options for both the Register and Manage Preferences forms. You can set <fixedpre>&showInterests=`1`</fixedpre> to show the Interests List section and you can set <fixedpre>&showGroups=`1`</fixedpre> to show the User Groups section. You can show either or both.</p>
+
+<p>If every user will be assigned to the same User Group(s) with the same Role(s), let the Register snippet handle this. In the Register snippet tag of the <fixedpre>sbsRegisterFormTpl</fixedpre> chunk, use the <fixedpre>&usergroups</fixedpre> property:</p>
+<pre><fixedpre>
+&usergroups=`usergroup1:role1,usergroup2:role2`
+</fixedpre></pre>
+
+<p>If, instead, you would like to let the user select the User Groups to which they want to be assigned, remove that property from the Register snippet and add <fixedpre>&showGroups=`1`</fixedpre> to the SubscribeForm snippet tag. <b>Important:</b> be sure to do this in *both* the <fixepre>sbsRegisterFormTpl</fixepre> and <fixedpre>sbsManagePrefsFormTpl</fixedpre> chunks.</p>
+
+<p>The User Groups shown on the form come from the <fixedpre>sbsGroupsListTpl</fixedpre> chunk. They are in this form: </p>
+<pre><fixedpre>
+User Group One==group1||User Group Two==group2
+</fixedpre></pre>
+<p>The part before the <fixedpre>==</fixedpre> is the Caption to be shown on the form. The part after the <fixedpre>==</fixedpre> is the actual Group name (they can be the same if you like). Be sure the name of each User Group is the same as the part after the <fixedpre>==</fixedpre> sign in the Tpl chunk.</p>
+
+<p>In order for Subscribe to know what Role to use for each group, you must also set the <fixedpre>sbs_user_roles</fixedpre> System Setting. It takes this form:</p>
+
+<pre><fixedpre>
+group1:role1,group2:role2
+</fixedpre></pre>
+
+<p>Note that the Groups selected by the user (and their roles) are independent of the ones set in the Register snippet tag. You can use either or both methods. For example, you might want all Users to be assigned to the Subscribers Group with a role of Subscriber, but let the users select additional groups to belong to. In that case, leave the default <fixedpre>&usergroups</fixedpre> line in the Register snippet tag and add the other groups to the <fixedpre>sbsGroupsListTpl</fixedpre> and the <fixedpre>sbs_user_roles</fixedpre> System Setting.</p>
+
+<p>If you do let users select their own groups and/or interests, you can add new ones at any time by editing the <fixedpre>sbsPrefListTpl</fixedpre> and/or <fixedpre>sbsGroupListTpl</fixedpre> chunks. If you add new User Groups, be sure to adjust the <fixedpre>sbs_user_roles</fixedpre> System Setting to assign the user roles in the new groups.</p>
         
 <h3>Subscribe System Settings</h3>
         
@@ -105,7 +151,6 @@ or
 <ul>
     <li>Register</li>
     <li>Confirm Register</li>
-    <li>Registration Confirmed</li>
     <li>Thank You for Registering page</li>
     <li>Manage Preferences</li>
 </ul>
@@ -149,7 +194,7 @@ Caption One==Option1||Caption Two==option2||Caption Three==option3
         
 <p>The caption (to the left of the <fixedpre>==</fixedpre> signs) is what will be shown in the form. The value (to the right of the <fixedpre>==</fixedpre> signs) is what will be stored in the database. Make sure that there are no spaces except in between the words of the caption and that the preferences list is all on one line.</p>
 
-<p>There is JavaScript validation for all fields in the Register form. All fields are required. The Username and Password fields are required to be at least 6 characters long and the two Password fields must match. The Email field is also checked to make sure it's a valid address. The User must also check at least one of the &quot;Interests&quot; checkboxes.</p>
+<p>There is JavaScript validation for all fields in the Register form. All fields are required. The Username and Password fields are required to be at least 6 characters long and the two Password fields must match. The Email field is also checked to make sure it's a valid address. The User must also check at least one of the &quot;Interests&quot; checkboxes if that section is shown and select at least one User Group if that section is shown.</p>
 
 <p>By default, the user's preferences are stored in the <fixedpre>comment</fixedpre> field of the User Profile. This is the preferred method because retrieving the user's preferences in code and displaying them on a page will be much faster and easier. If you need the <fixedpre>comment</fixedpre> field for something else, you can change the method used and have the preferences stored in an extended field of the User Profile. To do so, just go to System | System Settings, select the &quot;subscribe&quot; namespace, and change the <fixedpre>Use Comment Field</fixedpre> setting to <fixedpre>No</fixedpre>. The user's preferences will be stored in an extended field in the User Profile called &quot;interests&quot;. If you need to change the name of that field, you can modify the <fixedpre>Subscribe Extended Field</fixedpre> System Setting.</p>
         
@@ -162,7 +207,7 @@ Caption One==Option1||Caption Two==option2||Caption Three==option3
 
 <p>Both the Register form and the &quot;request-to-subscribe&quot; message are styled with the <fixedpre>/assets/components/subscribe/css/subscribe.css</fixedpre> file, as are the two popup windows. See the section below on modifying the CSS.</p>
 
-<p>I originally had a nice JQuery slider for the two popups, but since they might be loaded for every page on a site, I decided that the speed penalty involved in loading the JQuery core, UI, and CSS files was just not worth it. The popups are now done with CSS and a tiny bit of embedded JavaScript to toggle their visibility. You can modify their position and appearance in the subscribe.css file.</p>
+<p>The popups are done with CSS and a tiny bit of embedded JavaScript to toggle their visibility. You can modify their position and appearance in the subscribe.css file.</p>
 
 <p>To change the message in the popups, duplicate the <fixedpre>sbsPrivacyDialogTextTpl</fixedpre> and <fixedpre>sbsWhyDialogTextTpl</fixedpre>chunks. Add &quot;My&quot; as a prefix to their names and modify the following two Subscribe System settings to match: <fixedpre>whyDialogTextTpl</fixedpre> and <fixedpre>privacyDialogTextTpl</fixedpre>.</p>
 
@@ -195,6 +240,9 @@ You can specify the files to be used with the your CSS file with the <fixedpre>s
 
 <p>
 If you want to modify any of the default Tpl chunks, duplicate them and change the name by adding &quot;My&quot; as a prefix. Then, modify the value of the appropriate Subscribe System Setting by adding &quot;My&quot; as a prefix. Go to System | System Settings and select the &quot;subscribe&quot; namespace in the drop-down list at the top of the grid. You can click in the plus sign to see a description of each setting. Double-click on the value of the setting you want to change, change it, and click somewhere else in the grid. Be careful &mdash; the names are case-sensitive, and if you misspell them in the System Settings grid, Subscribe will continue to use the default Tpl chunks, CSS, and JS files.</p>
+
+<h3>Unsubscribe</h3>
+<p>As of version 1.2.0, Subscribe has an Unsubscribe class that can create a secure unsubscribe link to include in emails. This feature is for use by the Notify and EmailResource extras. It does not affect the operation of Subscribe, but the code is there if you want to roll your own system to provide such a link in bulk emails.</p>
 
 <h3>Subscribe System Settings</h3>
 <table class="properties">
@@ -305,6 +353,25 @@ If you want to modify any of the default Tpl chunks, duplicate them and change t
         <td>Language to use for Subscribe</td>
         <td>en</td>
     </tr>
+    <tr>
+        <td>sbs_secret_key</td>
+        <td>Used by Notify and EmailResource to provide a secure unsubscribe link</td>
+        <td>(set automatically)</td>
+    </tr>
+    <tr>
+        <td>sbs_unsubscribe_page_id</td>
+        <td>Resource ID of the Unsubscribe page</td>
+        <td>(set automatically)</td>
+    </tr>
+
+    <tr>
+        <td>sbs_user_roles</td>
+        <td>Comma separated list of groupname:role pairs</td>
+        <td></td>
+    </tr>
 </table>
+
+
+
 <p>&nbsp;</p>
 
