@@ -58,7 +58,7 @@ Caption One==Option1||Caption Two==option2||Caption Three==option3
 [[+sbs_groups_list]]
 </fixedpre></pre>
 
-<p>There are also two new properties: <fixedpre>&showInterests</fixedpre> and <fixedpre>&showGroups</fixedpre>. For backward compatibility the first is true by default and the second is false. In Version 1.2.0 and newer versions you can use these properties to show either section or both. See the section below on Controlling the Forms.</p>
+<p>There are also two new System Setting: <fixedpre>&sbs_show_interests</fixedpre> and <fixedpre>&sbs_show_groups</fixedpre>. For backward compatibility the first is true by default and the second is false. In Version 1.2.0 and newer versions you can use these properties to show either section or both. See the section below on Controlling the Forms.</p>
 </div>
 
 <h3>About Subscribe</h3>
@@ -112,14 +112,17 @@ or
 
 <h3>Managing the Forms</h3>
 
-<p>As of Version 1.2.0, you have multiple options for both the Register and Manage Preferences forms. You can set <fixedpre>&showInterests=`1`</fixedpre> to show the Interests List section and you can set <fixedpre>&showGroups=`1`</fixedpre> to show the User Groups section. You can show either or both.</p>
+<p>As of Version 1.2.0, you have multiple options for both the Register and Manage Preferences forms. You can set the <fixedpre>sbs_show_interests</fixedpre> System Setting to true to show the Interests List section and you can set the <fixedpre>sbs_show_groups</fixedpre> System Setting to true to show the User Groups section. You can show either or both.</p>
 
-<p>If every user will be assigned to the same User Group(s) with the same Role(s), let the Register snippet handle this. In the Register snippet tag of the <fixedpre>sbsRegisterFormTpl</fixedpre> chunk, use the <fixedpre>&usergroups</fixedpre> property:</p>
+<p>If every user will be assigned to the same User Group(s) with the same Role(s), let the Register snippet handle this. Leave the
+<fixedpre>sbs_show_groups</fixedpre> System Setting off and, in the Register snippet tag of the <fixedpre>sbsRegisterFormTpl</fixedpre> chunk, use the <fixedpre>&usergroups</fixedpre> property:</p>
 <pre><fixedpre>
 &usergroups=`usergroup1:role1,usergroup2:role2`
 </fixedpre></pre>
 
-<p>If, instead, you would like to let the user select the User Groups to which they want to be assigned, remove that property from the Register snippet and add <fixedpre>&showGroups=`1`</fixedpre> to the SubscribeForm snippet tag. <b>Important:</b> be sure to do this in *both* the <fixepre>sbsRegisterFormTpl</fixepre> and <fixedpre>sbsManagePrefsFormTpl</fixedpre> chunks.</p>
+<p>If, instead, you would like to let the user select the User Groups to which they want to be assigned, remove that property from the Register snippet and change the <fixedpre>sbs_show_groups</fixedpre> System Setting to true. Note that you can override the System Settings with properties in the snippet tag, but if you do that, be sure to do this in *both* the <fixepre>sbsRegisterFormTpl</fixepre> and <fixedpre>sbsManagePrefsFormTpl</fixedpre> chunks.</p>
+
+<p>If you want even finer control, you can create Context Settings or User Settings with the same names as the System Settings and have a different form for different Contexts or different Users. Context Settings override System Settings, User Settings override both, and properties in a snippet tag override everything else.</p>
 
 <p>The User Groups shown on the form come from the <fixedpre>sbsGroupsListTpl</fixedpre> chunk. They are in this form: </p>
 <pre><fixedpre>
@@ -369,6 +372,20 @@ If you want to modify any of the default Tpl chunks, duplicate them and change t
         <td>Comma separated list of groupname:role pairs</td>
         <td></td>
     </tr>
+
+    <tr>
+        <td>sbs_show_Interests</td>
+        <td>If true, the Interests section will be shown on the Manage Preferences and Register forms</td>
+        <td>true</td>
+    </tr>
+
+    <tr>
+        <td>sbs_show_groups</td>
+        <td>If true, the User Groups section will be shown on the Manage Preferences and Register forms</td>
+        <td>false</td>
+    </tr>
+
+
 </table>
 
 

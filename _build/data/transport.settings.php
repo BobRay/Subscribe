@@ -270,4 +270,24 @@ $systemSettings[24]->fromArray(array(
     'area' => 'subscribe',
 ), '', true, true);
 
+$systemSettings[25] = $modx->newObject('modSystemSetting');
+$systemSettings[25]->fromArray(array(
+    'id' => 25,
+    'key' => 'sbs_show_interests',
+    'value' => true,
+    'xtype' => 'combo-boolean',
+    'namespace' => 'subscribe',
+    'area' => 'subscribe',
+), '', true, true);
+
+$systemSettings[26] = $modx->newObject('modSystemSetting');
+$systemSettings[26]->fromArray(array(
+    'id' => 26,
+    'key' => 'sbs_show_groups',
+    'value' => false,
+    'xtype' => 'combo-boolean',
+    'namespace' => 'subscribe',
+    'area' => 'subscribe',
+), '', true, true);
+
 return $systemSettings;

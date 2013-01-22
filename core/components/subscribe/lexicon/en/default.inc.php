@@ -118,6 +118,13 @@ $_lang['setting_sbs_secret_key_desc'] = 'Subscribe Secret Key for unsubscribe li
 $_lang['setting_sbs_user_roles'] = 'Subscribe User Roles';
 $_lang['setting_sbs_user_roles_desc'] = 'User Roles for groups in the form: group1:Editor,group2:Publisher';
 
+$_lang['setting_sbs_show_interests'] = 'Show Interests Section';
+$_lang['setting_sbs_show_interests_desc'] = 'If true, the Manage Preferences and Register forms will show the User Interests section; default: true';
+
+$_lang['setting_sbs_show_groups'] = 'Show Groups Section';
+$_lang['setting_sbs_show_groups_desc'] = 'If true, the Manage Preferences and Register forms will show the User Groups section; default: false';
+
+
 
 
 

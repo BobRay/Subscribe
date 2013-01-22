@@ -91,8 +91,8 @@ class CheckBoxes{
     public function init($userObj, $profile, $saveOnly = false, $markCurrent = false) {
         $this->userObj = $userObj;
         $this->userProfile = $profile;
-        $this->showInterests = $this->modx->getOption('showInterests', $this->props, true);
-        $this->showGroups = $this->modx->getOption('showGroups', $this->props, false);
+        $this->showInterests = $this->modx->getOption('sbs_show_interests', $this->props, true);
+        $this->showGroups = $this->modx->getOption('sbs_show_groups', $this->props, false);
         $useCommentField = $this->modx->getOption('sbs_use_comment_field', $this->props, true);
         $this->method = $useCommentField
             ? 'comment'
