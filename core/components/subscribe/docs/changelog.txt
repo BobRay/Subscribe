@@ -5,6 +5,7 @@ Subscribe 1.2.0
 Added option to manage user group membership
 Register/Manage prefs form captions converted to lex strings
 Code cleanup
+Minor bug fixes
 
 
 Subscribe 1.1.4
