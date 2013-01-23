@@ -70,6 +70,7 @@ function setSystemSettings(&$modx) {
     /* @var $modx modX */
     /* @var $parent modResource */
     $parent = $modx->getObject('modResource', array('alias' => 'subscribe-folder'));
+    $parentId = 0;
     if ($parent) {
         $parentId = $parent->get('id');
     } else {
@@ -93,7 +94,7 @@ function setSystemSettings(&$modx) {
         if (! $setting) {
             $modx->log(MODX::LOG_LEVEL_ERROR, 'Failed to retrieve System Setting with key: ' . $key);
         }
-        if ($resObj && $setting) {
+        if ($resObj && $setting && $parentId) {
             $resObj->set('parent',$parentId);
             $resObj->save();
             $setting->set('value', $resObj->get('id'));
