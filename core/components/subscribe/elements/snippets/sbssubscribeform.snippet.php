@@ -85,7 +85,7 @@ if ($sp['form'] == 'managePrefs') {
     }
 }
 $assetsUrl = $modx->getOption('subscribe.assets_url', $sp, MODX_ASSETS_URL);
-$cssPath = $modx->getOption('sbsCssPath',$sp, $assetsUrl) . 'css/';
+$cssPath = $modx->getOption('sbsCssPath',$sp, $assetsUrl  . '/components/subscribe/css/');
 $cssFile = $modx->getOption('sbsCssFile', $sp, null);
 $cssFile = empty($cssFile) ? 'subscribe.css' : $cssFile;
 /* load CSS file unless &sbsCssPath or &sbsCssFile is set to 'none' */
