@@ -115,11 +115,6 @@ $assetsUrl = $modx->getOption('subscribe.assets_url', $sp, MODX_ASSETS_URL . 'co
 $cssPath = $modx->getOption('sbsCssPath',$sp, $assetsUrl . 'css/' ) ;
 $cssFile = $modx->getOption('sbsCssFile', $sp, null);
 $cssFile = empty($cssFile) ? 'subscribe.css' : $cssFile;
-/* load CSS file unless &sbsCssPath or &sbsCssFile is set to 'none' */
-if ($cssFile != 'none') {
-    $modx->regClientCSS($cssPath . $cssFile);
-}
-
 
 /* by default, don't show on these pages */
 $noShows = array(
@@ -168,6 +163,10 @@ if (in_array($docId, $noShows)) {
     /* maintains page layout - remove if necessary */
     $output = '<br />';
 } else {
+    /* load CSS file unless &sbsCssPath or &sbsCssFile is set to 'none' */
+    if ($cssFile != 'none') {
+        $modx->regClientCSS($cssPath . $cssFile);
+    }
     if ($loggedIn) {
         $output = $modx->getChunk($loggedInDisplayTpl);
     } else {
