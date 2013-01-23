@@ -328,12 +328,15 @@ class CheckBoxes{
      * @return bool - true on success; false on failure
      */
     public function saveUserPrefs(){
-
-        if ( ((!isset($_POST[$this->fieldName]))
-                || empty($_POST[$this->fieldName]))
-            && ((!isset($_POST[$this->groupsFieldName]))
-                || empty($_POST[$this->groupsFieldName]))) {
-            return false; /* Nothing to save */
+        if ($this->showInterests) {
+            if ( (!isset($_POST[$this->fieldName])) || empty($_POST[$this->fieldName]) ) {
+                return false; /* nothing to save */
+            }
+        }
+        if ($this->showGroups) {
+            if ((!isset($_POST[$this->groupsFieldName])) || empty($_POST[$this->groupsFieldName])) {
+                return false; /* Nothing to save */
+            }
         }
         /* now it's a genuine repost */
         $success = true;

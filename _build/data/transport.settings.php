@@ -304,7 +304,7 @@ $systemSettings[28] = $modx->newObject('modSystemSetting');
 $systemSettings[28]->fromArray(array(
     'id' => 28,
     'key' => 'sbs_field_name',
-    'value' => '',
+    'value' => 'interests',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
     'area' => 'subscribe',
@@ -314,7 +314,7 @@ $systemSettings[29] = $modx->newObject('modSystemSetting');
 $systemSettings[29]->fromArray(array(
     'id' => 29,
     'key' => 'sbs_groups_field_name',
-    'value' => '',
+    'value' => 'groups',
     'xtype' => 'textfield',
     'namespace' => 'subscribe',
     'area' => 'subscribe',
