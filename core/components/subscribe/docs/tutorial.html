@@ -1,4 +1,4 @@
-<p xmlns="http://www.w3.org/1999/html">Subscribe provides a double-opt-in User registration system. It uses some parts of the Login package, so be sure the Login package is installed before using Subscribe.</p>
+<p>Subscribe provides a double-opt-in User registration system. It uses some parts of the Login package, so be sure the Login package is installed before using Subscribe.</p>
 
 <p>(Jump to <a href="[[~[[*id]]]]#system_settings_table">System Settings Table</a>.)</p>
 
@@ -68,7 +68,9 @@ Caption One==Option1||Caption Two==option2||Caption Three==option3
 <div class="box">
     <p><b>Upgrading from Version 1.1.4</b></p>
 
-<p>Subscribe Version 1.1.3 added new users to the Subscribers User Group with a Role of Subscriber. As of Version 1.2.0, Users can be assigned to multiple groups with multiple roles and can (optionally) control their own user group membership on the Manage Preferences page. See the sections below on managing groups and creating the groups and roles.</p>
+<p>Subscribe Version 1.1.4 added new users to the Subscribers User Group with a Role of Subscriber. As of Version 1.2.0, Users can be assigned to multiple groups with multiple roles and can (optionally) control their own user group membership on the Manage Preferences page. See the sections below on managing groups and creating the groups and roles.</p>
+
+<p>Letting users manage their User Group memberships is optional. If you have a working version of Subscribe and want to keep doing what you're doing, the new version should work as the old one did.</p>
 
 <p><b>Be sure that all User Groups and Roles exist before anyone registers.</b></p>
 
@@ -86,9 +88,10 @@ Caption One==Option1||Caption Two==option2||Caption Three==option3
 
 <p>They are now the same for both chunks</p>
 
-<p>There are several new System Setting: <fixedpre>&sbs_show_interests</fixedpre> and <fixedpre>&sbs_show_groups</fixedpre> control whether the Interests and Groups sections of the Register and Manage Preferences forms are displayed. For backward compatibility the first is true by default and the second is false. In Version 1.2.0 and newer versions you can use these properties to show either section or both. See the section below on Controlling the Forms.</p>
+<p>There are several new System Settings. The <fixedpre>&sbs_show_interests</fixedpre> and <fixedpre>&sbs_show_groups</fixedpre> settings control whether the Interests and Groups sections of the Register and Manage Preferences forms are displayed. For backward compatibility the first is true by default and the second is false. In Version 1.2.0 and newer versions you can use these properties to show either section or both. See the section below on Controlling the Forms.</p>
 
 <p>There is also a <fixedpre>&userRoles</fixedpre> System Setting (see below) to control the roles users will get in their User Groups.</p>
+
 
 <p>Note: If you have any Subscribe System Settings, chunks, or snippets with the prefix 'sm' you can remove them. They are left over from pre-1.1.4 versions and are no longer used. They caused conflicts with another extra.</p>
 
@@ -155,7 +158,7 @@ snippet tag in your template(s).</p></div>
 &usergroups=`usergroup1:role1,usergroup2:role2`
 </fixedpre></pre>
 
-<p>If, instead, you would like to let the user select the User Groups to which they want to be assigned, remove that property from the Register snippet and change the <fixedpre>sbs_show_groups</fixedpre> System Setting to true. Note that you can override the System Settings with properties in the snippet tag, but if you do that, be sure to do this in *both* the <fixepre>sbsRegisterFormTpl</fixepre> and <fixedpre>sbsManagePrefsFormTpl</fixedpre> chunks.</p>
+<p>If, instead, you would like to let the user select the User Groups to which they want to be assigned, remove that property from the Register snippet and change the <fixedpre>sbs_show_groups</fixedpre> System Setting to true. Note that you can override the System Settings with properties in the snippet tag, but if you do that, be sure to do this in *both* the <fixedpre>sbsRegisterFormTpl</fixedpre> and <fixedpre>sbsManagePrefsFormTpl</fixedpre> chunks.</p>
 
 <p>If you want even finer control, you can create Context Settings or User Settings with the same names as the System Settings and have a different form for different Contexts or different Users. Context Settings override System Settings, User Settings override both, and properties in a snippet tag override everything else.</p>
 
@@ -177,9 +180,9 @@ group1:role1,group2:role2
         
 <h3>Subscribe System Settings</h3>
         
-<p>The Subscribe System Settings containing page IDs will be set automatically during the install, but you may want to check to make sure they are set correctly, especially if you are upgrading from a previous version. Go to System | System Settings and select the &quot;subscribe&quot; namespace in the dropdown menu at the top of the grid (the &quot;core&quot; namespace will be showing by default). Note that the &quot;subscribe&quot; namespace may be on page two of the list.</p>
+<p>The Subscribe System Settings containing page IDs will be set automatically during the install, but you may want to check to make sure they are set correctly, especially if you are upgrading from a previous version. Go to System | System Settings and select the &quot;subscribe&quot; namespace in the dropdown menu at the top of the grid (the &quot;core&quot; namespace will be showing by default). Note that the &quot;subscribe&quot; namespace may be on page two of the list. You can click on the plus sign next to a System Setting to see a description for the setting.</p>
 
-<p>In the current version, rather than setting properties in multiple places, you only need to set the basic System Settings and they'll be used by all parts of the subscribe package. This means you shouldn't need to modify any tags in the chunks. The Settings can be overridden by properties in the Subscribe snippet tags, but you should rarely, if ever, need to do that.</p>
+<p>In the current version, rather than setting properties in multiple places, you only need to set the basic System Settings and they'll be used by all parts of the subscribe package. This means you shouldn't need to modify any tags in the Chunks or Resources. The Settings can be overridden by properties in the various Subscribe tags, but you should rarely, if ever, need to do that.</p>
 
 
 <h3>Testing</h3>
