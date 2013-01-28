@@ -62,15 +62,9 @@ $url = $modx->makeUrl($managePrefsId, "", "", "full");
 $encodedEmail = $_GET['ue'];
 $key = rawurlencode($_GET['uk']);
 
-// echo "<br />KEY FROM GET: " . $key;
-// echo "<br />Encoded Email: " . $encodedEmail;
-
 if (empty ($encodedEmail) || empty($key)) {
     $modx->sendUnauthorizedPage();
 }
-session_write_close();
-echo '<p>Searching Database . . .                                                                                                                                                                                                                                                                                                                                                                                                                        &nbsp;';
-flush();
 
 $userData = $unSub->getUserData($encodedEmail, $key);
 
