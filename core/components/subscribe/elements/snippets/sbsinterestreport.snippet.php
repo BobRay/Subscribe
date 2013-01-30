@@ -23,7 +23,17 @@ function parseOptions($chunk) {
 $output = '';
 $props =& $scriptProperties;
 
-$output .= '<h3>Total Active Users: ' . $modx->getCount('modUser', array('active' => '1')) . '</h3>';
+/* load language strings */
+$language = !empty($scriptProperties['language'])
+    ? $scriptProperties['language']
+    : $modx->getOption('cultureKey', null, $modx->getOption('manager_language', null, 'en'));
+$language = empty($language)
+    ? 'en'
+    : $language;
+$modx->lexicon->load($language . ':subscribe:default');
+
+
+$output .= '<h3>' . $modx->lexicon('sbs_total_users_header') . ': ' . $modx->getCount('modUser', array('active' => '1')) . '</h3>';
 
 $users = $modx->getIterator('modUser', array('active' => '1'));
 
@@ -37,14 +47,14 @@ if ($showInterests) {
     $tpl = $modx->getChunk($chunkName);
     $possibleInterests = array();
     if (empty($tpl)) {
-        return 'No Interest list chunk';
+        return $modx->lexicon('sbs_no_interest_tpl_error');
     } else {
         $possibleInterests = parseOptions($tpl);
     }
 
     $useCommentField = $modx->getOption('sbs_use_comment_field', $props, true);
     $extendedField = $modx->getOption('sbs_extended_field', $props, 'interests');
-    $output .= '<h3>User Interests</h3>';
+    $output .= '<h3>' . $modx->lexicon('sbs_interests_section_header') . '</h3>';
     $results = array();
     foreach ($possibleInterests as $caption => $key) {
         $results[$caption] = 0;
@@ -71,7 +81,7 @@ if ($showInterests) {
         }
     }
     $output .= "\n" . '<table border="2" cellpadding="10px" bgcolor="#eeeeee">' . "\n";
-    $output .= "\n    <tr><th>Topic</th><th>Users</th></tr>";
+    $output .= "\n    <tr><th>" .  $modx->lexicon('sbs_topic_header') . '</th><th>' . $modx->lexicon('sbs_user_count_header') .  '</th></tr>';
     foreach($results as $cap => $total) {
         $output .= "\n    <tr><td>$cap</td><td>$total</td></tr>";
 
@@ -95,7 +105,7 @@ if ($showGroups) {
     foreach ($possibleGroups as $caption => $key) {
         $results[$caption] = 0;
     }
-    $output .= '<br /><br /><h3>User Groups</h3>';
+    $output .= '<br /><br /><h3>' . $modx->lexicon('sbs_groups_section_header') . '</h3>';
 
     foreach($users as $user) {
         foreach ($possibleGroups as $caption => $key) {
@@ -105,7 +115,7 @@ if ($showGroups) {
         }
     }
     $output .= "\n" . '<table border="2" cellpadding="10px" bgcolor="#eeeeee">' . "\n";
-    $output .= "\n    <tr><th>Group</th><th>Users</th></tr>";
+    $output .= "\n    <tr><th>" . $modx->lexicon('sbs_group_header') . '</th><th>' . $modx->lexicon('sbs_user_count_header') . '</th></tr>';
     foreach ($results as $cap => $total) {
         $output .= "\n    <tr><td>$cap</td><td>$total</td></tr>";
 

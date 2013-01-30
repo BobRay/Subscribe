@@ -29,6 +29,17 @@
 $_lang['subscribe'] = 'Subscribe';
 $_lang['subscribe.menu_desc'] = 'Subscribe description';
 
+/* Interest Report strings */
+$_lang['sbs_total_users_header'] = 'Total Active Users';
+$_lang['sbs_interests_section_header'] = 'Interests';
+$_lang['sbs_topic_header'] = 'Topic';
+$_lang['sbs_user_count_header'] = 'Users';
+$_lang['sbs_groups_section_header'] = 'User Groups';
+$_lang['sbs_group_header'] = 'Groups';
+$_lang['sbs_no_interest_tpl_error'] = 'No Interest list chunk found';
+
+
+
 
 /* Request to subscribe strings */
 
