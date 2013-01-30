@@ -22,7 +22,7 @@ $snippets[2] = $modx->newObject('modSnippet');
 $snippets[2] ->fromArray(array(
     'id' => 2,
     'name' => 'SubscribeForm',
-    'description' => "",
+    'description' => "Displays the Register form and the Manage Preferences form",
     'snippet' => getSnippetContent($sources['source_core'].'/elements/snippets/sbssubscribeform.snippet.php'),
     'properties' => '',
 ),'',true,true);
@@ -31,11 +31,19 @@ $snippets[3] = $modx->newObject('modSnippet');
 $snippets[3]->fromArray(array(
      'id' => 3,
      'name' => 'Unsubscribe',
-     'description' => "",
+     'description' => "Processes Unsubscribe requests",
      'snippet' => getSnippetContent($sources['source_core'] . '/elements/snippets/sbsunsubscribe.snippet.php'),
      'properties' => '',
 ), '', true, true);
 
+$snippets[4] = $modx->newObject('modSnippet');
+$snippets[4]->fromArray(array(
+     'id' => 4,
+     'name' => 'InterestReport',
+     'description' => "Displays a table showing the user-count for interest and (optionally) groups",
+     'snippet' => getSnippetContent($sources['source_core'] . '/elements/snippets/sbsinterestreport.snippet.php'),
+     'properties' => '',
+), '', true, true);
 
 
 return $snippets;

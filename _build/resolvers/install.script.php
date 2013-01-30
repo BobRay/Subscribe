@@ -71,6 +71,13 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
             $folder->save();
         }
 
+        /* Set parent of Interest Report to Subscribe folder */
+        $interestReport = $modx->getObject('modResource', array ('alias' => 'interest-report'));
+        if ($interestReport) {
+            $interestReport->set('parent', $folderId);
+            $interestReport->save();
+        }
+
         /* look for a login page and set the System Setting for it. */
         /* @var $loginPage modResource */
         $loginPage = $modx->getObject('modResource',array('alias' => 'login'));

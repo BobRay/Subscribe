@@ -297,5 +297,42 @@ $resources[7]->fromArray(array(
 
 ), '', true, true);
 
+$resources[8] = $modx->newObject('modResource');
+$resources[8]->fromArray(array(
+    'id' => 8,
+    'type' => 'document',
+    'contentType' => 'text/html',
+    'pagetitle' => 'Interest Report',
+    'longtitle' => '',
+    'description' => '',
+    'alias' => 'interest-report',
+    'link_attributes' => '',
+    'published' => '0',
+    'isfolder' => '0',
+    'introtext' => '',
+    'richtext' => '0',
+    'menuindex' => '5',
+    'searchable' => '0',
+    'cacheable' => '1',
+    'createdby' => '1',
+    'editedby' => '1',
+    'deleted' => '0',
+    'deletedon' => '0',
+    'deletedby' => '0',
+    'menutitle' => '',
+    'donthit' => '0',
+    'privateweb' => '0',
+    'privatemgr' => '0',
+    'content_dispo' => '0',
+    'hidemenu' => '1',
+    'class_key' => 'modDocument',
+    'context_key' => 'web',
+    'content_type' => '1',
+    'hide_children_in_tree' => '0',
+    'show_in_tree' => '1',
+    'properties' => '',
+    'content' => '[[!InterestList]]',
+
+    ), '', true, true);
 
 return $resources;
