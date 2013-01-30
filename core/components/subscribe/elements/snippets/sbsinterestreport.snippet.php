@@ -26,7 +26,7 @@ $props =& $scriptProperties;
 /* load language strings */
 $language = !empty($scriptProperties['language'])
     ? $scriptProperties['language']
-    : $modx->getOption('cultureKey', null, $modx->getOption('manager_language', null, 'en'));
+    : $modx->getOption('cultureKey', $props, $modx->getOption('manager_language', null, 'en'));
 $language = empty($language)
     ? 'en'
     : $language;
@@ -38,8 +38,8 @@ $output .= '<h3>' . $modx->lexicon('sbs_total_users_header') . ': ' . $modx->get
 $users = $modx->getIterator('modUser', array('active' => '1'));
 
 
-$showInterests = $modx->getOption('sbs_show_interests');
-$showGroups = $modx->getOption('sbs_show_groups');
+$showInterests = $modx->getOption('sbs_show_interests', $props, true);
+$showGroups = $modx->getOption('sbs_show_groups', $props, false);
 
 
 if ($showInterests) {
