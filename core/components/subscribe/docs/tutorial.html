@@ -276,7 +276,7 @@ If you want to modify any of the default Tpl chunks, duplicate them and change t
 <p>As of Version 1.2.0, Subscribe has an Unsubscribe class that can create a secure unsubscribe link to include in emails. This feature is for use by the Notify and EmailResource extras. It does not affect the operation of Subscribe, but the code is there if you want to roll your own system to provide such a link in bulk emails.</p>
 
 <h3>Interest Report</h3>
-<p>As of Version 1.2.0, Subscribe will display a table showing the active user count for interest tags, User Groups, or both. To see the report, just view the &quot;Interest Report&quot; Resource in the Subscribe folder. The snippet that produces the report uses the Subscribe System Settings to decide what to show. You can override the settings with properties in the InterestList snippet tag on the
+<p>As of Version 1.2.1, Subscribe will display a table showing the active user count for interest tags, User Groups, or both. To see the report, just view the &quot;Interest Report&quot; Resource in the Subscribe folder. The snippet that produces the report uses the Subscribe System Settings to decide what to show. You can override the settings with properties in the InterestReport snippet tag on the
 &quot;Interest Report&quot; page. Usually, this won't be necessary, but if you want to show User Group membership and don't allow users to manage their groups, you can use <fixedpre>
     &sbs_show_group=`1`</fixedpre> in the tag and put the groups in the <fixedpre>sbsGroupListTpl</fixedpre> chunk. Note that the groups don't have to have anything to do with Subscribe, so you can use this as a general report for User Group membership.</p>
 

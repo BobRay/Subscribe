@@ -1,5 +1,10 @@
 Changelog for Subscribe
 
+Subscribe 1.2.1
+---------------
+Added Interest Report snippet and resource
+Minor bug fixes and sanity checks
+
 Subscribe 1.2.0
 ---------------
 Added option to manage user group membership
