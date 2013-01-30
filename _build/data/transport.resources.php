@@ -331,7 +331,7 @@ $resources[8]->fromArray(array(
     'hide_children_in_tree' => '0',
     'show_in_tree' => '1',
     'properties' => '',
-    'content' => '[[!InterestList]]',
+    'content' => '[[!InterestReport]]',
 
     ), '', true, true);
 
