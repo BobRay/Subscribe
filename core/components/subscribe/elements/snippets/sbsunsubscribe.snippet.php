@@ -76,8 +76,15 @@ if (!empty ($userData)) {
     $modx->getUser();
     $contexts = $modx->getOption('sbsContexts', $sp, $modx->context->get('key'));
     $contexts = explode(',', $contexts);
+    /* no auto login to 'mgr' context */
+    if (isset($contexts['mgr'])) {
+        unset ($contexts['mgr']);
+    }
     foreach ($contexts as $ctx) {
-        $modx->user->addSessionContext($ctx);
+        $ctx = trim($ctx);
+        if (!empty ($ctx)) {
+            $modx->user->addSessionContext($ctx);
+        }
     }
     $modx->sendRedirect($url);
 } else {

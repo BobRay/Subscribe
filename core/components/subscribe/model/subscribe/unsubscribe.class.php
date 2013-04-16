@@ -66,7 +66,7 @@ class Unsubscribe {
         } else {
             $content = $chunk->getContent();
         }
-        $content .= $message;
+        $content .= "\n" . $message;
         $chunk->setContent($content);
         $chunk->save();
     }
@@ -103,14 +103,14 @@ class Unsubscribe {
             /* use truncated email if fullname is empty */
             $fullName = substr($email, 0, -1);
         }
-        $this->my_debug('In EncodeKey');
-        $this->my_debug('Email: ' . $email);
-        $this->my_debug('Full Name: ' . $fullName);
+        //$this->my_debug('In EncodeKey');
+        //$this->my_debug('Email: ' . $email);
+        //$this->my_debug('Full Name: ' . $fullName);
         /* ID of the profile, not the user - useless if cracked */
         $ik = $profile->get('id');
-        $this->my_debug('IK: ' . $ik);
+        //$this->my_debug('IK: ' . $ik);
         $hash = $this->getHash($this->modx, $ik . $this->secretKey . $email . $fullName, $email);
-        $this->my_debug('KEY: ' . $hash);
+        //$this->my_debug('KEY: ' . $hash);
         return $this->getHash($this->modx, $ik . $this->secretKey . $email . $fullName, $email);
     }
 
