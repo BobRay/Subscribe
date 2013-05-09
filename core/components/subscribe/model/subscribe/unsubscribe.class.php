@@ -103,14 +103,9 @@ class Unsubscribe {
             /* use truncated email if fullname is empty */
             $fullName = substr($email, 0, -1);
         }
-        //$this->my_debug('In EncodeKey');
-        //$this->my_debug('Email: ' . $email);
-        //$this->my_debug('Full Name: ' . $fullName);
         /* ID of the profile, not the user - useless if cracked */
         $ik = $profile->get('id');
-        //$this->my_debug('IK: ' . $ik);
-        $hash = $this->getHash($this->modx, $ik . $this->secretKey . $email . $fullName, $email);
-        //$this->my_debug('KEY: ' . $hash);
+
         return $this->getHash($this->modx, $ik . $this->secretKey . $email . $fullName, $email);
     }
 
@@ -185,7 +180,7 @@ class Unsubscribe {
         $modx->getService('hashing', 'hashing.modHashing');
         $hash = $modx->hashing->getHash('', $this->method)->hash($key, $options);
         /* $_GET would mangle these if we didn't replace them */
-        $hash = $data = str_replace(array('+','/','='),
+        $hash = str_replace(array('+','/','='),
             array('-','_',), $hash);
         return rawurlencode($hash);
     }
