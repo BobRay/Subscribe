@@ -378,7 +378,7 @@ class CheckBoxes{
                 if (! $this->userObj->isMember($group)) {
                     $role = $this->userRoles[$group];
                     if (!$this->userObj->joinGroup($group, $role))
-                        $this->modx->log(MODX::LOG_LEVEL_ERROR,'[Subscribe] Failed to Join Group: ' . $group . 'with role: ' . $role);
+                        $this->modx->log(modX::LOG_LEVEL_ERROR,'[Subscribe] Failed to Join Group: ' . $group . 'with role: ' . $role);
                 }
             } else {
                 if ($this->userObj->isMember($group)) {

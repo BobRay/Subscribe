@@ -74,7 +74,7 @@ function setSystemSettings(&$modx) {
     if ($parent) {
         $parentId = $parent->get('id');
     } else {
-        $modx->log(MODX::LOG_LEVEL_ERROR, 'Failed to retrieve Parent with alias: subscribe-folder');
+        $modx->log(modX::LOG_LEVEL_ERROR, 'Failed to retrieve Parent with alias: subscribe-folder');
     }
     $settings = array(
         'sbs_login_page_id' =>'login',
@@ -89,10 +89,10 @@ function setSystemSettings(&$modx) {
         $resObj = $modx->getObject('modResource', array('alias' => $value));
         $setting = $modx->getObject('modSystemSetting', array('key' => $key));
         if (! $resObj) {
-            $modx->log(MODX::LOG_LEVEL_ERROR, 'Failed to retrieve Resource with alias: ' . $value);
+            $modx->log(modX::LOG_LEVEL_ERROR, 'Failed to retrieve Resource with alias: ' . $value);
         }
         if (! $setting) {
-            $modx->log(MODX::LOG_LEVEL_ERROR, 'Failed to retrieve System Setting with key: ' . $key);
+            $modx->log(modX::LOG_LEVEL_ERROR, 'Failed to retrieve System Setting with key: ' . $key);
         }
         if ($resObj && $setting && $parentId) {
             $resObj->set('parent',$parentId);
