@@ -1,5 +1,12 @@
 Changelog for Subscribe
 
+Subscribe 1.2.2
+---------------
+Added security features
+Allow setting JS file to 'none'
+Update docs
+Minor bug fixes
+
 Subscribe 1.2.1
 ---------------
 Added Interest Report snippet and resource
