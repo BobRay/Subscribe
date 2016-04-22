@@ -110,7 +110,9 @@ $jsPath = $modx->getOption('sbsJsPath',$sp, $assetsUrl . 'components/subscribe/j
 $jsFile = $modx->getOption('sbsJsFile', $sp, null);
 $jsFile = empty($jsFile) ? 'subscribe-min.js' : $jsFile;
 
-$modx->regClientStartupScript($jsPath . $jsFile);
+if ($jsFile != 'none' && $jsFile != 'None') {
+    $modx->regClientStartupScript($jsPath . $jsFile);
+}
 
 $corePath = $modx->getOption('subscribe.core_path',$sp,$modx->getOption('core_path',null,MODX_CORE_PATH).'components/subscribe/');
 require_once($corePath . 'model/subscribe/checkboxes.class.php');
