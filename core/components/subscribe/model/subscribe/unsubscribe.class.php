@@ -3,7 +3,7 @@
 /**
  * Unsubscribe class file
  *
- * Copyright 2013 by BobRay <http://bobsguides.com>
+ * Copyright 2013-2017 Bob Ray <https://bobsguides.com>
  * Created on 01/10/2013
  *
  * Subscribe is free software; you can redistribute it and/or modify it under the
@@ -137,15 +137,19 @@ class Unsubscribe {
      * Creates a URL for use in unsubscribe/manage prefs link in emails.
      *
      * @param $url string - URL of page containing the unsubscribe snippet tag
-     * @param $encodedEmail string - email address encoded with encodeEmail()
-     * @param $key string - key created by encodeKey()
+     * @param $profile modUserProfile - User profile object
      * @return string - full unsubscribe/manage prefs URL for email message
      */
     public function createUrl($url, $profile) {
         /* @var $profile modUserProfile */
+        $this->modx->log(modX::LOG_LEVEL_ERROR, 'Encoding Email');
         $encodedEmail = $this->encodeEmail($profile->get('email'));
+        $this->modx->log(modX::LOG_LEVEL_ERROR, 'Email encoded');;
+        $this->modx->log(modX::LOG_LEVEL_ERROR, 'Encoding Key');
         $key = $this->encodeKey($profile);
+        $this->modx->log(modX::LOG_LEVEL_ERROR, 'Key encoded');
         return $url . '?ue=' . $encodedEmail . '&uk=' . $key;
+
     }
 
     /**

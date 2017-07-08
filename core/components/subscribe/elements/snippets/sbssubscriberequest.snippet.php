@@ -1,7 +1,7 @@
 <?php
 /** 
  * Subscribe
- * Copyright 2012 Bob Ray <http://bobsguides/com>
+ * Copyright 2012-2017 Bob Ray <https://bobsguides/com>
  *
  * Subscribe is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -17,7 +17,7 @@
  * Suite 330, Boston, MA 02111-1307 USA
  *
  * @package subscribe
- * @author Bob Ray <http://bobsguides/com>
+ * @author Bob Ray <https://bobsguides/com>
  *
  * @version Version 1.0.0 Beta-1
  * 3/3/12

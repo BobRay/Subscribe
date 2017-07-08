@@ -2,7 +2,7 @@
 /**
  * ExportChunks
  *
- * Copyright 2012 by Bob Ray <http://bobsguides.com>
+ * Copyright 2012-2017 Bob Ray <https://bobsguides.com>
  *
  * @author Bob Ray
  * 3/27/12
@@ -23,7 +23,7 @@
  * @package exportchunks
  */
 /**
- * MODx ExportObjects Snippet
+ * MODX ExportObjects Snippet
  *
  * Description Extracts objects from MODX install to build files for MyComponent
  *
@@ -88,7 +88,7 @@ if (!defined(MODX_CORE_PATH)) {
 $scriptProperties = array(
     'basePath' => MODX_ASSETS_PATH . 'mycomponents/test/',
     'authorName' => 'Bob Ray',
-    'authorEmail' => '<http://bobsguides.com>',
+    'authorEmail' => '<https://bobsguides.com>',
     'category' => 'MyComponent',
     'packageName' => 'Test',
     'dryRun' => '0',

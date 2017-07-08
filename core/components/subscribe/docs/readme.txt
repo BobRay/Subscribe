@@ -1,8 +1,9 @@
 --------------------
 Subscribe
 --------------------
-Author: Bob Ray <http://bobsguides/com>
+Author: Bob Ray <https://bobsguides/com>
+Copyright 2013-2017 Bob Ray <https://bobsguides.com>
 
-Official Documentation: http://bobsguides.com/subscribe-tutorial.html
+Official Documentation: https://bobsguides.com/subscribe-tutorial.html
 Bugs and Feature Requests: https://github.com/BobRay/Subscribe
-Questions: http://forums.modx.com
+Questions: https://forums.modx.com

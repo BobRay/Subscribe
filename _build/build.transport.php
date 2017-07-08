@@ -2,7 +2,7 @@
 /**
  * Subscribe Build Script
  *
- * Copyright 2012 Bob Ray <http://bobsguides/com>
+ * Copyright 2012-2017 Bob Ray <https://bobsguides/com>
  *
  * Subscribe is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -61,8 +61,8 @@ $hasResources = true;
 $hasValidator = false; /* Run a validator before installing anything */
 $hasResolver = true; /* Run a resolver after installing everything */
 $hasSetupOptions = false; /* HTML/PHP script to interact with user */
-$hasMenu = false; /* Add items to the MODx Top Menu */
-$hasSettings = true; /* Add new MODx System Settings */
+$hasMenu = false; /* Add items to the MODX Top Menu */
+$hasSettings = true; /* Add new MODX System Settings */
 $minifyJs = true;
 /* Note: TVs are connected to their templates in the script resolver
  * (see _build/data/resolvers/install.script.php)
@@ -116,7 +116,7 @@ $sources= array (
 );
 unset($root);
 
-/* Instantiate MODx -- if this require fails, check your
+/* Instantiate MODX -- if this require fails, check your
  * _build/build.config.php file
  */
 require_once $sources['build'].'build.config.php';

@@ -3,8 +3,8 @@
 /**
  * Subscribe resolver script - runs on install.
  *
- * Copyright 2012 Bob Ray <http://bobsguides/com>
- * @author Bob Ray <http://bobsguides/com>
+ * Copyright 2012-2017 Bob Ray <https://bobsguides/com>
+ * @author Bob Ray <https://bobsguides/com>
  * 3/3/12
  *
  * Subscribe is free software; you can redistribute it and/or modify it

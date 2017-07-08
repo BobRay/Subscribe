@@ -20,7 +20,7 @@
  * @package subscribe
  */
 /**
- * MODx CheckBoxes Class
+ * MODX CheckBoxes Class
  *
  * @package subscribe
  */
@@ -413,7 +413,7 @@ class CheckBoxes{
             $post = preg_replace("/<iframe(.*)<\/iframe>/i",'',$post);
             $post = preg_replace("/<iframe(.*)\/>/i",'',$post);
             $post = strip_tags($post);
-            /* replace MODx tags with entities */
+            /* replace MODX tags with entities */
             $post = str_replace(array('[',']'),array('&#91;','&#93;'),$post);
         }
 
