@@ -48,7 +48,7 @@ $_lang['sbs_current_groups_caption'] = '<p>Deine aktuellen Gruppen</p>';
 $_lang['sbs_submit_button_text'] = 'Senden';
 $_lang['sbs_unsubscribe'] = 'ABMELDEN';
 $_lang['sbs_unsubscribe_success_message'] = '<h3>Abmeldung erfolgreich</h3>
-<p>Deine Einstellungen, Benutzername und Passwort wurden gespeichert und du kannst dich jederzeit erneut anmelden, indem du einfach per Kontaktformular eine Reaktivierung anfragst.</p>';
+<p>Deine Einstellungen, Benutzername und Passwort wurden gespeichert und du kannst dich jederzeit erneut anmelden. Sende uns dazu einfach per Kontaktformular eine Anfrage zur Reaktivierung.</p>';
 $_lang['sbs_unsubscribe_failure_message'] = '<h3>Sorry, die Abmeldung ist fehlgeschlagen</h3>';
 $_lang['sbs_anon_admin_error'] = '<h3>(Anonymer) Benutzer oder Administrator kann nicht gekündigt werden</h3>';
 $_lang['sbs_change_prefs_success_message'] = '<h3>Einstellungen geändert</h3>';
