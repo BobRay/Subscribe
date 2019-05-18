@@ -33,9 +33,7 @@
 class Unsubscribe {
     /** @var $modx modX */
     public $modx;
-    /**
-     * @var
-     */
+    public $debug = false;
     protected $secretKey;
     protected $method;
     /** @var $props array */
@@ -49,6 +47,7 @@ class Unsubscribe {
     public function init() {
         $this->secretKey = $this->modx->getOption('sbs_secret_key', null,'5QLKlHLJWEFlCNWMQktO4eSwZHZZ87U3i2U%2B9VNq2bw%3D' );
         $this->method = $this->modx->getOption('method', $this->props, 'hashing.modPBKDF2');
+        $this->my_debug('', true);
 
     }
 
@@ -107,15 +106,17 @@ class Unsubscribe {
         $ik = $profile->get('id');
         $hash = $this->getHash($this->modx, $ik . $this->secretKey . $email . $fullName, $email);
 
-        // $this->my_debug('In EncodeKey');
-        // $this->my_debug('Email: ' . $email);
-        // $this->my_debug('Full Name: ' . $fullName);
+        if ($this->debug) {
+            $this->my_debug('In EncodeKey');
+            $this->my_debug('Email: ' . $email);
+            $this->my_debug('Full Name: ' . $fullName);
 
-        // $this->my_debug('IK: ' . $ik);
+            $this->my_debug('IK: ' . $ik);
 
-        // $this->my_debug('KEY: ' . $hash);
-        // $this->my_debug('METHOD: ' . $this->method);
-        // $this->my_debug('Secret Key: ' . $this->secretKey);
+            $this->my_debug('KEY: ' . $hash);
+            $this->my_debug('METHOD: ' . $this->method);
+            $this->my_debug('Secret Key: ' . $this->secretKey);
+        }
 
         return $hash;
     }
