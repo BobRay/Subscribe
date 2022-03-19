@@ -520,7 +520,7 @@ $components = array(
      *
      * Set to array() if there are no classes. */
     'classes' => array(
-        'CheckBox' => 'subscribe:checkbox',
+        'CheckBoxes' => 'subscribe:checkboxes',
         'Unsubscribe' => 'subscribe:unsubscribe',
     ),
 
