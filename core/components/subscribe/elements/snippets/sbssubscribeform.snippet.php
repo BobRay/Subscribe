@@ -96,8 +96,8 @@ if ($cssFile != 'none') {
 /* load language strings */
 $language = !empty($scriptProperties['language'])
     ? $scriptProperties['language']
-    : $modx->getOption('cultureKey', null, $modx->getOption('manager_language', null, 'en'));
-$language = empty($language) ? 'en' : $language;
+    : $modx->getOption('cultureKey', null, 'en', true);
+
 $modx->lexicon->load($language . ':subscribe:forms');
 
 $s = $modx->lexicon->fetch($prefix = 'sbs_js_', $removePrefix = false);
@@ -134,6 +134,7 @@ if (isset($hook) && ($sp['form'] == 'register')) {
 
 } elseif ($sp['form'] == 'register') {
         /* Acting as Register form - not a repost */
+        /** @var $profile  modUserProfile*/
         $profile = $modx->user->getOne('Profile');
         $prefs->init($modx->user, $profile);
         $prefs->createDisplay('register');
