@@ -41,7 +41,9 @@ $snippets[2]->fromArray(array (
   'property_preprocess' => false,
   'name' => 'sbsSubscribeForm',
   'description' => 'Creates the subscribe form',
-  'properties' => NULL,
+  'properties' => 
+  array (
+  ),
 ), '', true, true);
 $snippets[2]->setContent(file_get_contents($sources['source_core'] . '/elements/snippets/sbssubscribeform.snippet.php'));
 
