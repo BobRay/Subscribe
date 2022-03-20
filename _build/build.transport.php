@@ -803,7 +803,9 @@ foreach ($categories as $k => $categoryName) {
                   'resource',
                   'propertyset',
                   'widget',
+                  'setting',
              ), $resolvers);
+        $resolvers = array_unique($resolvers);
         $helper->sendLog(modX::LOG_LEVEL_INFO,
             $modx->lexicon('mc_processing_resolvers'));
 
