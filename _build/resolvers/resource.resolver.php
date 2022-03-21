@@ -3,7 +3,7 @@
 * Resource resolver  for Subscribe extra.
 * Sets template, parent, and (optionally) TV values
 *
-* Copyright 2012-2014 Bob Ray <https://bobsguides.com>
+* Copyright 2012-2022 Bob Ray <https://bobsguides.com>
 * Created on 03-16-2022
 *
  * Subscribe is free software; you can redistribute it and/or modify it under the
