@@ -23,7 +23,7 @@ $components = array(
     'authorUrl' => 'https://bobsguides.com',
     'authorSiteName' => "Bob's Guides",
     'packageDocumentationUrl' => 'https://bobsguides.com/subscribe-tutorial.html',
-    'copyright' => '2012-2014',
+    'copyright' => '2012-2022',
 
     /* no need to edit this except to change format */
     'createdon' => strftime('%m-%d-%Y'),
@@ -478,8 +478,13 @@ $components = array(
      * (other resolvers may be created above for TVs and plugins).
      * Suffix 'resolver.php' will be added automatically */
     'resolvers' => array(
+            'default',
     ),
 
+    /* Dependencies */
+    'requires' => array(
+         'login' => '>=1.9.0',
+    ),
 
     /* (optional) install.options is needed if you will interact
      * with user during the install.
@@ -487,7 +492,8 @@ $components = array(
      * Set this to 'install.options' or ''
      * The file will be created as _build/install.options/user.input.php
      * Don't change the filename or directory name. */
-    'install.options' => 'install.options',
+
+   // 'install.options' => 'install.options',
 
 
     /* Suffixes to use for resource and element code files (not implemented)  */
