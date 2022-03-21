@@ -2,7 +2,7 @@
 /**
  * chunks transport file for Subscribe extra
  *
- * Copyright 2012-2014 Bob Ray <https://bobsguides.com>
+ * Copyright 2012-2022 Bob Ray <https://bobsguides.com>
  * Created on 03-17-2022
  *
  * @package subscribe
