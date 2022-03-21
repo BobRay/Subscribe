@@ -336,6 +336,7 @@ $hasSettings = file_exists($sources['data'] . 'transport.settings.php'); /* Add 
 $hasContextSettings = file_exists($sources['data'] . 'transport.contextsettings.php');
 $hasSubPackages = is_dir($sources['subpackages']);
 $minifyJS = $modx->getOption('minifyJS', $props, false);
+$hasDependencies = $modx->getOption('requires', $props, false, true);
 
 $helper->sendLog(modX::LOG_LEVEL_INFO, "\n" . $modx->lexicon('mc_project')
     . ': ' . $currentProject);
@@ -899,6 +900,9 @@ if ($hasSetupOptions && !empty($props['install.options'])) {
     );
 } else {
     $attr['setup-options'] = array();
+}
+if ($hasDependencies) {
+    $attr['requires'] = $modx->getOption('requires', $props, array(), true);
 }
 $builder->setPackageAttributes($attr);
 
