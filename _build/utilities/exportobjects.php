@@ -2,7 +2,7 @@
 /**
  * ExportChunks
  *
- * Copyright 2012-2017 Bob Ray <https://bobsguides.com>
+ * Copyright 2012-2022 Bob Ray <https://bobsguides.com>
  *
  * @author Bob Ray
  * 3/27/12

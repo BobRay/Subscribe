@@ -3,7 +3,7 @@
 /**
  * Unsubscribe class file
  *
- * Copyright 2013-2017 Bob Ray <https://bobsguides.com>
+ * Copyright 2013-2022 Bob Ray <https://bobsguides.com>
  * Created on 01/10/2013
  *
  * Subscribe is free software; you can redistribute it and/or modify it under the
