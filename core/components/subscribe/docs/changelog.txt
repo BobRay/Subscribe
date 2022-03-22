@@ -2,6 +2,13 @@ Changelog for Subscribe
 
 Subscribe 1.2.91
 ---------------
+- Mods for MODX 3
+- Add Login dependency to build
+- Streamline install
+- Preserve resource ID System Settings
+- Fix bug in RefisterForm
+- Add Codeception test structure
+- Add German lexicon file (thanks for Jo Lichter)
 
 Subscribe 1.2.2
 ---------------
