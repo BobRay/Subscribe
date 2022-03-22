@@ -1,55 +1,57 @@
 Changelog for Subscribe
 
+Subscribe 1.2.91
+---------------
+
 Subscribe 1.2.2
 ---------------
-Added security features
-Allow setting JS file to 'none'
-Update docs
-Minor bug fixes
+- Added security features
+- Allow setting JS file to 'none'
+- Update docs
+- Minor bug fixes
 
 Subscribe 1.2.1
 ---------------
-Added Interest Report snippet and resource
-Minor bug fixes and sanity checks
+- Added Interest Report snippet and resource
+- Minor bug fixes and sanity checks
 
 Subscribe 1.2.0
 ---------------
-Added option to manage user group membership
-Register/Manage prefs form captions converted to lex strings
-Code cleanup
-Minor bug fixes
-
+- Added option to manage user group membership
+- Register/Manage prefs form captions converted to lex strings
+- Code cleanup
+- Minor bug fixes
 
 Subscribe 1.1.4
 ---------------
-Reversed captions and values in PrefList Tpl chunk
-Renamed JS and CSS file and path System Settings
-Miscellaneous bug fixes and improvements
+- Reversed captions and values in PrefList Tpl chunk
+- Renamed JS and CSS file and path System Settings
+- Miscellaneous bug fixes and improvements
 
 Subscribe 1.1.3
 ---------------
- Refactored to use System Settings
- All System Settings set on install
- Works with no user configuration
- New Users now get role of Subscriber
- Numerous bug fixes
+- Refactored to use System Settings
+- All System Settings set on install
+- Works with no user configuration
+- New Users now get role of Subscriber
+- Numerous bug fixes
 
 Subscribe 1.1.1
 ---------------
- Added Manage Preferences feature
- Added Unsubscribe feature
- Renamed chunks for consistency and collision avoidance
- Changed all prefixes to sbs
- Chunks renamed with Sbs prefix and Tpl postfix
+- Added Manage Preferences feature
+- Added Unsubscribe feature
+- Renamed chunks for consistency and collision avoidance
+- Changed all prefixes to sbs
+- Chunks renamed with Sbs prefix and Tpl postfix
 
 Subscribe 1.0.1
 ---------------
- Changes to CSS
- Better rendering on mobile devices
- No longer uses JQuery
- Minor bugfixes
+- Changes to CSS
+- Better rendering on mobile devices
+- No longer uses JQuery
+- Minor bugfixes
 
 
 Subscribe 1.0.0
 ---------------
-Initial Version
+- Initial Version

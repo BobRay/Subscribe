@@ -3,12 +3,10 @@
 <p>(Jump to <a href="[[~[[*id]]]]#system_settings_table">System Settings Table</a>.)</p>
 
 <h3>About Subscribe</h3>
-<p>Subscribe provides a request-to-subscribe message that will appear on pages at your site. When Users choose to subscribe and submit the
-registration form, they receive an email message with a link to confirm their registration. The request-to-subscribe message will not be
-shown to Users who are logged in (they will see a logout link). You can also hide the request-to-subscribe message on selected pages with
-the
-<fixedpre>&noShows</fixedpre>
-property in the SubscribeRequest snippet tag.</p>
+<p>Subscribe provides a request-to-subscribe message that will appear on pages at your site. When Users choose to subscribe and submit the registration form, they receive an email message with a link to confirm their registration. The request-to-subscribe message will not be shown to Users who are logged in (they will see a logout link). You can also hide the request-to-subscribe message on selected pages with the
+    <fixedpre>&noShows</fixedpre>
+    property in the SubscribeRequest snippet tag.
+</p>
 
 <p>As soon as a User submits the Registration form, a User record and a User Profile for the User are saved in the MODX database, but with
 the User marked as inactive. When the User responds by clicking on the link in the email, they are taken to the site, marked as active,
@@ -55,13 +53,13 @@ Caption One==Option1||Caption Two==option2||Caption Three==option3
     
 <p>All &quot;sm&quot; and &quot;Sm&quot; prefixes have been changed to &quot;sbs&quot; and &quot;Sbs&quot; to avoid conflicts with other extras. If you've created a custom CSS file be sure to back it up outside the subscribe directory, though it will be of limited use because many of the classes and IDs have changed.</p>
     
-<p><b>IMPORTANT!</b> You must either delete the Subscribe Resources (except the Login page) or change their aliases. If you don't, the install will be corrupted. You may want them for reference, but it's not necessary. If you do keep them, be sure to change the aliases on all but the Login Resource. Subscribe will create new Resources for you in a folder called &quot;Subscribe Folder&quot;. These are the resources that will be used by Subscribe. You can alter them, since future installs will not overwrite them. You can delete your old resources once you are satisfied with the new ones. Be sure not to copy the contents of your old resources into the new ones since the tags have changed. If you delete the resources, be sure to empty the trash (click on the trashcan icon above the Resource tree) to remove them from the database.</p>
+<p><b>IMPORTANT!</b> If upgrading from a version < 1.1.4, you must either delete the Subscribe Resources (except the Login page) or change their aliases. If you don't, the install will be corrupted. You may want them for reference, but it's not necessary. If you do keep them, be sure to change the aliases on all but the Login Resource. Subscribe will create new Resources for you in a folder called &quot;Subscribe Folder&quot;. These are the resources that will be used by Subscribe. You can delete your old resources once you are satisfied with the new ones. Be sure not to copy the contents of your old resources into the new ones since the tags have changed. If you delete the resources, be sure to empty the trash (click on the trashcan icon above the Resource tree) to remove them from the database.</p>
     
 <p>I apologize for the inconvenience. Future upgrades should go much more smoothly.</p>
     
 <p>If you have created any new Tpl chunks for Subscribe, they will survive the upgrade, but they may not be in the Subscribe category after the install and they really won't be of any use, because all the Tpl chunks have changed.</p>
     
-<p>In the new version, your login page should have an alias of &quot;login&quot; or &quot;Login&quot;. Be sure the page exists before installing Subscribe so that the package can set the <fixedpre>sbs_login_page_id</fixedpre> System Setting correctly. If you forget, or your Login page has a different alias, set that System Setting manually in System | System Settings (namespace: subscribe) after the install is finished.
+<p>In the new version, your login page should have an alias of &quot;login&quot;. Be sure the page exists before installing Subscribe so that the package can set the <fixedpre>sbs_login_page_id</fixedpre> System Setting correctly. If you forget, or your Login page has a different alias, set that System Setting manually in System | System Settings (namespace: subscribe) after the install is finished.
 </p>
 </div>
 
@@ -103,7 +101,7 @@ Caption One==Option1||Caption Two==option2||Caption Three==option3
 
 <p>If you are upgrading from a previous version. You will see messages during the install about things that already exist and can't be updated. This is normal.</p>
 <p>
-To install Subscribe, go to System | Package Management on the main menu in the MODX Manager and click on the "Download Extras" button. That will take you to the Revolution Repository (AKA Web Transport Facility). Put Subscribe in the search box and press Enter. Click on the "Download" button, and when it changes to "Downloaded," click on the "Finish" button. That should bring you back to your Package Management grid. Click on the "Install" button next to Subscribe in the grid. The Subscribe package should now be installed.</p>
+To install Subscribe, go to Extras | Installer on the main menu in the MODX Manager and click on the "Download Extras" button. That will take you to the Revolution Repository. Put Subscribe in the search box and press Enter. Click on the "Download" button. When the download has finished, click on the "Back to Package Management" button. That will bring you back to your Package Management grid. Click on the "Install" button next to Subscribe in the grid. The Subscribe package should now be installed.</p>
 
 <p>If you have not installed the Login package, do that before continuing and create a Login page (if you don't already have one) with the alias of &quot;login&quot;. The minimum content for that page is:</p>
         
@@ -144,7 +142,7 @@ snippet tag in your template(s).</p></div>
 <p>Version 1.1.4 of Subscribe adds new users to the Subscribers User Group with a Role of Subscriber (via the Register snippet). <b>IMPORTANT:</b> Both the group and the role must exist before the first user registers. This is still the default option in Version 1.2.0, but it also allows you much finer control and (optionally) lets users manage their own group memberships (see below).</p>
 
 
-<p>To create the User Group, go to Security | Access Controls | User Groups tag. Click on the &quot;New User Group&quot; button. Enter <fixedpre>Subscribers</fixedpre> for the name. Add a description if you want one. Then, click on the &quot;Save&quot; button.</p>
+<p>To create the User Group, go to Security | Access Controls | User Groups & Users tab. Click on the &quot;New User Group&quot; button. Enter <fixedpre>Subscribers</fixedpre> for the name. Add a description if you want one. Then, click on the &quot;Save&quot; button.</p>
 
 <p>To create the Role, click on the &quot;Roles&quot; tab, then on the &quot;Create New&quot; button. Enter <fixedpre>Subscriber</fixedpre> for the role, add a description (optional), and enter a number between 0 and 9999 (I use 50) for the &quot;Authority&quot; level. Then click on the &quot;Save&quot; button.</p>
 
@@ -180,7 +178,7 @@ group1:role1,group2:role2
         
 <h3>Subscribe System Settings</h3>
         
-<p>The Subscribe System Settings containing page IDs will be set automatically during the install, but you may want to check to make sure they are set correctly, especially if you are upgrading from a previous version. Go to System | System Settings and select the &quot;subscribe&quot; namespace in the dropdown menu at the top of the grid (the &quot;core&quot; namespace will be showing by default). Note that the &quot;subscribe&quot; namespace may be on page two of the list. You can click on the plus sign next to a System Setting to see a description for the setting.</p>
+<p>The Subscribe System Settings containing page IDs will be set automatically during the install, but you may want to check to make sure they are set correctly, especially if you are upgrading from a previous version. Go to System | System Settings and select the &quot;subscribe&quot; namespace in the dropdown menu at the top of the grid (the &quot;core&quot; namespace will be showing by default). Note that the &quot;subscribe&quot; namespace may be not be on the first page of the list. You can click on the plus sign next to a System Setting to see a description for the setting.</p>
 
 <p>In the current version, rather than setting properties in multiple places, you only need to set the basic System Settings and they'll be used by all parts of the subscribe package. This means you shouldn't need to modify any tags in the Chunks or Resources. The Settings can be overridden by properties in the various Subscribe tags, but you should rarely, if ever, need to do that.</p>
 
@@ -276,6 +274,10 @@ If you want to modify any of the default Tpl chunks, duplicate them and change t
 
 <h3>Unsubscribe</h3>
 <p>As of Version 1.2.0, Subscribe has an Unsubscribe class that can create a secure unsubscribe link to include in emails. This feature is for use by the Notify and EmailResource extras. It does not affect the operation of Subscribe, but the code is there if you want to roll your own system to provide such a link in bulk emails.</p>
+
+<h3>Modifying the Resources</h3>
+
+<p>You may be able to make the resources look the way you want by modifying the CSS. If not (for example, you need to translate the resources), duplicate the resources and change the appropriate System Setting so Subscribe will be able to find it. Your new resources and settings will survive upgrades, but won't be removed if you uninstall Subscribe.</p>
 
 <h3>Interest Report</h3>
 <p>As of Version 1.2.1, Subscribe will display a table showing the active user count for interest tags, User Groups, or both. To see the report, just view the &quot;Interest Report&quot; Resource in the Subscribe folder. The snippet that produces the report uses the Subscribe System Settings to decide what to show. You can override the settings with properties in the InterestReport snippet tag on the
