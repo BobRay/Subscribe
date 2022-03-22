@@ -7,6 +7,8 @@
  * @param $tpl string - Options string from Tpl
  * @return array
  */
+
+
 function parseOptions($chunk) {
     $options = array();
 
@@ -32,8 +34,10 @@ $language = empty($language)
     : $language;
 $modx->lexicon->load($language . ':subscribe:default');
 
-
-$output .= '<h3>' . $modx->lexicon('sbs_total_users_header') . ': ' . $modx->getCount('modUser', array('active' => '1')) . '</h3>';
+$classPrefix = $modx->getVersionData()['version'] >= 3
+    ? 'MODX\Revolution\\'
+    : '';
+$output .= '<h3>' . $modx->lexicon('sbs_total_users_header') . ': ' . $modx->getCount($classPrefix . 'modUser', array('active' => '1')) . '</h3>';
 
 $users = $modx->getIterator('modUser', array('active' => '1'));
 

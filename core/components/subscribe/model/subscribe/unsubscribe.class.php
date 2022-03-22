@@ -38,6 +38,7 @@ class Unsubscribe {
     protected $method;
     /** @var $props array */
     public $props;
+    public $prefix;
 
     function __construct(&$modx, &$config = array()) {
         $this->modx =& $modx;
@@ -48,17 +49,21 @@ class Unsubscribe {
         $this->secretKey = $this->modx->getOption('sbs_secret_key', null,'5QLKlHLJWEFlCNWMQktO4eSwZHZZ87U3i2U%2B9VNq2bw%3D' );
         $this->method = $this->modx->getOption('method', $this->props, 'hashing.modPBKDF2');
         $this->my_debug('', true);
+        $this->prefix = $this->modx->getVersionData()['version'] >= 3
+            ? 'MODX\Revolution\\'
+            : '';
 
     }
 
     public function my_debug($message, $clear = false) {
+
         /* @var $chunk modChunk */
-        $chunk = $this->modx->getObject('modChunk', array('name' => 'debug'));
+        $chunk = $this->modx->getObject($this->prefix . 'modChunk', array('name' => 'debug'));
 
         if (!$chunk) {
-            $chunk = $this->modx->newObject('modChunk', array('name' => 'debug'));
+            $chunk = $this->modx->newObject($this->prefix . 'modChunk', array('name' => 'debug'));
             $chunk->save();
-            $chunk = $this->modx->getObject('modChunk', array('name' => 'debug'));
+            $chunk = $this->modx->getObject($this->prefix , array('name' => 'debug'));
         }
         if ($clear) {
             $content = '';
@@ -165,14 +170,14 @@ class Unsubscribe {
     public function getUserData($encodedEmail, $key) {
         $userData = array();
         $email = $this->decodeEmail($encodedEmail);
-        $profiles = $this->modx->getCollection('modUserProfile', array('email' => $email));
+        $profiles = $this->modx->getCollection($this->prefix . 'modUserProfile', array('email' => $email));
 
         /* Find the actual user from among those with matching
            email addresses */
         foreach ($profiles as $profile) {
             /* @var $profile modUserProfile */
             if ($this->userMatch($profile, $key)) {
-                $user = $this->modx->getObject('modUser', $profile->get('internalKey'));
+                $user = $this->modx->getObject($this->prefix . 'modUser', $profile->get('internalKey'));
                 $userData['user'] =& $user;
                 $userData['profile'] =& $profile;
                 break;

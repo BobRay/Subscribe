@@ -43,10 +43,13 @@ if ($object->xpdo) {
                'sbs_thank_you_page_id' => 'thanks-for-registering',
                'sbs_unsubscribe_page_id' => 'unsubscribe',
             );
+            $classPrefix = $modx->getVersionData()['version'] >= 3
+                    ? 'MODX\Revolution\\'
+                    : '';
 
             foreach ($settings as $key => $alias) {
-                $systemSetting = $modx->getObject('modSystemSetting', array('key' => $key));
-                $doc = $modx->getObject('modResource', array ('alias' => $alias));
+                $systemSetting = $modx->getObject($classPrefix . 'modSystemSetting', array('key' => $key));
+                $doc = $modx->getObject($classPrefix . 'modResource', array ('alias' => $alias));
 
                 if ($systemSetting && $doc) {
                     $val = $systemSetting->get('value');

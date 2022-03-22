@@ -69,9 +69,12 @@ if (empty ($encodedEmail) || empty($key)) {
 $userData = $unSub->getUserData($encodedEmail, $key);
 
 if (!empty ($userData)) {
+    $classPrefix = $modx->getVersionData()['version'] >= 3
+            ? 'MODX\Revolution\\'
+            : '';
     /* @var $user modUser */
     $user = $userData['user'];
-    $usr = $modx->getObject('modUser', $user->get('id'));
+    $usr = $modx->getObject($classPrefix . 'modUser', $user->get('id'));
     $modx->user =& $usr;
     $modx->getUser();
     $contexts = $modx->getOption('sbsContexts', $sp, $modx->context->get('key'));

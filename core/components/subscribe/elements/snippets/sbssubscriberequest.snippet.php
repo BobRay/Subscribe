@@ -69,7 +69,12 @@ if (! function_exists('setSystemSettings')) {
 function setSystemSettings(&$modx) {
     /* @var $modx modX */
     /* @var $parent modResource */
-    $parent = $modx->getObject('modResource', array('alias' => 'subscribe-folder'));
+
+    $classPrefix = $modx->getVersionData()['version'] >= 3
+       ?'MODX\Revolution\\'
+       : '';
+
+    $parent = $modx->getObject($classPrefix . 'modResource', array('alias' => 'subscribe-folder'));
     $parentId = 0;
     if ($parent) {
         $parentId = $parent->get('id');
@@ -86,8 +91,8 @@ function setSystemSettings(&$modx) {
     foreach ($settings as $key => $value) {
         /* @var $resObj modResource */
         /* @var $setting modSystemSetting */
-        $resObj = $modx->getObject('modResource', array('alias' => $value));
-        $setting = $modx->getObject('modSystemSetting', array('key' => $key));
+        $resObj = $modx->getObject($classPrefix . 'modResource', array('alias' => $value));
+        $setting = $modx->getObject($classPrefix . 'modSystemSetting', array('key' => $key));
         if (! $resObj) {
             $modx->log(modX::LOG_LEVEL_ERROR, 'Failed to retrieve Resource with alias: ' . $value);
         }

@@ -34,8 +34,11 @@ if ($object->xpdo) {
         case xPDOTransport::ACTION_INSTALL:
         case xPDOTransport::ACTION_UPGRADE:
         /* set Secret Key */
+        $classPrefix = $modx->getVersionData()['version'] >= 3
+            ? 'MODX\Revolution\\'
+            : '';
 
-        $ss = $modx->getObject('modSystemSetting', array('key' => 'sbs_secret_key'));
+        $ss = $modx->getObject($classPrefix . 'modSystemSetting', array('key' => 'sbs_secret_key'));
 
         if ($ss) {
             $val = $ss->get('value');
