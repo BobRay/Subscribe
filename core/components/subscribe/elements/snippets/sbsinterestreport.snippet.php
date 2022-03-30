@@ -39,7 +39,7 @@ $classPrefix = $modx->getVersionData()['version'] >= 3
     : '';
 $output .= '<h3>' . $modx->lexicon('sbs_total_users_header') . ': ' . $modx->getCount($classPrefix . 'modUser', array('active' => '1')) . '</h3>';
 
-$users = $modx->getIterator('modUser', array('active' => '1'));
+$users = $modx->getIterator($classPrefix . 'modUser', array('active' => '1'));
 
 
 $showInterests = $modx->getOption('sbs_show_interests', $props, true);
