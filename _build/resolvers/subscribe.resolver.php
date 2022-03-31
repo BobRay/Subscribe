@@ -34,7 +34,8 @@ if ($object->xpdo) {
         case xPDOTransport::ACTION_INSTALL:
         case xPDOTransport::ACTION_UPGRADE:
         /* set Secret Key */
-        $classPrefix = $modx->getVersionData()['version'] >= 3
+        $isMODX3 = $modx->getVersionData()['version'] >= 3;
+        $classPrefix = $isMODX3
             ? 'MODX\Revolution\\'
             : '';
 
@@ -54,6 +55,30 @@ if ($object->xpdo) {
         } else {
             $modx->log(xPDO::LOG_LEVEL_ERROR, 'Unable to get Secret Key System Setting');
         }
+
+        if ($isMODX3) {
+            $fixes = array(
+                'subscribe-folder',
+                'subscribe',
+                'thank-you-for-registering',
+                'interest-report',
+                'manage-preferences',
+                'registration-confirmed',
+            );
+            /* update class keys */
+            foreach ($fixes as $alias) {
+                $doc = $modx->getObject('modResource', array('alias' => $alias));
+                if ($doc) {
+                    $ck = $doc->get('class_key');
+                    if (strpos($ck, 'Revolution') === false) {
+                        $doc->set('class_key', $classPrefix . 'modResource');
+                        $doc->save();
+                    }
+                }
+            }
+
+        }
+
 
         $success = true;
             break;
