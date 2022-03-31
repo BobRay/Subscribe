@@ -148,12 +148,9 @@ class Unsubscribe {
      */
     public function createUrl($url, $profile) {
         /* @var $profile modUserProfile */
-        $this->modx->log(modX::LOG_LEVEL_ERROR, 'Encoding Email');
+
         $encodedEmail = $this->encodeEmail($profile->get('email'));
-        $this->modx->log(modX::LOG_LEVEL_ERROR, 'Email encoded');;
-        $this->modx->log(modX::LOG_LEVEL_ERROR, 'Encoding Key');
         $key = $this->encodeKey($profile);
-        $this->modx->log(modX::LOG_LEVEL_ERROR, 'Key encoded');
         return $url . '?ue=' . $encodedEmail . '&uk=' . $key;
 
     }
