@@ -48,7 +48,9 @@ class Unsubscribe {
     public function init() {
         $this->secretKey = $this->modx->getOption('sbs_secret_key', null,'5QLKlHLJWEFlCNWMQktO4eSwZHZZ87U3i2U%2B9VNq2bw%3D' );
         $this->method = $this->modx->getOption('method', $this->props, 'hashing.modPBKDF2');
-        $this->my_debug('', true);
+        if ($this->debug) {
+            $this->my_debug('', true);
+        }
         $this->prefix = $this->modx->getVersionData()['version'] >= 3
             ? 'MODX\Revolution\\'
             : '';
@@ -57,7 +59,7 @@ class Unsubscribe {
 
     public function my_debug($message, $clear = false) {
 
-        /* @var $chunk modChunk */
+        /* @var $chunk modElement */
         $chunk = $this->modx->getObject($this->prefix . 'modChunk', array('name' => 'debug'));
 
         if (!$chunk) {
@@ -65,14 +67,16 @@ class Unsubscribe {
             $chunk->save();
             $chunk = $this->modx->getObject($this->prefix , array('name' => 'debug'));
         }
-        if ($clear) {
-            $content = '';
-        } else {
-            $content = $chunk->getContent();
+        if ($chunk) {
+            if ($clear) {
+                $content = '';
+            } else {
+                $content = $chunk->getContent();
+            }
+            $content .= "\n" . $message;
+            $chunk->setContent($content);
+            $chunk->save();
         }
-        $content .= "\n" . $message;
-        $chunk->setContent($content);
-        $chunk->save();
     }
 
     /**
