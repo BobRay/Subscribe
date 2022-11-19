@@ -1,5 +1,7 @@
 <p>Subscribe provides a double-opt-in User registration system. It uses some parts of the Login package, so be sure the Login package is installed before using Subscribe.</p>
 
+<h4>Subscribe 1.3.0 and later are compatible with MODX 3</h4>
+
 <p>(Jump to <a href="[[~[[*id]]]]#system_settings_table">System Settings Table</a>.)</p>
 
 <h3>About Subscribe</h3>
@@ -16,11 +18,12 @@ logged in, and sent to a &quot;Registration Confirmed&quot; page.</p>
 saved as a comma-separated list in the
 <fixedpre>comment</fixedpre>
 field of the User's Profile (or, optionally, in an extended field of your choice). This allows you to send email messages to Users based on
-their interests (an upcoming version of EmailResource will do this automatically as will an upcoming extra called &quot;Notify&quot;). You
-can also design systems that respond to User interests by customizing menus, forwarding Users to particular parts of the site on login, etc.</p>
+their interests (the &quot;Notify&quot; extra will do this for you). You
+can also design systems that respond to User interests by customizing menus, or forwarding Users to particular parts of the site on login, etc.</p>
 
-<p>There is also a Manage Preferences form that lets the user change their interests and/or group memberships at any time. It also allows
-the user to unsubscribe.</p>
+<p>There is also a Manage Preferences form that lets the user change their interests and/or group memberships at any time. It also allows the user to unsubscribe.</p>
+
+<p>If you are installing or upgrading from version 1.2.0 of Subscribe or later, you shouldn't have to make any changes. You can <a href="[[~[[*id]]]]#continue" target="_blank" rel="noopener nofollow noreferrer">click here</a> to skip over the upgrade notes.</p>
 
 <div class="box">
 <p><b>Upgrading from Version 1.1.3 or earlier</b></p>
@@ -95,9 +98,11 @@ Caption One==Option1||Caption Two==option2||Caption Three==option3
 
 </div>
 
+<span id="continue" class="jump_anchor"></span>
+
 <h3>Installing Subscribe</h3>
 
-<p>The Subscribe install is fairly slow because of the creation of System Settings. Be patient.</p>
+<p>The Subscribe install can be slow because of the creation of System Settings. Be patient.</p>
 
 <p>If you are upgrading from a previous version. You will see messages during the install about things that already exist and can't be updated. This is normal.</p>
 <p>
@@ -284,7 +289,7 @@ If you want to modify any of the default Tpl chunks, duplicate them and change t
 &quot;Interest Report&quot; page. Usually, this won't be necessary, but if you want to show User Group membership and don't allow users to manage their groups, you can use <fixedpre>
     &sbs_show_group=`1`</fixedpre> in the tag and put the groups in the <fixedpre>sbsGroupListTpl</fixedpre> chunk. Note that the groups don't have to have anything to do with Subscribe, so you can use this as a general report for User Group membership.</p>
 
-<a name="system_settings_table"></a>
+<a id="system_settings_table" class="jump_anchor"></a>
 
 <h3>Subscribe System Settings</h3>
 <table class="properties">
